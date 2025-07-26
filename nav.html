@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronoshop Navigation</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: -320px;
+            top: var(--header-height);
+            width: 320px;
+            height: calc(100vh - var(--header-height));
+            background: var(--bg-secondary);
+            backdrop-filter: var(--blur-material);
+            -webkit-backdrop-filter: var(--blur-material);
+            border-right: 1px solid var(--separator-non-opaque);
+            z-index: 999;
+            transition: left var(--transition-normal);
+            overflow-y: auto;
+            box-shadow: var(--shadow-3);
+        }
+
+        .sidebar.is-open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--separator-non-opaque);
+            background: var(--fill-quaternary);
+        }
+
+        .sidebar-header h3 {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .sidebar-close:hover {
+            background: var(--fill-tertiary);
+            color: var(--text-primary);
+        }
+
+        .sidebar-content {
+            padding: var(--space-4);
+        }
+
+        .sidebar-section {
+            margin-bottom: var(--space-6);
+        }
+
+        .sidebar-section h4 {
+            font-size: var(--text-sm);
+            font-weight: var(--font-semibold);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-3);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-links li {
+            margin-bottom: var(--space-1);
+        }
+
+        .sidebar-links a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .sidebar-links a:hover {
+            background: var(--fill-tertiary);
+            color: var(--ios-blue);
+        }
+
+        .sidebar-links i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 280px;
+                left: -280px;
+            }
+        }
+
+        /* Cart count badge */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--ios-red);
+            color: white;
+            font-size: 12px;
+            font-weight: var(--font-bold);
+            padding: 2px 6px;
+            border-radius: var(--radius-full);
+            min-width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .nav-button {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <img src="assets/cronoshop-logo.png" alt="Cronoshop">
+                <span>Cronoshop</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-desktop">
+                <a href="index.html" class="nav-link" data-page="index">Home</a>
+                <a href="products.html" class="nav-link" data-page="products">Offerte</a>
+                <a href="categorie.html" class="nav-link" data-page="categorie">Categorie</a>
+                <a href="cronoai.html" class="nav-link" data-page="cronoai">CronoAI</a>
+                <a href="blog.html" class="nav-link" data-page="blog">Blog</a>
+                <a href="groups.html" class="nav-link" data-page="groups">Community</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <a href="wishlist.html" class="nav-button" title="Wishlist">
+                    <i class="ph ph-heart"></i>
+                </a>
+                <a href="cart.html" class="nav-button" title="Carrello">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="nav-button theme-btn" title="Cambia tema">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-button mobile-menu-btn" title="Menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="mobile-menu-title">Menu</span>
+            <button class="nav-button close-menu-btn">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="index.html" class="mobile-nav-link" data-page="index">
+                        <i class="ph ph-house mobile-nav-icon"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="products.html" class="mobile-nav-link" data-page="products">
+                        <i class="ph ph-shopping-bag mobile-nav-icon"></i>
+                        Offerte
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="categorie.html" class="mobile-nav-link" data-page="categorie">
+                        <i class="ph ph-squares-four mobile-nav-icon"></i>
+                        Categorie
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="cronoai.html" class="mobile-nav-link" data-page="cronoai">
+                        <i class="ph ph-sparkle mobile-nav-icon"></i>
+                        CronoAI
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="blog.html" class="mobile-nav-link" data-page="blog">
+                        <i class="ph ph-article mobile-nav-icon"></i>
+                        Blog
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="groups.html" class="mobile-nav-link" data-page="groups">
+                        <i class="ph ph-users mobile-nav-icon"></i>
+                        Community
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="wishlist.html" class="mobile-nav-link" data-page="wishlist">
+                        <i class="ph ph-heart mobile-nav-icon"></i>
+                        Wishlist
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="cart.html" class="mobile-nav-link" data-page="cart">
+                        <i class="ph ph-shopping-cart mobile-nav-icon"></i>
+                        Carrello
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="account.html" class="mobile-nav-link" data-page="account">
+                        <i class="ph ph-user mobile-nav-icon"></i>
+                        Account
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="faq.html" class="mobile-nav-link" data-page="faq">
+                        <i class="ph ph-question mobile-nav-icon"></i>
+                        FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Navigazione Rapida</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h4>Categorie Popolari</h4>
+                <ul class="sidebar-links">
+                    <li><a href="products.html?category=smartphone"><i class="ph ph-device-mobile"></i> Smartphone</a></li>
+                    <li><a href="products.html?category=tech"><i class="ph ph-laptop"></i> Tecnologia</a></li>
+                    <li><a href="products.html?category=casa"><i class="ph ph-house"></i> Casa & Cucina</a></li>
+                    <li><a href="products.html?category=fashion"><i class="ph ph-t-shirt"></i> Moda</a></li>
+                    <li><a href="products.html?category=sport"><i class="ph ph-basketball"></i> Sport</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h4>Strumenti</h4>
+                <ul class="sidebar-links">
+                    <li><a href="cronoai.html"><i class="ph ph-sparkle"></i> CronoAI</a></li>
+                    <li><a href="wishlist.html"><i class="ph ph-heart"></i> Wishlist</a></li>
+                    <li><a href="cart.html"><i class="ph ph-shopping-cart"></i> Carrello</a></li>
+                    <li><a href="stats.html"><i class="ph ph-chart-bar"></i> Statistiche</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h4>Community</h4>
+                <ul class="sidebar-links">
+                    <li><a href="groups.html"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a></li>
+                    <li><a href="groups.html"><i class="ph ph-telegram-logo"></i> Telegram</a></li>
+                    <li><a href="blog.html"><i class="ph ph-article"></i> Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu-btn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+
+            function toggleMobileMenu(isOpen) {
+                mobileMenu.classList.toggle('is-open', isOpen);
+                overlay.classList.toggle('is-active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            mobileMenuBtn?.addEventListener('click', () => toggleMobileMenu(true));
+            closeMenuBtn?.addEventListener('click', () => toggleMobileMenu(false));
+            overlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+            // Sidebar functionality
+            window.toggleSidebar = function() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('is-open');
+                
+                // Close mobile menu if open
+                if (mobileMenu.classList.contains('is-open')) {
+                    toggleMobileMenu(false);
+                }
+            };
+
+            // Add sidebar toggle button to navbar (optional)
+            const navActions = document.querySelector('.nav-actions');
+            if (navActions && window.innerWidth > 768) {
+                const sidebarBtn = document.createElement('button');
+                sidebarBtn.className = 'nav-button';
+                sidebarBtn.title = 'Menu laterale';
+                sidebarBtn.innerHTML = '<i class="ph ph-sidebar"></i>';
+                sidebarBtn.addEventListener('click', window.toggleSidebar);
+                navActions.insertBefore(sidebarBtn, navActions.firstChild);
+            }
+
+            // Highlight active page
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+            const activeLinks = document.querySelectorAll(`[data-page="${currentPage}"]`);
+            activeLinks.forEach(link => link.classList.add('active'));
+
+            // Theme toggle
+            const themeBtn = document.querySelector('.theme-btn');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const isDark = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDark);
+                    
+                    const icon = this.querySelector('i');
+                    icon.className = isDark ? 'ph ph-sun' : 'ph ph-moon';
+                });
+
+                // Apply saved theme
+                const savedTheme = localStorage.getItem('darkMode') === 'true';
+                if (savedTheme) {
+                    document.body.classList.add('dark-mode');
+                    const icon = themeBtn.querySelector('i');
+                    icon.className = 'ph ph-sun';
+                }
+            }
+
+            // Update cart count
+            function updateCartCount() {
+                try {
+                    const cartData = JSON.parse(localStorage.getItem('cronoshop_data') || '{}');
+                    const cart = cartData.cart || [];
+                    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                    
+                    const cartCounts = document.querySelectorAll('.cart-count');
+                    cartCounts.forEach(count => {
+                        count.textContent = totalItems;
+                        count.style.display = totalItems > 0 ? 'flex' : 'none';
+                    });
+                } catch (error) {
+                    console.error('Error updating cart count:', error);
+                }
+            }
+
+            // Initialize cart count
+            updateCartCount();
+
+            // Listen for cart updates
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'cronoshop_data') {
+                    updateCartCount();
+                }
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(e) {
+                const sidebar = document.getElementById('sidebar');
+                const sidebarBtn = document.querySelector('[title="Menu laterale"]');
+                
+                if (sidebar && sidebar.classList.contains('is-open')) {
+                    if (!sidebar.contains(e.target) && e.target !== sidebarBtn) {
+                        sidebar.classList.remove('is-open');
+                    }
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close mobile menu
+                    if (mobileMenu.classList.contains('is-open')) {
+                        toggleMobileMenu(false);
+                    }
+                    
+                    // Close sidebar
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar && sidebar.classList.contains('is-open')) {
+                        sidebar.classList.remove('is-open');
+                    }
+                }
+            });
+        });
+
+        // Export for global use
+        window.cronoshopNav = {
+            refreshCartBadge: function() {
+                const event = new Event('storage');
+                event.key = 'cronoshop_data';
+                window.dispatchEvent(event);
+            }
+        };
+    </script>
+</body>
+</html>

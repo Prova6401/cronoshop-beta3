@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CronoAI - Assistente AI per Shopping | Cronoshop</title>
+    <meta name="description" content="CronoAI è l'assistente AI di Cronoshop che ti aiuta a trovare le migliori offerte Amazon. Chiedi consigli personalizzati e scopri prodotti perfetti per te.">
+    <meta name="keywords" content="cronoai, assistente ai, shopping ai, offerte amazon, consigli acquisti, intelligenza artificiale">
+    <link rel="canonical" href="https://www.cronoshop.eu/cronoai.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/cronoshop-logo.png">
+    <link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CronoAI - Assistente AI per Shopping">
+    <meta property="og:description" content="L'intelligenza artificiale che rivoluziona il tuo modo di fare shopping su Amazon.">
+    <meta property="og:image" content="https://www.cronoshop.eu/assets/cronoshop-logo.png">
+    <meta property="og:url" content="https://www.cronoshop.eu/cronoai.html">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { padding-top: 70px; }
+        .ai-main { padding: 2rem 1rem; max-width: 1200px; margin: auto; }
+        .ai-header { text-align: center; margin-bottom: 3rem; }
+        .ai-header h1 { font-size: 3.5rem; font-weight: 800; color: var(--text-blue); margin-bottom: 1rem; }
+        .ai-header p { font-size: 1.3rem; color: var(--text-secondary); max-width: 800px; margin: auto; }
+        
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin: 4rem 0 2rem 0; color: var(--text-primary); }
+
+        /* Stile per le nuove sezioni */
+        .intro-section p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1rem; }
+        .intro-section a { font-weight: 600; color: var(--primary-blue); text-decoration: none; }
+        .intro-section a:hover { text-decoration: underline; }
+
+        .advanced-ai-grid, .quick-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .ai-card {
+            padding: 2rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .ai-card-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .ai-card-header i { font-size: 1.8rem; margin-right: 1rem; color: var(--primary-blue); width: 40px; text-align: center; }
+        .ai-card-header h3 { font-size: 1.5rem; margin: 0; }
+        .ai-card p { font-size: 1rem; line-height: 1.6; flex-grow: 1; }
+        .ai-card .glass-input, .ai-card .glass-textarea { width: 100%; margin: 1rem 0; }
+        .ai-card .result { margin-top: 1rem; font-weight: bold; min-height: 24px; font-size: 1.1rem; }
+        .ai-card .glass-btn { margin-top: auto; } /* Allinea il bottone in fondo */
+
+        .disclaimer-section { padding: 2rem; border-top: 4px solid var(--warning-orange); margin: 3rem 0; }
+        
+        .promo-banner-whatsapp, .promo-banner-products { margin: 4rem 0; padding: 2.5rem; text-align: center; border-radius: var(--radius-xl); }
+        .promo-banner-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: white; }
+        .promo-banner-products { background: var(--glass-white-strong); }
+        .promo-banner-products a { margin: 0.5rem; }
+    </style>
+</head>
+<body>
+
+<div class="animated-background"></div>
+<div id="navigation-container"></div>
+
+<main class="ai-main">
+    <section class="ai-header">
+        <h1><i class="fa-solid fa-brain"></i> Benvenuto in CronoAI 2.0</h1>
+        <p>Il tuo copilota per lo shopping. Sfrutta la vera intelligenza artificiale per fare acquisti più intelligenti, veloci e convenienti su Amazon.</p>
+    </section>
+
+    <section class="intro-section glass-card" style="padding: 2rem;">
+        <p><strong>CronoAI</strong> è l'ecosistema di intelligenza artificiale sviluppato da <a href="index.html" title="Vai alla home di Cronoshop">Cronoshop</a> per rivoluzionare la tua esperienza di acquisto. Dimentica i dubbi e le ricerche infinite: i nostri strumenti analizzano per te dati complessi e ti forniscono risposte chiare e immediate. Prima di iniziare, ti invitiamo a leggere la nostra <a href="about.html" title="Scopri chi siamo">pagina di presentazione</a> e a unirti ai nostri <a href="groups.html" title="Unisciti ai canali di offerte">canali di offerte</a> per non perdere nessuna occasione. Ricorda che questo è uno strumento di supporto: verifica sempre il prezzo finale su Amazon.</p>
+    </section>
+
+    <h2 class="section-title">Intelligenza Avanzata: Funzioni Esclusive</h2>
+    <div class="advanced-ai-grid">
+        <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Analizzatore Trend di Prezzo</h3>
+            </div>
+            <p>Incolla l'URL di un prodotto Amazon per visualizzarne lo storico dei prezzi e ricevere una previsione AI sulla probabilità di un futuro ribasso.</p>
+            <input type="text" id="priceTrendInput" class="glass-input" placeholder="Incolla URL Amazon...">
+            <button class="glass-btn primary-btn" onclick="analyzePriceTrend()">Analizza Prezzo</button>
+            <div class="result" id="priceTrendResult"></div>
+        </div>
+
+        <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-balance-scale"></i>
+                <h3>Confronto Prodotti Smart</h3>
+            </div>
+            <p>Inserisci due o più URL Amazon. L'AI genererà una tabella comparativa, riassumerà i pro e i contro dalle recensioni e ti consiglierà il miglior acquisto.</p>
+            <textarea id="compareInput" class="glass-textarea" placeholder="Incolla un URL per riga..." rows="3"></textarea>
+            <button class="glass-btn primary-btn" onclick="compareProducts()">Confronta Prodotti</button>
+            <div class="result" id="compareResult"></div>
+        </div>
+
+        <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-gift"></i>
+                <h3>Generatore Idee Regalo</h3>
+            </div>
+            <p>Descrivi la persona e l'occasione (es. "Regalo per papà 60 anni, ama giardinaggio, budget 50€"). L'AI troverà i regali perfetti per te.</p>
+            <input type="text" id="giftInput" class="glass-input" placeholder="Descrivi qui il regalo che cerchi...">
+            <button class="glass-btn primary-btn" onclick="generateGiftIdeas()">Trova Regalo</button>
+            <div class="result" id="giftResult"></div>
+        </div>
+    </div>
+
+    <section class="promo-banner-whatsapp">
+        <h2><i class="fa-brands fa-whatsapp"></i> Offerte Esclusive su WhatsApp</h2>
+        <p>L'AI è potente, ma le offerte lampo sono veloci! Unisciti al nostro canale per ricevere le migliori occasioni selezionate dal nostro team in tempo reale.</p>
+        <a href="groups.html" class="glass-btn" style="background: white; color: #25D366;">Unisciti Ora</a>
+    </section>
+
+    <h2 class="section-title">Strumenti di Analisi Rapida</h2>
+    <div class="quick-tools-grid">
+         <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-search-dollar"></i>
+                <h3>Cacciatore Offerte Nascoste</h3>
+            </div>
+            <p>L'AI scandaglia Amazon alla ricerca di coupon nascosti, offerte Warehouse e sconti applicati al checkout. Inserisci una categoria (es. "Cuffie Bluetooth").</p>
+            <input type="text" id="hiddenDealInput" class="glass-input" placeholder="Categoria prodotto...">
+            <button class="glass-btn primary-btn" onclick="findHiddenDeals()">Scova Offerte</button>
+            <div class="result" id="hiddenDealResult"></div>
+        </div>
+
+        <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-palette"></i>
+                <h3>Analizzatore Colore Sconto</h3>
+            </div>
+            <p>Un modo rapido per interpretare i nostri codici colore. Inserisci un colore (es. 'rosso') e ti diremo che tipo di sconto rappresenta!</p>
+            <input type="text" id="colorInput" class="glass-input" placeholder="Es. verde, blu, arancione...">
+            <button class="glass-btn primary-btn" onclick="analyzeColor()">Analizza Colore</button>
+            <div class="result" id="colorResult"></div>
+        </div>
+
+        <div class="glass-card ai-card">
+            <div class="ai-card-header">
+                <i class="fa-solid fa-random"></i>
+                <h3>Generatore Nome Offerta</h3>
+            </div>
+            <p>Sei a caccia di ispirazione? Clicca per generare un nome accattivante per un'offerta. Perfetto per i nostri partner e affiliati!</p>
+            <button class="glass-btn primary-btn" onclick="generateOfferName()">Genera Nome</button>
+            <div class="result" id="offerNameResult"></div>
+        </div>
+    </div>
+    
+    <section class="promo-banner-products">
+        <h2><i class="fa-solid fa-shopping-bag"></i> Stanco di Analizzare? Passa all'Azione!</h2>
+        <p>L'intelligenza artificiale ti ha dato i consigli giusti. Ora trova il prodotto perfetto tra centinaia di offerte reali e verificate dal nostro team.</p>
+        <a href="products.html?category=elettronica" class="glass-btn primary-btn">Vai a Elettronica</a>
+        <a href="products.html?category=casa" class="glass-btn primary-btn">Vai a Casa e Cucina</a>
+        <a href="products.html?category=fai-da-te" class="glass-btn primary-btn">Vai a Fai da te</a>
+        <a href="products.html" class="glass-btn secondary-btn">Vedi Tutte le Offerte</a>
+    </section>
+
+    <section class="disclaimer-section glass-card">
+        <h2 style="text-align: center; color: var(--warning-orange);">⚠️ Disclaimer e Descrizione del Servizio</h2>
+        <p><strong>CronoAI è un servizio sperimentale basato su modelli linguistici di grandi dimensioni.</strong> Le risposte, sebbene avanzate, sono generate artificialmente e potrebbero contenere imprecisioni. Le analisi, le previsioni di prezzo e i suggerimenti non costituiscono una consulenza d'acquisto o finanziaria. Le offerte, i prezzi e la disponibilità dei prodotti non sono garantiti e devono <strong>sempre</strong> essere verificati sulla pagina ufficiale di Amazon prima di procedere all'acquisto. <strong>Cronoshop e CronoAI non si assumono alcuna responsabilità per le decisioni di acquisto dell'utente.</strong></p>
+    </section>
+
+</main>
+
+<footer class="glass-footer">
+    </footer>
+
+<script src="src/utils/nav-loader.js" defer></script>
+<script>
+    // Load navigation
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navigation-placeholder').innerHTML = data;
+            
+            // Execute navigation script
+            const navScript = document.querySelector('#navigation-placeholder script');
+            if (navScript) {
+                eval(navScript.textContent);
+            }
+        })
+        .catch(error => console.error('Error loading navigation:', error));
+
+    // Chat functionality
+    let chatHistory = [];
+    let isTyping = false;
+
+    function scrollToChat() {
+        document.getElementById('ai-chat').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            document.getElementById('chatInput').focus();
+        }, 500);
+    }
+
+    function scrollToFeatures() {
+        document.getElementById('ai-features').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        
+        if (!message || isTyping) return;
+        
+        addMessage(message, 'user');
+        input.value = '';
+        updateCharCount();
+        
+        // Simulate AI response
+        simulateAIResponse(message);
+    }
+
+    function sendSuggestion(suggestion) {
+        const input = document.getElementById('chatInput');
+        input.value = suggestion;
+        sendMessage();
+    }
+
+    function addMessage(content, sender) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.innerHTML = sender === 'ai' ? '<i class="ph ph-robot"></i>' : '<i class="ph ph-user"></i>';
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        messageContent.innerHTML = content;
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(messageContent);
+        messagesContainer.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        // Add to history
+        chatHistory.push({ content, sender, timestamp: new Date() });
+    }
+
+    function simulateAIResponse(userMessage) {
+        isTyping = true;
+        const sendButton = document.getElementById('sendButton');
+        sendButton.disabled = true;
+        
+        // Show typing indicator
+        addTypingIndicator();
+        
+        setTimeout(() => {
+            removeTypingIndicator();
+            const response = generateAIResponse(userMessage);
+            addMessage(response, 'ai');
+            isTyping = false;
+            sendButton.disabled = false;
+        }, 2000 + Math.random() * 1000);
+    }
+
+    function addTypingIndicator() {
+        const messagesContainer = document.getElementById('chatMessages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message ai-message typing-indicator';
+        typingDiv.id = 'typing-indicator';
+        
+        typingDiv.innerHTML = `
+            <div class="message-avatar">
+                <i class="ph ph-robot"></i>
+            </div>
+            <div class="message-content">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
+    }
+
+    function generateAIResponse(userMessage) {
+        const message = userMessage.toLowerCase();
+        
+        // Simple response logic (in a real app, this would be an API call)
+        if (message.includes('smartphone') || message.includes('telefono')) {
+            return `📱 <strong>Smartphone consigliati:</strong><br><br>
+                🥇 <strong>iPhone 15</strong> - €899 (era €999)<br>
+                🥈 <strong>Samsung Galaxy S24</strong> - €749 (era €899)<br>
+                🥉 <strong>Google Pixel 8</strong> - €599 (era €699)<br><br>
+                Tutti hanno ottime recensioni e sono in offerta questa settimana! Vuoi che analizzi le specifiche di uno in particolare?`;
+        }
+        
+        if (message.includes('cuffie') || message.includes('auricolari')) {
+            return `🎧 <strong>Cuffie wireless top 2025:</strong><br><br>
+                🎵 <strong>Sony WH-1000XM5</strong> - €299 (era €399)<br>
+                ⭐ Cancellazione rumore eccellente<br>
+                🔋 30h di autonomia<br><br>
+                🎵 <strong>AirPods Pro 2</strong> - €229 (era €279)<br>
+                ⭐ Perfette per iPhone<br>
+                🔋 6h + 24h con custodia<br><br>
+                Quale preferisci? Posso fare un confronto dettagliato!`;
+        }
+        
+        if (message.includes('laptop') || message.includes('computer')) {
+            return `💻 <strong>Laptop perfetti per te:</strong><br><br>
+                Per <strong>studenti</strong>:<br>
+                • ASUS VivoBook 15 - €549 (era €699)<br>
+                • Lenovo IdeaPad 3 - €479 (era €599)<br><br>
+                Per <strong>lavoro</strong>:<br>
+                • MacBook Air M2 - €1199 (era €1399)<br>
+                • Dell XPS 13 - €999 (era €1199)<br><br>
+                Dimmi per cosa lo userai principalmente e ti darò consigli più specifici!`;
+        }
+        
+        if (message.includes('regalo') || message.includes('san valentino')) {
+            return `💝 <strong>Idee regalo romantiche:</strong><br><br>
+                👩 <strong>Per lei:</strong><br>
+                • Profumo Chanel - €89 (era €120)<br>
+                • Gioielli Pandora - da €39<br>
+                • Set skincare Clinique - €79 (era €99)<br><br>
+                👨 <strong>Per lui:</strong><br>
+                • Smartwatch Apple Watch - €299 (era €399)<br>
+                • Profumo Dior Sauvage - €79 (era €99)<br>
+                • Cuffie Bose - €199 (era €249)<br><br>
+                Che budget hai in mente? Posso personalizzare i suggerimenti!`;
+        }
+        
+        // Default response
+        return `Grazie per la tua domanda! 🤔<br><br>
+            Sto analizzando le migliori opzioni per te. Ecco cosa posso fare:<br><br>
+            🔍 <strong>Cercare prodotti specifici</strong><br>
+            💰 <strong>Confrontare prezzi e offerte</strong><br>
+            ⭐ <strong>Analizzare recensioni</strong><br>
+            📊 <strong>Mostrarti l'andamento dei prezzi</strong><br><br>
+            Puoi essere più specifico su cosa stai cercando? Ad esempio:<br>
+            • "Smartphone sotto 500€"<br>
+            • "Laptop per gaming"<br>
+            • "Regalo per compleanno"<br><br>
+            Così potrò aiutarti meglio! 😊`;
+    }
+
+    function clearChat() {
+        if (confirm('Sei sicuro di voler cancellare tutta la conversazione?')) {
+            const messagesContainer = document.getElementById('chatMessages');
+            // Keep only the initial AI message
+            const initialMessage = messagesContainer.firstElementChild;
+            messagesContainer.innerHTML = '';
+            messagesContainer.appendChild(initialMessage);
+            chatHistory = [];
+            showNotification('Chat cancellata');
+        }
+    }
+
+    function updateCharCount() {
+        const input = document.getElementById('chatInput');
+        const charCount = document.querySelector('.char-count');
+        if (charCount) {
+            charCount.textContent = `${input.value.length}/500`;
+        }
+    }
+
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('i');
+        
+        const isOpen = answer.classList.contains('open');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question i').forEach(i => i.className = 'ph ph-plus');
+        
+        if (!isOpen) {
+            answer.classList.add('open');
+            icon.className = 'ph ph-minus';
+        }
+    }
+
+    function showNotification(message) {
+        // Create notification element if it doesn't exist
+        let notification = document.getElementById('notification');
+        if (!notification) {
+            notification = document.createElement('div');
+            notification.id = 'notification';
+            notification.className = 'notification';
+            notification.innerHTML = '<span id="notificationText"></span>';
+            document.body.appendChild(notification);
+        }
+
+        const notificationText = document.getElementById('notificationText');
+        if (notificationText) {
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatInput = document.getElementById('chatInput');
+        
+        // Enter to send message
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Update character count
+        chatInput.addEventListener('input', updateCharCount);
+        
+        // Initialize character count
+        updateCharCount();
+    });
+
+    // Add typing dots animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+</body>
+</html>

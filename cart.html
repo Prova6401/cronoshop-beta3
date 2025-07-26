@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello - Cronoshop</title>
+    
+    <meta name="description" content="Il tuo carrello Cronoshop con design iOS moderno. Gestisci i tuoi prodotti preferiti con un'interfaccia intuitiva e nativa.">
+    <meta name="author" content="Cronoshop Team">
+    <link rel="canonical" href="https://www.cronoshop.eu/cart.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/cronoshop-logo.png">
+    <link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="navigation-placeholder"></div>
+
+    <!-- Main Content -->
+    <main style="margin-top: var(--header-height); padding: var(--space-6) 0; min-height: calc(100vh - var(--header-height));">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="section-header">
+                <h1 class="section-title">
+                    <i class="ph ph-shopping-cart" style="color: var(--ios-blue);"></i>
+                    Il Tuo Carrello
+                </h1>
+                <p class="section-subtitle">
+                    Gestisci i tuoi prodotti preferiti con il nuovo design iOS
+                </p>
+            </div>
+
+            <!-- Cart Layout -->
+            <div style="display: grid; grid-template-columns: 1fr 400px; gap: var(--space-8); align-items: start;">
+                
+                <!-- Cart Items -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h2 class="card-title">
+                                <i class="ph ph-package"></i>
+                                Prodotti nel Carrello
+                            </h2>
+                            <button class="btn btn-danger btn-sm" id="clearCartBtn">
+                                <i class="ph ph-trash"></i>
+                                Svuota
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" id="cartItemsContainer">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    
+                    <!-- Empty Cart State -->
+                    <div class="empty-state" id="emptyCartState" style="display: none;">
+                        <div class="empty-state-icon">🛒</div>
+                        <h3 class="empty-state-title">Il tuo carrello è vuoto</h3>
+                        <p class="empty-state-subtitle">
+                            Aggiungi prodotti per iniziare lo shopping!
+                        </p>
+                        <a href="products.html" class="btn btn-primary">
+                            <i class="ph ph-shopping-bag"></i>
+                            Scopri le Offerte
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="card" style="position: sticky; top: calc(var(--header-height) + var(--space-4));">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ph ph-chart-pie-slice"></i>
+                            Riepilogo Ordine
+                        </h3>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div style="margin-bottom: var(--space-6);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-3);">
+                                <span style="color: var(--text-secondary);">Prodotti (<span id="totalItems">0</span>)</span>
+                                <span style="font-weight: var(--font-semibold);" id="subtotal">€0.00</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-3);">
+                                <span style="color: var(--text-secondary);">Spedizione</span>
+                                <span style="color: var(--ios-green); font-weight: var(--font-semibold);">Gratuita</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-3); display: none;" id="discountRow">
+                                <span style="color: var(--text-secondary);">Sconto</span>
+                                <span style="color: var(--ios-green); font-weight: var(--font-semibold);" id="discountAmount">-€0.00</span>
+                            </div>
+                            
+                            <hr style="border: none; border-top: 1px solid var(--separator-non-opaque); margin: var(--space-4) 0;">
+                            
+                            <div style="display: flex; justify-content: space-between; font-size: var(--text-xl); font-weight: var(--font-bold);">
+                                <span>Totale</span>
+                                <span style="color: var(--ios-green);" id="totalAmount">€0.00</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Promo Code -->
+                        <div style="margin-bottom: var(--space-6);">
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Codice promozionale" id="promoInput">
+                            </div>
+                            <button class="btn btn-secondary btn-full" id="applyPromoBtn">
+                                <i class="ph ph-tag"></i>
+                                Applica Codice
+                            </button>
+                        </div>
+                        
+                        <!-- Checkout Button -->
+                        <button class="btn btn-primary btn-lg btn-full" id="checkoutBtn">
+                            <i class="ph ph-rocket-launch"></i>
+                            Procedi all'Acquisto
+                        </button>
+                        
+                        <p style="font-size: var(--text-xs); color: var(--text-tertiary); text-align: center; margin-top: var(--space-3);">
+                            Verrai reindirizzato ad Amazon per completare l'acquisto in sicurezza.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Products -->
+            <div class="section" id="recommendedSection" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="ph ph-lightbulb" style="color: var(--ios-yellow);"></i>
+                        Potrebbero Interessarti
+                    </h2>
+                    <p class="section-subtitle">
+                        Prodotti selezionati in base ai tuoi interessi
+                    </p>
+                </div>
+                
+                <div class="grid grid-auto-fit" id="recommendedGrid">
+                    <!-- Recommended products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Load navigation
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+                
+                // Execute navigation script
+                const navScript = document.querySelector('#navigation-placeholder script');
+                if (navScript) {
+                    eval(navScript.textContent);
+                }
+            })
+            .catch(error => console.error('Error loading navigation:', error));
+
+        // Cart functionality
+        class CartManager {
+            constructor() {
+                this.cart = [];
+                this.recommendedProducts = [
+                    {
+                        id: "rec1",
+                        nome: "Apple AirPods Pro 2",
+                        prezzo: 229,
+                        prezzo_originale: 279,
+                        sconto: 18,
+                        img: "/placeholder.svg?height=200&width=300&text=AirPods+Pro",
+                        link: "https://amazon.it/dp/example1"
+                    },
+                    {
+                        id: "rec2",
+                        nome: "Samsung Galaxy Watch 6",
+                        prezzo: 299,
+                        prezzo_originale: 399,
+                        sconto: 25,
+                        img: "/placeholder.svg?height=200&width=300&text=Galaxy+Watch",
+                        link: "https://amazon.it/dp/example2"
+                    }
+                ];
+                
+                this.init();
+            }
+
+            init() {
+                this.loadCart();
+                this.setupEventListeners();
+                this.renderCart();
+                this.renderRecommended();
+            }
+
+            loadCart() {
+                try {
+                    const cartData = localStorage.getItem('cronoshop_cart');
+                    this.cart = cartData ? JSON.parse(cartData) : [];
+                } catch (error) {
+                    console.error('Error loading cart:', error);
+                    this.cart = [];
+                }
+            }
+
+            saveCart() {
+                try {
+                    localStorage.setItem('cronoshop_cart', JSON.stringify(this.cart));
+                    
+                    // Update cart badge if navigation is loaded
+                    if (window.cronoshopNav) {
+                        window.cronoshopNav.refreshCartBadge();
+                    }
+                } catch (error) {
+                    console.error('Error saving cart:', error);
+                }
+            }
+
+            setupEventListeners() {
+                // Clear cart button
+                document.getElementById('clearCartBtn')?.addEventListener('click', () => {
+                    if (this.cart.length > 0 && confirm('Sei sicuro di voler svuotare il carrello?')) {
+                        this.clearCart();
+                    }
+                });
+
+                // Apply promo button
+                document.getElementById('applyPromoBtn')?.addEventListener('click', () => {
+                    this.applyPromoCode();
+                });
+
+                // Checkout button
+                document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+                    this.checkout();
+                });
+            }
+
+            renderCart() {
+                const container = document.getElementById('cartItemsContainer');
+                const emptyState = document.getElementById('emptyCartState');
+                
+                if (!container || !emptyState) return;
+
+                if (this.cart.length === 0) {
+                    container.style.display = 'none';
+                    emptyState.style.display = 'block';
+                    this.updateSummary();
+                    return;
+                }
+
+                container.style.display = 'block';
+                emptyState.style.display = 'none';
+
+                container.innerHTML = this.cart.map(item => this.createCartItemHTML(item)).join('');
+                this.updateSummary();
+            }
+
+            createCartItemHTML(item) {
+                const price = typeof item.prezzo === 'number' ? item.prezzo : parseFloat(item.prezzo) || 0;
+                
+                return `
+                    <div class="cart-item" style="display: flex; gap: var(--space-4); padding: var(--space-4); background: var(--fill-tertiary); border-radius: var(--radius-lg); margin-bottom: var(--space-3); transition: all var(--transition-fast);">
+                        <img src="${item.img}" alt="${item.nome}" style="width: 80px; height: 80px; border-radius: var(--radius-md); object-fit: cover; background: var(--fill-secondary);">
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin-bottom: var(--space-2); line-height: var(--leading-snug);">
+                                    ${item.nome}
+                                </h4>
+                                <div style="font-size: var(--text-lg); font-weight: var
