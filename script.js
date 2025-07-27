@@ -1171,4 +1171,207 @@ document.addEventListener('DOMContentLoaded', () => {
         root.style.setProperty('--custom-bg-color', savedSettings.backgroundColor);
     }
 })();
+// script.js
+
+// ... (Mantieni tutto il codice esistente fino a qui, inclusi window.app e la classe ThemeCustomizer) ...
+
+// --- NEW: Funzione per caricare e inizializzare la navbar ---
+async function loadNavbar() {
+    try {
+        const response = await fetch('nav.html');
+        if (!response.ok) {
+            throw new Error(`Errore HTTP! Stato: ${response.status}`);
+        }
+        const fullHtml = await response.text();
+        
+        // Crea un elemento temporaneo per "parlare" il HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = fullHtml;
+
+        // Estrai solo il body (che contiene la navbar e i suoi script/stili)
+        const navBodyContent = tempDiv.querySelector('body')?.innerHTML;
+        
+        const navbarPlaceholder = document.getElementById('navbar-placeholder');
+        if (navbarPlaceholder && navBodyContent) {
+            navbarPlaceholder.innerHTML = navBodyContent;
+
+            // NEW: Applica gli stili e gli script dalla navbar caricata
+            // Questo gestisce i tag <style> e <script> che erano dentro nav.html
+            // e li aggiunge al DOM della pagina corrente.
+            tempDiv.querySelectorAll('style').forEach(styleTag => {
+                const newStyle = document.createElement('style');
+                newStyle.textContent = styleTag.textContent;
+                document.head.appendChild(newStyle);
+            });
+
+            tempDiv.querySelectorAll('script').forEach(scriptTag => {
+                const newScript = document.createElement('script');
+                // Se lo script ha un src, usa quello
+                if (scriptTag.src) {
+                    newScript.src = scriptTag.src;
+                } else { // Altrimenti, copia il contenuto inline
+                    newScript.textContent = scriptTag.textContent;
+                }
+                document.body.appendChild(newScript);
+            });
+
+            // Re-inizializza le funzioni della navbar DOPO che è stata caricata e i suoi script aggiunti
+            initializeNavbarFunctions();
+            
+            // Applica immediatamente le impostazioni del tema per la navbar caricata
+            if (window.themeCustomizer) {
+                window.themeCustomizer.applySettings();
+                window.themeCustomizer.updateUI();
+            }
+
+        } else {
+            console.warn('Elemento con ID "navbar-placeholder" non trovato o contenuto di nav.html vuoto. La navbar non verrà caricata.');
+        }
+
+    } catch (error) {
+        console.error('Errore durante il caricamento della navbar:', error);
+    }
+}
+
+
+// --- Funzioni per la Navbar (inizializzate dopo il caricamento della navbar) ---
+function initializeNavbarFunctions() {
+    // Mobile menu functionality
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMobileMenu(isOpen) {
+        if (mobileMenu) mobileMenu.classList.toggle('active', isOpen);
+        if (overlay) overlay.classList.toggle('active', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : ''; // Prevent scrolling behind overlay
+    }
+
+    mobileMenuBtn?.addEventListener('click', () => toggleMobileMenu(true));
+    closeMenuBtn?.addEventListener('click', () => toggleMobileMenu(false));
+    overlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+    // Highlight active page
+    const currentPagePath = window.location.pathname;
+    const currentPageFile = currentPagePath.split('/').pop();
+    const currentPageName = currentPageFile.split('.')[0] || 'index';
+
+    document.querySelectorAll(`[data-page]`).forEach(link => {
+        if (link.dataset.page === currentPageName) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // Update cart and wishlist counts
+    function updateBadges() {
+        try {
+            const cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
+            const cartCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            document.querySelectorAll('.cart-count').forEach(badge => {
+                badge.textContent = cartCount;
+                badge.classList.toggle('show', cartCount > 0);
+            });
+
+            const wishlist = JSON.parse(localStorage.getItem('cronoshop_wishlist') || '[]');
+            const wishlistCount = wishlist.length;
+            document.querySelectorAll('.wishlist-count').forEach(badge => {
+                badge.textContent = wishlistCount;
+                badge.classList.toggle('show', wishlistCount > 0);
+            });
+        } catch (error) {
+            console.error('Errore durante l\'aggiornamento dei badge:', error);
+        }
+    }
+
+    updateBadges();
+    window.addEventListener('storage', updateBadges);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            toggleMobileMenu(false);
+        }
+    });
+
+}
+
+
+// --- Logica di Inizializzazione Globale (questa parte potrebbe essere leggermente modificata) ---
+// Applica le impostazioni del tema immediatamente (per prevenire FOUC)
+(function() {
+    const defaultSettings = {
+        theme: 'light',
+        glassEffect: true,
+        reducedMotion: false,
+        highContrast: false,
+        fontSize: 16,
+        borderRadius: 12,
+        primaryColor: '#007aff',
+        backgroundColor: '#f2f2f7'
+    };
+
+    let savedSettings = defaultSettings;
+    try {
+        const saved = localStorage.getItem('cronoshop_theme_settings');
+        savedSettings = saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
+    } catch (error) {
+        console.error('Errore durante il caricamento delle impostazioni iniziali del tema:', error);
+    }
+
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (savedSettings.theme === 'dark') {
+        body.classList.add('ios-dark-mode');
+    } else if (['blue', 'green', 'purple', 'orange'].includes(savedSettings.theme)) {
+        body.classList.add(`theme-${savedSettings.theme}`);
+    }
+
+    if (savedSettings.glassEffect) {
+        body.classList.add('glass-effect');
+    }
+    if (savedSettings.reducedMotion) {
+        body.classList.add('reduced-motion');
+    }
+    if (savedSettings.highContrast) {
+        body.classList.add('high-contrast');
+    }
+
+    root.style.setProperty('--custom-font-size', `${savedSettings.fontSize}px`);
+    root.style.setProperty('--custom-border-radius', `${savedSettings.borderRadius}px`);
+    root.style.setProperty('--custom-primary-color', savedSettings.primaryColor);
+
+    const gradients = {
+        gradient1: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        gradient2: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        gradient3: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        gradient4: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+        gradient5: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+        gradient6: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        gradient7: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+    };
+
+    if (savedSettings.backgroundColor.startsWith('gradient')) {
+        root.style.setProperty('--custom-bg-color', gradients[savedSettings.backgroundColor]);
+    } else {
+        root.style.setProperty('--custom-bg-color', savedSettings.backgroundColor);
+    }
+})();
+
+// Inizializza ThemeCustomizer e carica Navbar quando il DOM è completamente caricato
+document.addEventListener('DOMContentLoaded', () => {
+    window.themeCustomizer = new ThemeCustomizer();
+    loadNavbar(); // Carica il contenuto della navbar dinamicamente
+});
+
+// Esporta per uso globale (se altri script devono attivare gli aggiornamenti dei badge)
+window.cronoshopNav = {
+    updateBadges: function() {
+        const event = new Event('storage'); // Simula evento storage per attivare l'aggiornamento
+        window.dispatchEvent(event);
+    }
+};
 
