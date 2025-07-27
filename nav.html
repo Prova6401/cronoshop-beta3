@@ -1,647 +1,165 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronoshop Navigation</title>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <!-- Logo -->
-            <a href="index.html" class="nav-logo">
-                <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="nav-logo-img">
-                <span class="nav-logo-text">Cronoshop</span>
-            </a>
+<nav class="navbar">
+    <div class="nav-content">
+        <a href="index.html" class="nav-logo">
+            <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="nav-logo-img">
+            <span class="nav-logo-text">Cronoshop</span>
+        </a>
 
-            <!-- Desktop Navigation -->
-            <div class="nav-desktop">
-                <a href="index.html" class="nav-link" data-page="index">
-                    <i class="ph ph-house"></i>
-                    Home
-                </a>
-                <a href="products.html" class="nav-link" data-page="products">
-                    <i class="ph ph-shopping-bag"></i>
-                    Offerte
-                </a>
-                <a href="categorie.html" class="nav-link" data-page="categorie">
-                    <i class="ph ph-squares-four"></i>
-                    Categorie
-                </a>
-                <a href="cronoai.html" class="nav-link" data-page="cronoai">
-                    <i class="ph ph-robot"></i>
-                    CronoAI
-                </a>
-                <a href="blog.html" class="nav-link" data-page="blog">
-                    <i class="ph ph-article"></i>
-                    Blog
-                </a>
-                <a href="groups.html" class="nav-link" data-page="groups">
-                    <i class="ph ph-users"></i>
-                    Community
-                </a>
-                
-                <!-- More dropdown -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle">
-                        <i class="ph ph-dots-three"></i>
-                        Altro
-                        <i class="ph ph-caret-down dropdown-arrow"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="chisiamo.html" class="dropdown-item">
-                            <i class="ph ph-info"></i>
-                            Chi Siamo
-                        </a>
-                        <a href="stats.html" class="dropdown-item">
-                            <i class="ph ph-chart-bar"></i>
-                            Statistiche
-                        </a>
-                        <a href="themes.html" class="dropdown-item">
-                            <i class="ph ph-palette"></i>
-                            Temi
-                        </a>
-                        <a href="faq.html" class="dropdown-item">
-                            <i class="ph ph-question"></i>
-                            FAQ
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="privacy.html" class="dropdown-item">
-                            <i class="ph ph-shield-check"></i>
-                            Privacy
-                        </a>
-                        <a href="terms.html" class="dropdown-item">
-                            <i class="ph ph-file-text"></i>
-                            Termini
-                        </a>
-                    </div>
+        <div class="nav-desktop">
+            <a href="index.html" class="nav-link" data-page="index">
+                <i class="ph ph-house"></i>
+                Home
+            </a>
+            <a href="products.html" class="nav-link" data-page="products">
+                <i class="ph ph-shopping-bag"></i>
+                Offerte
+            </a>
+            <a href="categorie.html" class="nav-link" data-page="categorie">
+                <i class="ph ph-squares-four"></i>
+                Categorie
+            </a>
+            <a href="cronoai.html" class="nav-link" data-page="cronoai">
+                <i class="ph ph-robot"></i>
+                CronoAI
+            </a>
+            <a href="blog.html" class="nav-link" data-page="blog">
+                <i class="ph ph-article"></i>
+                Blog
+            </a>
+            <a href="groups.html" class="nav-link" data-page="groups">
+                <i class="ph ph-users"></i>
+                Community
+            </a>
+            
+            <div class="nav-dropdown">
+                <button class="nav-link dropdown-toggle">
+                    <i class="ph ph-dots-three"></i>
+                    Altro
+                    <i class="ph ph-caret-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="chisiamo.html" class="dropdown-item">
+                        <i class="ph ph-info"></i>
+                        Chi Siamo
+                    </a>
+                    <a href="stats.html" class="dropdown-item">
+                        <i class="ph ph-chart-bar"></i>
+                        Statistiche
+                    </a>
+                    <a href="themes.html" class="dropdown-item">
+                        <i class="ph ph-palette"></i>
+                        Temi
+                    </a>
+                    <a href="faq.html" class="dropdown-item">
+                        <i class="ph ph-question"></i>
+                        FAQ
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="privacy.html" class="dropdown-item">
+                        <i class="ph ph-shield-check"></i>
+                        Privacy
+                    </a>
+                    <a href="terms.html" class="dropdown-item">
+                        <i class="ph ph-file-text"></i>
+                        Termini
+                    </a>
                 </div>
             </div>
-
-            <!-- Actions -->
-            <div class="nav-actions">
-                <a href="wishlist.html" class="nav-button" title="Wishlist">
-                    <i class="ph ph-heart"></i>
-                    <span class="nav-badge wishlist-count">0</span>
-                </a>
-                <a href="cart.html" class="nav-button" title="Carrello">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="nav-badge cart-count">0</span>
-                </a>
-                <a href="account.html" class="nav-button" title="Account">
-                    <i class="ph ph-user"></i>
-                </a>
-                <button class="nav-button theme-btn" title="Cambia tema">
-                    <i class="ph ph-moon"></i>
-                </button>
-                <button class="nav-button mobile-menu-btn" title="Menu">
-                    <i class="ph ph-list"></i>
-                </button>
-            </div>
         </div>
-    </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <span class="mobile-menu-title">Menu</span>
-            <button class="nav-button close-menu-btn">
-                <i class="ph ph-x"></i>
+        <div class="nav-actions">
+            <a href="wishlist.html" class="nav-button" title="Wishlist">
+                <i class="ph ph-heart"></i>
+                <span class="nav-badge wishlist-count">0</span>
+            </a>
+            <a href="cart.html" class="nav-button" title="Carrello">
+                <i class="ph ph-shopping-cart"></i>
+                <span class="nav-badge cart-count">0</span>
+            </a>
+            <a href="account.html" class="nav-button" title="Account">
+                <i class="ph ph-user"></i>
+            </a>
+            <button class="nav-button theme-btn" title="Cambia tema">
+                <i class="ph ph-moon"></i>
+            </button>
+            <button class="nav-button mobile-menu-btn" title="Menu">
+                <i class="ph ph-list"></i>
             </button>
         </div>
-        <div class="mobile-menu-content">
-            <div class="mobile-nav-section">
-                <h4>Navigazione Principale</h4>
-                <ul class="mobile-nav-list">
-                    <li><a href="index.html" class="mobile-nav-link" data-page="index">
-                        <i class="ph ph-house"></i>Home
-                    </a></li>
-                    <li><a href="products.html" class="mobile-nav-link" data-page="products">
-                        <i class="ph ph-shopping-bag"></i>Offerte
-                    </a></li>
-                    <li><a href="categorie.html" class="mobile-nav-link" data-page="categorie">
-                        <i class="ph ph-squares-four"></i>Categorie
-                    </a></li>
-                    <li><a href="cronoai.html" class="mobile-nav-link" data-page="cronoai">
-                        <i class="ph ph-robot"></i>CronoAI
-                    </a></li>
-                    <li><a href="blog.html" class="mobile-nav-link" data-page="blog">
-                        <i class="ph ph-article"></i>Blog
-                    </a></li>
-                    <li><a href="groups.html" class="mobile-nav-link" data-page="groups">
-                        <i class="ph ph-users"></i>Community
-                    </a></li>
-                </ul>
-            </div>
-            
-            <div class="mobile-nav-section">
-                <h4>Account & Strumenti</h4>
-                <ul class="mobile-nav-list">
-                    <li><a href="account.html" class="mobile-nav-link" data-page="account">
-                        <i class="ph ph-user"></i>Account
-                    </a></li>
-                    <li><a href="wishlist.html" class="mobile-nav-link" data-page="wishlist">
-                        <i class="ph ph-heart"></i>Wishlist
-                    </a></li>
-                    <li><a href="cart.html" class="mobile-nav-link" data-page="cart">
-                        <i class="ph ph-shopping-cart"></i>Carrello
-                    </a></li>
-                    <li><a href="stats.html" class="mobile-nav-link" data-page="stats">
-                        <i class="ph ph-chart-bar"></i>Statistiche
-                    </a></li>
-                    <li><a href="themes.html" class="mobile-nav-link" data-page="themes">
-                        <i class="ph ph-palette"></i>Temi
-                    </a></li>
-                </ul>
-            </div>
-            
-            <div class="mobile-nav-section">
-                <h4>Informazioni</h4>
-                <ul class="mobile-nav-list">
-                    <li><a href="chisiamo.html" class="mobile-nav-link" data-page="chisiamo">
-                        <i class="ph ph-info"></i>Chi Siamo
-                    </a></li>
-                    <li><a href="faq.html" class="mobile-nav-link" data-page="faq">
-                        <i class="ph ph-question"></i>FAQ
-                    </a></li>
-                    <li><a href="privacy.html" class="mobile-nav-link" data-page="privacy">
-                        <i class="ph ph-shield-check"></i>Privacy
-                    </a></li>
-                    <li><a href="terms.html" class="mobile-nav-link" data-page="terms">
-                        <i class="ph ph-file-text"></i>Termini
-                    </a></li>
-                </ul>
-            </div>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <span class="mobile-menu-title">Menu</span>
+        <button class="nav-button close-menu-btn">
+            <i class="ph ph-x"></i>
+        </button>
+    </div>
+    <div class="mobile-menu-content">
+        <div class="mobile-nav-section">
+            <h4>Navigazione Principale</h4>
+            <ul class="mobile-nav-list">
+                <li><a href="index.html" class="mobile-nav-link" data-page="index">
+                    <i class="ph ph-house"></i>Home
+                </a></li>
+                <li><a href="products.html" class="mobile-nav-link" data-page="products">
+                    <i class="ph ph-shopping-bag"></i>Offerte
+                </a></li>
+                <li><a href="categorie.html" class="mobile-nav-link" data-page="categorie">
+                    <i class="ph ph-squares-four"></i>Categorie
+                </a></li>
+                <li><a href="cronoai.html" class="mobile-nav-link" data-page="cronoai">
+                    <i class="ph ph-robot"></i>CronoAI
+                </a></li>
+                <li><a href="blog.html" class="mobile-nav-link" data-page="blog">
+                    <i class="ph ph-article"></i>Blog
+                </a></li>
+                <li><a href="groups.html" class="mobile-nav-link" data-page="groups">
+                    <i class="ph ph-users"></i>Community
+                </a></li>
+            </ul>
+        </div>
+        
+        <div class="mobile-nav-section">
+            <h4>Account & Strumenti</h4>
+            <ul class="mobile-nav-list">
+                <li><a href="account.html" class="mobile-nav-link" data-page="account">
+                    <i class="ph ph-user"></i>Account
+                </a></li>
+                <li><a href="wishlist.html" class="mobile-nav-link" data-page="wishlist">
+                    <i class="ph ph-heart"></i>Wishlist
+                </a></li>
+                <li><a href="cart.html" class="mobile-nav-link" data-page="cart">
+                    <i class="ph ph-shopping-cart"></i>Carrello
+                </a></li>
+                <li><a href="stats.html" class="mobile-nav-link" data-page="stats">
+                    <i class="ph ph-chart-bar"></i>Statistiche
+                </a></li>
+                <li><a href="themes.html" class="mobile-nav-link" data-page="themes">
+                    <i class="ph ph-palette"></i>Temi
+                </a></li>
+            </ul>
+        </div>
+        
+        <div class="mobile-nav-section">
+            <h4>Informazioni</h4>
+            <ul class="mobile-nav-list">
+                <li><a href="chisiamo.html" class="mobile-nav-link" data-page="chisiamo">
+                    <i class="ph ph-info"></i>Chi Siamo
+                </a></li>
+                <li><a href="faq.html" class="mobile-nav-link" data-page="faq">
+                    <i class="ph ph-question"></i>FAQ
+                </a></li>
+                <li><a href="privacy.html" class="mobile-nav-link" data-page="privacy">
+                    <i class="ph ph-shield-check"></i>Privacy
+                </a></li>
+                <li><a href="terms.html" class="mobile-nav-link" data-page="terms">
+                    <i class="ph ph-file-text"></i>Termini
+                </a></li>
+            </ul>
         </div>
     </div>
+</div>
 
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
-
-    <style>
-        /* Navigation Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .nav-logo-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            font-size: 14px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            background: rgba(0, 123, 255, 0.1);
-            color: #007bff;
-        }
-
-        .nav-link.active {
-            background: #007bff;
-            color: white;
-        }
-
-        .nav-link i {
-            font-size: 16px;
-        }
-
-        /* Dropdown */
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        .dropdown-arrow {
-            transition: transform 0.2s ease;
-        }
-
-        .nav-dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .nav-dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            transition: background 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(0, 123, 255, 0.1);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background: rgba(0, 0, 0, 0.1);
-            margin: 8px 0;
-        }
-
-        /* Actions */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-button {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            color: #666;
-        }
-
-        .nav-button:hover {
-            background: rgba(0, 123, 255, 0.1);
-            color: #007bff;
-            transform: scale(1.05);
-        }
-
-        .nav-button i {
-            font-size: 18px;
-        }
-
-        .nav-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff4757;
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-            display: none;
-        }
-
-        .nav-badge.show {
-            display: block;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 320px;
-            height: 100vh;
-            background: white;
-            z-index: 1002;
-            transition: right 0.3s ease;
-            overflow-y: auto;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            background: #f8f9fa;
-        }
-
-        .mobile-menu-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .mobile-menu-content {
-            padding: 20px;
-        }
-
-        .mobile-nav-section {
-            margin-bottom: 30px;
-        }
-
-        .mobile-nav-section h4 {
-            font-size: 12px;
-            font-weight: 600;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .mobile-nav-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .mobile-nav-list li {
-            margin-bottom: 5px;
-        }
-
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .mobile-nav-link:hover {
-            background: rgba(0, 123, 255, 0.1);
-            color: #007bff;
-        }
-
-        .mobile-nav-link.active {
-            background: #007bff;
-            color: white;
-        }
-
-        .mobile-nav-link i {
-            font-size: 18px;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Dark Mode */
-        body.dark-mode .navbar {
-            background: rgba(28, 28, 30, 0.95);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .nav-logo,
-        body.dark-mode .nav-link,
-        body.dark-mode .nav-button {
-            color: #fff;
-        }
-
-        body.dark-mode .nav-button {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .dropdown-menu {
-            background: #2c2c2e;
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .dropdown-item {
-            color: #fff;
-        }
-
-        body.dark-mode .mobile-menu {
-            background: #1c1c1e;
-        }
-
-        body.dark-mode .mobile-menu-header {
-            background: #2c2c2e;
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .mobile-menu-title,
-        body.dark-mode .mobile-nav-link {
-            color: #fff;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .nav-desktop {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-content {
-                padding: 0 15px;
-            }
-            
-            .nav-logo-text {
-                display: none;
-            }
-            
-            .mobile-menu {
-                width: 280px;
-            }
-        }
-    </style>
-
-    <script>
-        // Navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const closeMenuBtn = document.querySelector('.close-menu-btn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('overlay');
-
-            function toggleMobileMenu(isOpen) {
-                mobileMenu.classList.toggle('active', isOpen);
-                overlay.classList.toggle('active', isOpen);
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-            }
-
-            mobileMenuBtn?.addEventListener('click', () => toggleMobileMenu(true));
-            closeMenuBtn?.addEventListener('click', () => toggleMobileMenu(false));
-            overlay?.addEventListener('click', () => toggleMobileMenu(false));
-
-            // Highlight active page
-            const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-            const activeLinks = document.querySelectorAll(`[data-page="${currentPage}"]`);
-            activeLinks.forEach(link => link.classList.add('active'));
-
-            // Theme toggle
-            const themeBtn = document.querySelector('.theme-btn');
-            if (themeBtn) {
-                themeBtn.addEventListener('click', function() {
-                    document.body.classList.toggle('dark-mode');
-                    const isDark = document.body.classList.contains('dark-mode');
-                    localStorage.setItem('darkMode', isDark);
-                    
-                    const icon = this.querySelector('i');
-                    icon.className = isDark ? 'ph ph-sun' : 'ph ph-moon';
-                });
-
-                // Apply saved theme
-                const savedTheme = localStorage.getItem('darkMode') === 'true';
-                if (savedTheme) {
-                    document.body.classList.add('dark-mode');
-                    const icon = themeBtn.querySelector('i');
-                    icon.className = 'ph ph-sun';
-                }
-            }
-
-            // Update cart and wishlist counts
-            function updateBadges() {
-                try {
-                    // Cart count
-                    const cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
-                    const cartCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-                    const cartBadges = document.querySelectorAll('.cart-count');
-                    cartBadges.forEach(badge => {
-                        badge.textContent = cartCount;
-                        badge.classList.toggle('show', cartCount > 0);
-                    });
-
-                    // Wishlist count
-                    const wishlist = JSON.parse(localStorage.getItem('cronoshop_wishlist') || '[]');
-                    const wishlistCount = wishlist.length;
-                    const wishlistBadges = document.querySelectorAll('.wishlist-count');
-                    wishlistBadges.forEach(badge => {
-                        badge.textContent = wishlistCount;
-                        badge.classList.toggle('show', wishlistCount > 0);
-                    });
-                } catch (error) {
-                    console.error('Error updating badges:', error);
-                }
-            }
-
-            // Initialize badges
-            updateBadges();
-
-            // Listen for storage changes
-            window.addEventListener('storage', updateBadges);
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    toggleMobileMenu(false);
-                }
-            });
-        });
-
-        // Export for global use
-        window.cronoshopNav = {
-            updateBadges: function() {
-                const event = new Event('storage');
-                window.dispatchEvent(event);
-            }
-        };
-    </script>
-    <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+<div class="overlay" id="overlay"></div>
