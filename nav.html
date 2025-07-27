@@ -1,68 +1,24 @@
 <nav class="navbar">
     <div class="nav-content">
         <a href="index.html" class="nav-logo">
-            <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="nav-logo-img">
+            <img src="assets/cronoshop-logo.png" alt="Cronoshop Logo" class="nav-logo-img">
             <span class="nav-logo-text">Cronoshop</span>
         </a>
 
         <div class="nav-desktop">
-            <a href="index.html" class="nav-link" data-page="index">
-                <i class="ph ph-house"></i>
-                Home
-            </a>
-            <a href="products.html" class="nav-link" data-page="products">
-                <i class="ph ph-shopping-bag"></i>
-                Offerte
-            </a>
-            <a href="categorie.html" class="nav-link" data-page="categorie">
-                <i class="ph ph-squares-four"></i>
-                Categorie
-            </a>
-            <a href="cronoai.html" class="nav-link" data-page="cronoai">
-                <i class="ph ph-robot"></i>
-                CronoAI
-            </a>
-            <a href="blog.html" class="nav-link" data-page="blog">
-                <i class="ph ph-article"></i>
-                Blog
-            </a>
-            <a href="groups.html" class="nav-link" data-page="groups">
-                <i class="ph ph-users"></i>
-                Community
-            </a>
-            
+            <a href="index.html" class="nav-link" data-page="index"><i class="ph ph-house"></i> Home</a>
+            <a href="products.html" class="nav-link" data-page="products"><i class="ph ph-shopping-bag"></i> Offerte</a>
+            <a href="categorie.html" class="nav-link" data-page="categorie"><i class="ph ph-squares-four"></i> Categorie</a>
+            <a href="cronoai.html" class="nav-link" data-page="cronoai"><i class="ph ph-robot"></i> CronoAI</a>
             <div class="nav-dropdown">
                 <button class="nav-link dropdown-toggle">
-                    <i class="ph ph-dots-three"></i>
-                    Altro
-                    <i class="ph ph-caret-down dropdown-arrow"></i>
+                    <i class="ph ph-dots-three"></i> Altro <i class="ph ph-caret-down dropdown-arrow"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="chisiamo.html" class="dropdown-item">
-                        <i class="ph ph-info"></i>
-                        Chi Siamo
-                    </a>
-                    <a href="stats.html" class="dropdown-item">
-                        <i class="ph ph-chart-bar"></i>
-                        Statistiche
-                    </a>
-                    <a href="themes.html" class="dropdown-item">
-                        <i class="ph ph-palette"></i>
-                        Temi
-                    </a>
-                    <a href="faq.html" class="dropdown-item">
-                        <i class="ph ph-question"></i>
-                        FAQ
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="privacy.html" class="dropdown-item">
-                        <i class="ph ph-shield-check"></i>
-                        Privacy
-                    </a>
-                    <a href="terms.html" class="dropdown-item">
-                        <i class="ph ph-file-text"></i>
-                        Termini
-                    </a>
+                    <a href="chisiamo.html" class="dropdown-item" data-page="chisiamo"><i class="ph ph-info"></i> Chi Siamo</a>
+                    <a href="stats.html" class="dropdown-item" data-page="stats"><i class="ph ph-chart-bar"></i> Statistiche</a>
+                    <a href="themes.html" class="dropdown-item" data-page="themes"><i class="ph ph-palette"></i> Temi</a>
+                    <a href="faq.html" class="dropdown-item" data-page="faq"><i class="ph ph-question"></i> FAQ</a>
                 </div>
             </div>
         </div>
@@ -79,7 +35,7 @@
             <a href="account.html" class="nav-button" title="Account">
                 <i class="ph ph-user"></i>
             </a>
-            <button class="nav-button theme-btn" title="Cambia tema">
+            <button class="nav-button" id="themeToggleBtn" title="Cambia tema">
                 <i class="ph ph-moon"></i>
             </button>
             <button class="nav-button mobile-menu-btn" title="Menu">
@@ -97,68 +53,14 @@
         </button>
     </div>
     <div class="mobile-menu-content">
-        <div class="mobile-nav-section">
-            <h4>Navigazione Principale</h4>
-            <ul class="mobile-nav-list">
-                <li><a href="index.html" class="mobile-nav-link" data-page="index">
-                    <i class="ph ph-house"></i>Home
-                </a></li>
-                <li><a href="products.html" class="mobile-nav-link" data-page="products">
-                    <i class="ph ph-shopping-bag"></i>Offerte
-                </a></li>
-                <li><a href="categorie.html" class="mobile-nav-link" data-page="categorie">
-                    <i class="ph ph-squares-four"></i>Categorie
-                </a></li>
-                <li><a href="cronoai.html" class="mobile-nav-link" data-page="cronoai">
-                    <i class="ph ph-robot"></i>CronoAI
-                </a></li>
-                <li><a href="blog.html" class="mobile-nav-link" data-page="blog">
-                    <i class="ph ph-article"></i>Blog
-                </a></li>
-                <li><a href="groups.html" class="mobile-nav-link" data-page="groups">
-                    <i class="ph ph-users"></i>Community
-                </a></li>
-            </ul>
-        </div>
-        
-        <div class="mobile-nav-section">
-            <h4>Account & Strumenti</h4>
-            <ul class="mobile-nav-list">
-                <li><a href="account.html" class="mobile-nav-link" data-page="account">
-                    <i class="ph ph-user"></i>Account
-                </a></li>
-                <li><a href="wishlist.html" class="mobile-nav-link" data-page="wishlist">
-                    <i class="ph ph-heart"></i>Wishlist
-                </a></li>
-                <li><a href="cart.html" class="mobile-nav-link" data-page="cart">
-                    <i class="ph ph-shopping-cart"></i>Carrello
-                </a></li>
-                <li><a href="stats.html" class="mobile-nav-link" data-page="stats">
-                    <i class="ph ph-chart-bar"></i>Statistiche
-                </a></li>
-                <li><a href="themes.html" class="mobile-nav-link" data-page="themes">
-                    <i class="ph ph-palette"></i>Temi
-                </a></li>
-            </ul>
-        </div>
-        
-        <div class="mobile-nav-section">
-            <h4>Informazioni</h4>
-            <ul class="mobile-nav-list">
-                <li><a href="chisiamo.html" class="mobile-nav-link" data-page="chisiamo">
-                    <i class="ph ph-info"></i>Chi Siamo
-                </a></li>
-                <li><a href="faq.html" class="mobile-nav-link" data-page="faq">
-                    <i class="ph ph-question"></i>FAQ
-                </a></li>
-                <li><a href="privacy.html" class="mobile-nav-link" data-page="privacy">
-                    <i class="ph ph-shield-check"></i>Privacy
-                </a></li>
-                <li><a href="terms.html" class="mobile-nav-link" data-page="terms">
-                    <i class="ph ph-file-text"></i>Termini
-                </a></li>
-            </ul>
-        </div>
+        <a href="index.html" class="mobile-nav-link" data-page="index"><i class="ph ph-house"></i> Home</a>
+        <a href="products.html" class="mobile-nav-link" data-page="products"><i class="ph ph-shopping-bag"></i> Offerte</a>
+        <a href="categorie.html" class="mobile-nav-link" data-page="categorie"><i class="ph ph-squares-four"></i> Categorie</a>
+        <a href="cronoai.html" class="mobile-nav-link" data-page="cronoai"><i class="ph ph-robot"></i> CronoAI</a>
+        <a href="chisiamo.html" class="mobile-nav-link" data-page="chisiamo"><i class="ph ph-info"></i> Chi Siamo</a>
+        <a href="stats.html" class="mobile-nav-link" data-page="stats"><i class="ph ph-chart-bar"></i> Statistiche</a>
+        <a href="themes.html" class="mobile-nav-link" data-page="themes"><i class="ph ph-palette"></i> Temi</a>
+        <a href="faq.html" class="mobile-nav-link" data-page="faq"><i class="ph ph-question"></i> FAQ</a>
     </div>
 </div>
 
