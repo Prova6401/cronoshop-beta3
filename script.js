@@ -728,3 +728,447 @@ function createFallbackNavigation() {
 // Export for global use
 window.CronoshopApp = CronoshopApp
 window.products = products
+
+
+/**
+ * Oggetto applicazione globale per utilità come le notifiche.
+ * Questo dovrebbe essere disponibile su window.app
+ */
+window.app = {
+    showNotification: function(message, type = 'info', duration = 3000) {
+        // Implementazione di un semplice sistema di notifica.
+        // Per un progetto reale, sarebbe meglio una UI di notifica più robusta.
+        const notificationContainer = document.getElementById('notification-container') || (() => {
+            const div = document.createElement('div');
+            div.id = 'notification-container';
+            Object.assign(div.style, {
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                zIndex: '9999',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+            });
+            document.body.appendChild(div);
+            return div;
+        })();
+
+        const notification = document.createElement('div');
+        Object.assign(notification.style, {
+            background: type === 'success' ? '#34C759' : (type === 'error' ? '#FF3B30' : '#007AFF'),
+            color: 'white',
+            padding: '12px 20px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            opacity: '0',
+            transform: 'translateY(-20px)',
+            transition: 'all 0.3s ease-out',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+            fontSize: '15px',
+            fontWeight: '600',
+            minWidth: '200px',
+            textAlign: 'center',
+        });
+        notification.textContent = message;
+
+        notificationContainer.appendChild(notification);
+
+        // Animazione di ingresso
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateY(0)';
+        }, 50);
+
+        // Animazione di uscita e rimozione
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(-20px)';
+            notification.addEventListener('transitionend', () => notification.remove());
+        }, duration);
+    }
+};
+
+/**
+ * Classe ThemeCustomizer
+ * Gestisce il tema, i colori e altre impostazioni di personalizzazione.
+ * Applica le impostazioni a livello globale e le salva in localStorage.
+ */
+class ThemeCustomizer {
+    constructor() {
+        this.settings = this.loadSettings();
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.applySettings();
+        this.updateUI(); // Aggiorna gli elementi UI solo se esistono nella pagina corrente
+    }
+
+    loadSettings() {
+        const defaultSettings = {
+            theme: 'light',
+            autoTheme: false,
+            glassEffect: true,
+            reducedMotion: false,
+            highContrast: false,
+            fontSize: 16,
+            borderRadius: 12,
+            primaryColor: '#007aff',
+            backgroundColor: '#f2f2f7'
+        };
+
+        try {
+            const saved = localStorage.getItem('cronoshop_theme_settings');
+            return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
+        } catch (error) {
+            console.error('Errore durante il caricamento delle impostazioni del tema:', error);
+            return defaultSettings;
+        }
+    }
+
+    saveSettings() {
+        try {
+            localStorage.setItem('cronoshop_theme_settings', JSON.stringify(this.settings));
+        } catch (error) {
+            console.error('Errore durante il salvataggio delle impostazioni del tema:', error);
+        }
+    }
+
+    setupEventListeners() {
+        // Questi event listener si collegheranno solo se gli elementi esistono nella pagina corrente.
+        // Questo rende lo script sicuro da includere in tutte le pagine.
+
+        // Schede tema
+        document.querySelectorAll('.theme-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const theme = card.dataset.theme;
+                this.setTheme(theme);
+            });
+        });
+
+        // Toggle
+        const autoThemeToggle = document.getElementById('autoThemeToggle');
+        if (autoThemeToggle) {
+            autoThemeToggle.addEventListener('click', () => {
+                this.toggleSetting('autoTheme');
+                if (this.settings.autoTheme) {
+                    this.setupAutoTheme();
+                } else {
+                    // Se la modalità automatica è disattivata, ritorna al tema light/dark predefinito
+                    this.setTheme(this.settings.theme === 'dark' ? 'dark' : 'light');
+                    clearInterval(this._autoThemeInterval); // Interrompe l'intervallo se presente
+                }
+            });
+        }
+
+        const glassEffectToggle = document.getElementById('glassEffectToggle');
+        if (glassEffectToggle) {
+            glassEffectToggle.addEventListener('click', () => {
+                this.toggleSetting('glassEffect');
+            });
+        }
+
+        const reducedMotionToggle = document.getElementById('reducedMotionToggle');
+        if (reducedMotionToggle) {
+            reducedMotionToggle.addEventListener('click', () => {
+                this.toggleSetting('reducedMotion');
+            });
+        }
+
+        const highContrastToggle = document.getElementById('highContrastToggle');
+        if (highContrastToggle) {
+            highContrastToggle.addEventListener('click', () => {
+                this.toggleSetting('highContrast');
+            });
+        }
+
+        // Slider
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        if (fontSizeSlider) {
+            fontSizeSlider.addEventListener('input', (e) => {
+                this.setSetting('fontSize', parseInt(e.target.value));
+            });
+        }
+
+        const borderRadiusSlider = document.getElementById('borderRadiusSlider');
+        if (borderRadiusSlider) {
+            borderRadiusSlider.addEventListener('input', (e) => {
+                this.setSetting('borderRadius', parseInt(e.target.value));
+            });
+        }
+
+        // Selettori colore (colore principale)
+        document.querySelectorAll('[data-color]').forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.dataset.color;
+                this.setSetting('primaryColor', color);
+                this.updateColorPicker('color', color);
+            });
+        });
+
+        // Selettori colore (colore di sfondo)
+        document.querySelectorAll('[data-bg-color]').forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.dataset.bgColor;
+                this.setSetting('backgroundColor', color);
+                this.updateColorPicker('bg-color', color);
+            });
+        });
+
+        // Pulsante di reset
+        const resetButton = document.getElementById('resetButton');
+        if (resetButton) {
+            resetButton.addEventListener('click', () => {
+                this.resetSettings();
+            });
+        }
+
+        // Controllo iniziale per la modalità automatica
+        if (this.settings.autoTheme) {
+            this.setupAutoTheme();
+        }
+    }
+
+    setTheme(theme) {
+        this.settings.theme = theme;
+        this.saveSettings();
+        this.applySettings();
+        this.updateThemeCards(); // Aggiorna gli elementi UI solo se esistono
+
+        if (window.app && typeof window.app.showNotification === 'function') {
+            window.app.showNotification(`Tema "${theme}" applicato!`, 'success');
+        }
+    }
+
+    toggleSetting(setting) {
+        this.settings[setting] = !this.settings[setting];
+        this.saveSettings();
+        this.applySettings();
+        this.updateUI(); // Aggiorna gli elementi UI solo se esistono
+
+        if (window.app && typeof window.app.showNotification === 'function') {
+            window.app.showNotification(`${setting} ${this.settings[setting] ? 'attivato' : 'disattivato'}`, 'success');
+        }
+    }
+
+    setSetting(setting, value) {
+        this.settings[setting] = value;
+        this.saveSettings();
+        this.applySettings();
+
+        // Opzionale: mostra notifica per i cambiamenti degli slider, ma potrebbe essere troppo frequente
+        // if (window.app && typeof window.app.showNotification === 'function') {
+        //     window.app.showNotification(`${setting} aggiornato a ${value}`, 'success');
+        // }
+    }
+
+    applySettings() {
+        const root = document.documentElement; // Si applica al tag <html>
+        const body = document.body;
+
+        // Rimuovi le classi di tema/effetto esistenti
+        body.classList.remove(
+            'ios-dark-mode', 'theme-blue', 'theme-green', 'theme-purple', 'theme-orange',
+            'glass-effect', 'reduced-motion', 'high-contrast'
+        );
+
+        // Applica la classe del tema
+        if (this.settings.theme === 'dark') {
+            body.classList.add('ios-dark-mode');
+        } else if (['blue', 'green', 'purple', 'orange'].includes(this.settings.theme)) {
+            body.classList.add(`theme-${this.settings.theme}`);
+        }
+        // Se il tema è 'light', nessuna classe specifica viene aggiunta in quanto è lo stato predefinito nel CSS
+
+        // Applica le classi degli effetti
+        if (this.settings.glassEffect) {
+            body.classList.add('glass-effect');
+        }
+        if (this.settings.reducedMotion) {
+            body.classList.add('reduced-motion');
+        }
+        if (this.settings.highContrast) {
+            body.classList.add('high-contrast');
+        }
+
+        // Applica le proprietà CSS personalizzate all'elemento radice
+        root.style.setProperty('--custom-font-size', `${this.settings.fontSize}px`);
+        root.style.setProperty('--custom-border-radius', `${this.settings.borderRadius}px`);
+        root.style.setProperty('--custom-primary-color', this.settings.primaryColor);
+
+        // Applica il colore/gradiente di sfondo personalizzato
+        const gradients = {
+            gradient1: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            gradient2: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            gradient3: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            gradient4: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            gradient5: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            gradient6: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+            gradient7: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+        };
+
+        if (this.settings.backgroundColor.startsWith('gradient')) {
+            root.style.setProperty('--custom-bg-color', gradients[this.settings.backgroundColor]);
+        } else {
+            root.style.setProperty('--custom-bg-color', this.settings.backgroundColor);
+        }
+    }
+
+    updateUI() {
+        // Aggiorna lo stato dei toggle
+        const autoThemeToggle = document.getElementById('autoThemeToggle');
+        if (autoThemeToggle) autoThemeToggle.classList.toggle('active', this.settings.autoTheme);
+
+        const glassEffectToggle = document.getElementById('glassEffectToggle');
+        if (glassEffectToggle) glassEffectToggle.classList.toggle('active', this.settings.glassEffect);
+
+        const reducedMotionToggle = document.getElementById('reducedMotionToggle');
+        if (reducedMotionToggle) reducedMotionToggle.classList.toggle('active', this.settings.reducedMotion);
+
+        const highContrastToggle = document.getElementById('highContrastToggle');
+        if (highContrastToggle) highContrastToggle.classList.toggle('active', this.settings.highContrast);
+
+        // Aggiorna il valore degli slider
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        if (fontSizeSlider) fontSizeSlider.value = this.settings.fontSize;
+
+        const borderRadiusSlider = document.getElementById('borderRadiusSlider');
+        if (borderRadiusSlider) borderRadiusSlider.value = this.settings.borderRadius;
+
+        // Aggiorna lo stato attivo delle schede tema
+        this.updateThemeCards();
+
+        // Aggiorna lo stato attivo dei selettori colore
+        this.updateColorPicker('color', this.settings.primaryColor);
+        this.updateColorPicker('bg-color', this.settings.backgroundColor);
+    }
+
+    updateThemeCards() {
+        document.querySelectorAll('.theme-card').forEach(card => {
+            card.classList.remove('active');
+        });
+
+        const activeCard = document.querySelector(`[data-theme="${this.settings.theme}"]`);
+        if (activeCard) {
+            activeCard.classList.add('active');
+        }
+    }
+
+    updateColorPicker(type, value) {
+        document.querySelectorAll(`[data-${type}]`).forEach(option => {
+            option.classList.remove('active');
+        });
+
+        const activeOption = document.querySelector(`[data-${type}="${value}"]`);
+        if (activeOption) {
+            activeOption.classList.add('active');
+        }
+    }
+
+    setupAutoTheme() {
+        const updateAutoTheme = () => {
+            if (!this.settings.autoTheme) return; // Ferma se la modalità automatica è disabilitata
+
+            const hour = new Date().getHours();
+            const isDark = hour < 7 || hour > 19; // Tra le 19:00 e le 07:00
+            const newTheme = isDark ? 'dark' : 'light';
+
+            // Cambia tema solo se è diverso per evitare aggiornamenti/notifiche non necessari
+            if (newTheme !== this.settings.theme) {
+                this.setTheme(newTheme);
+            }
+        };
+
+        // Esegui immediatamente e poi ogni minuto
+        updateAutoTheme();
+        clearInterval(this._autoThemeInterval); // Pulisce qualsiasi intervallo esistente
+        this._autoThemeInterval = setInterval(updateAutoTheme, 60000); // Controlla ogni minuto
+    }
+
+    resetSettings() {
+        if (confirm('Sei sicuro di voler ripristinare tutte le impostazioni?')) {
+            localStorage.removeItem('cronoshop_theme_settings');
+            this.settings = this.loadSettings(); // Ricarica le impostazioni predefinite
+            this.applySettings();
+            this.updateUI();
+
+            if (window.app && typeof window.app.showNotification === 'function') {
+                window.app.showNotification('Impostazioni ripristinate!', 'success');
+            }
+        }
+    }
+}
+
+// Inizializza il personalizzatore del tema quando il DOM è caricato su qualsiasi pagina
+document.addEventListener('DOMContentLoaded', () => {
+    window.themeCustomizer = new ThemeCustomizer(); // Rende l'oggetto accessibile globalmente se necessario
+});
+
+// Applica le impostazioni immediatamente al caricamento dello script, anche prima di DOMContentLoaded,
+// per prevenire FOUC (Flash Of Unstyled Content) per tema/colori.
+// Gli aggiornamenti UI possono attendere DOMContentLoaded.
+(function() {
+    const defaultSettings = {
+        theme: 'light',
+        glassEffect: true,
+        reducedMotion: false,
+        highContrast: false,
+        fontSize: 16,
+        borderRadius: 12,
+        primaryColor: '#007aff',
+        backgroundColor: '#f2f2f7'
+    };
+
+    let savedSettings = defaultSettings;
+    try {
+        const saved = localStorage.getItem('cronoshop_theme_settings');
+        savedSettings = saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
+    } catch (error) {
+        console.error('Errore durante il caricamento delle impostazioni iniziali del tema:', error);
+    }
+
+    const root = document.documentElement;
+    const body = document.body;
+
+    // Applica la classe del tema
+    if (savedSettings.theme === 'dark') {
+        body.classList.add('ios-dark-mode');
+    } else if (['blue', 'green', 'purple', 'orange'].includes(savedSettings.theme)) {
+        body.classList.add(`theme-${savedSettings.theme}`);
+    }
+
+    // Applica le classi degli effetti
+    if (savedSettings.glassEffect) {
+        body.classList.add('glass-effect');
+    }
+    if (savedSettings.reducedMotion) {
+        body.classList.add('reduced-motion');
+    }
+    if (savedSettings.highContrast) {
+        body.classList.add('high-contrast');
+    }
+
+    // Applica le proprietà CSS personalizzate
+    root.style.setProperty('--custom-font-size', `${savedSettings.fontSize}px`);
+    root.style.setProperty('--custom-border-radius', `${savedSettings.borderRadius}px`);
+    root.style.setProperty('--custom-primary-color', savedSettings.primaryColor);
+
+    const gradients = {
+        gradient1: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        gradient2: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        gradient3: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        gradient4: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+        gradient5: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+        gradient6: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        gradient7: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+    };
+
+    if (savedSettings.backgroundColor.startsWith('gradient')) {
+        root.style.setProperty('--custom-bg-color', gradients[savedSettings.backgroundColor]);
+    } else {
+        root.style.setProperty('--custom-bg-color', savedSettings.backgroundColor);
+    }
+})();
+
