@@ -1574,3 +1574,351 @@ body[style*="--custom-bg-color"] {
     max-width: none;
   }
 }
+
+:root {
+    /* Base Spacing */
+    --ios-spacing-xxs: 4px;
+    --ios-spacing-xs: 8px;
+    --ios-spacing-sm: 12px;
+    --ios-spacing-md: 16px;
+    --ios-spacing-lg: 20px;
+    --ios-spacing-xl: 24px;
+    --ios-spacing-xxl: 32px;
+
+    /* Base Radius */
+    --ios-radius-sm: 4px;
+    --ios-radius-md: 8px;
+    --ios-radius-lg: 12px;
+    --ios-radius-xl: 16px;
+
+    /* Transitions */
+    --ios-transition-fast: 0.15s ease-out;
+    --ios-transition-normal: 0.3s ease-in-out;
+    --ios-transition-slow: 0.5s ease-in-out;
+
+    /* Shadows */
+    --ios-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --ios-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --ios-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+    /* Typography Defaults */
+    --ios-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --ios-font-size-base: 16px; /* Default from slider */
+    --ios-line-height: 1.5;
+
+    /* Default Light Theme Colors */
+    --ios-blue: #007AFF;
+    --ios-green: #34C759;
+    --ios-red: #FF3B30;
+    --ios-orange: #FF9500;
+    --ios-purple: #AF52DE;
+    --ios-pink: #FF2D92;
+    --ios-indigo: #5856D6;
+    --ios-teal: #00C7BE;
+    --ios-yellow: #FFCC00;
+    --ios-gray: #8E8E93;
+
+    --ios-bg-primary: #F2F2F7; /* Main background */
+    --ios-bg-secondary: #FFFFFF; /* Card/Section background */
+    --ios-bg-tertiary: #FFFFFF; /* Even lighter background if needed */
+
+    --ios-fill-primary: rgba(120, 120, 128, 0.2); /* For controls, e.g., segmented controls */
+    --ios-fill-secondary: rgba(120, 120, 128, 0.16);
+    --ios-fill-tertiary: rgba(118, 118, 128, 0.12); /* Sliders, toggles (inactive) */
+    --ios-fill-quaternary: rgba(116, 116, 128, 0.08); /* Faint fill, e.g., list item backgrounds */
+
+    --ios-text-primary: #000000;
+    --ios-text-secondary: #6A6A6A; /* Lighter text */
+    --ios-text-tertiary: #C7C7CC; /* Even lighter for placeholders/hints */
+    --ios-text-quaternary: #E5E5EA; /* Faintest text */
+
+    --ios-separator-non-opaque: rgba(60, 60, 67, 0.29); /* Dividers, borders */
+    --ios-separator-opaque: #C6C6C8;
+
+    /* Custom properties controlled by JS */
+    --custom-font-size: var(--ios-font-size-base);
+    --custom-border-radius: var(--ios-radius-lg);
+    --custom-primary-color: var(--ios-blue);
+    --custom-bg-color: var(--ios-bg-primary);
+}
+
+/* Dark Mode Variables */
+.ios-dark-mode {
+    --ios-blue: #0A84FF;
+    --ios-green: #30D158;
+    --ios-red: #FF453A;
+    --ios-orange: #FF9F0A;
+    --ios-purple: #BF5AF2;
+    --ios-pink: #FF375F;
+    --ios-indigo: #5E5CE6;
+    --ios-teal: #40CADD;
+    --ios-yellow: #FFD60A;
+    --ios-gray: #98989D;
+
+    --ios-bg-primary: #000000; /* Main background */
+    --ios-bg-secondary: #1C1C1E; /* Card/Section background */
+    --ios-bg-tertiary: #2C2C2E; /* Even lighter background if needed */
+
+    --ios-fill-primary: rgba(120, 120, 128, 0.36);
+    --ios-fill-secondary: rgba(120, 120, 128, 0.32);
+    --ios-fill-tertiary: rgba(118, 118, 128, 0.24);
+    --ios-fill-quaternary: rgba(116, 116, 128, 0.18);
+
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: #EBEBF599;
+    --ios-text-tertiary: #EBEBF54D;
+    --ios-text-quaternary: #EBEBF52E;
+
+    --ios-separator-non-opaque: rgba(84, 84, 88, 0.65);
+    --ios-separator-opaque: #38383A;
+}
+
+/* Gradient Themes */
+.theme-blue {
+    --ios-blue: #007aff; /* Keep primary blue as a reference for text/icons */
+    --ios-bg-primary: linear-gradient(135deg, #007aff, #5856d6);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1); /* Semi-transparent white for cards */
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --ios-toggle-background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-green {
+    --ios-green: #34c759;
+    --ios-bg-primary: linear-gradient(135deg, #34c759, #00c7be);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --ios-toggle-background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-purple {
+    --ios-purple: #af52de;
+    --ios-bg-primary: linear-gradient(135deg, #af52de, #ff2d92);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --ios-toggle-background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-orange {
+    --ios-orange: #ff9500;
+    --ios-bg-primary: linear-gradient(135deg, #ff9500, #ffcc00);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --ios-toggle-background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* General Body and HTML styles */
+html {
+    scroll-behavior: smooth;
+    font-size: var(--custom-font-size); /* Controlled by JS slider */
+    border-radius: var(--custom-border-radius); /* Controlled by JS slider */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--ios-font-family);
+    line-height: var(--ios-line-height);
+    background: var(--custom-bg-color, var(--ios-bg-primary)); /* Use custom-bg-color or fallback */
+    color: var(--ios-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background var(--ios-transition-normal), color var(--ios-transition-normal);
+}
+
+/* Global classes */
+.ios-main {
+    padding: var(--ios-spacing-xl) 0;
+    flex-grow: 1;
+}
+
+.ios-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--ios-spacing-md);
+}
+
+.ios-section {
+    margin-bottom: var(--ios-spacing-xxl);
+}
+
+.ios-section-header {
+    margin-bottom: var(--ios-spacing-xl);
+    text-align: center; /* Adjust if you want left-aligned */
+}
+
+.ios-section-header h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--ios-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Adjust if you want left-aligned */
+    gap: var(--ios-spacing-sm);
+    margin-bottom: var(--ios-spacing-xs);
+}
+
+.ios-section-header p {
+    font-size: 1.1em;
+    color: var(--ios-text-secondary);
+}
+
+/* Buttons */
+.ios-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ios-spacing-md) var(--ios-spacing-lg);
+    border-radius: var(--ios-radius-md);
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all var(--ios-transition-fast);
+}
+
+.ios-btn-primary {
+    background: var(--custom-primary-color, var(--ios-blue)); /* Use custom primary color */
+    color: white;
+}
+
+.ios-btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: var(--ios-shadow-sm);
+}
+
+.ios-btn-secondary {
+    background: var(--ios-fill-tertiary);
+    color: var(--ios-text-primary);
+    border: 1px solid var(--ios-separator-non-opaque);
+}
+
+.ios-btn-secondary:hover {
+    background: var(--ios-fill-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--ios-shadow-sm);
+}
+
+.ios-btn-text {
+    background: transparent;
+    color: var(--custom-primary-color, var(--ios-blue)); /* Use custom primary color */
+    padding: var(--ios-spacing-xs) var(--ios-spacing-sm);
+}
+
+.ios-btn-text:hover {
+    background: var(--ios-fill-quaternary);
+    border-radius: var(--ios-radius-sm);
+}
+
+/* Toggle specific styling for general consistency */
+.ios-toggle.active {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+/* Slider specific styling for general consistency */
+.ios-slider::-webkit-slider-thumb {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+.ios-slider::-moz-range-thumb {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+/* Glass effect */
+.glass-effect .glass-header,
+.glass-effect .glass-footer {
+    background: rgba(255, 255, 255, 0.7); /* Lighter translucent for light theme */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ios-dark-mode.glass-effect .glass-header,
+.ios-dark-mode.glass-effect .glass-footer {
+    background: rgba(28, 28, 30, 0.7); /* Darker translucent for dark theme */
+    border-bottom: 1px solid rgba(56, 56, 58, 0.3);
+}
+
+/* Reduced motion */
+.reduced-motion * {
+    transition: none !important;
+}
+
+/* High contrast */
+.high-contrast {
+    filter: contrast(1.2); /* Adjust as needed */
+}
+.high-contrast body {
+    background: var(--ios-bg-primary) !important; /* Ensure solid background */
+}
+.high-contrast .ios-toggle.active {
+    filter: brightness(1.5);
+}
+
+/* Header and Footer basic styling */
+.glass-header, .glass-footer {
+    position: sticky; /* Or fixed, depending on desired behavior */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--ios-shadow-sm);
+    padding: var(--ios-spacing-sm) 0;
+    transition: all var(--ios-transition-normal);
+}
+
+.glass-header {
+    border-bottom: 1px solid var(--ios-separator-non-opaque);
+    background: var(--ios-bg-secondary); /* Default solid background */
+}
+
+.glass-footer {
+    border-top: 1px solid var(--ios-separator-non-opaque);
+    background: var(--ios-bg-secondary); /* Default solid background */
+    margin-top: var(--ios-spacing-xl);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ios-section-header h1 {
+        font-size: 1.8em;
+    }
+    .ios-section-header p {
+        font-size: 1em;
+    }
+    .customization-grid {
+        grid-template-columns: 1fr;
+    }
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    .color-picker-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .mockup-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-header nav ul {
+        display: none; /* Hide navigation on very small screens, or implement a mobile menu */
+    }
+    .glass-header nav {
+        justify-content: center; /* Center logo if nav is hidden */
+    }
+}
+
