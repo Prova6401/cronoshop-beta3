@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account - Cronoshop</title>
-    
+    <meta name="description" content="Gestisci il tuo account Cronoshop.">
     <meta name="author" content="Cronoshop Team" />
-    <link rel="canonical" href="https://www.cronoshop.eu/account.html" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/cronoshop-logo.png">
+    <link rel="canonical" href="https://www.cronoshop.eu/account.html">
+    <link rel="icon" type="image/png" href="assets/cronoshop-logo.png">
     <link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
-    
+    <link rel="stylesheet" href="style.css">
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
@@ -134,72 +135,52 @@
 </head>
 <body>
 
-    <header class="glass-header" id="mainHeader">
-        <nav class="nav-container">
-            <a href="index.html" class="logo-link">
-                <img src="assets/cronoshop-logo.png" alt="Logo Cronoshop" class="logo-image logo-light">
-                <img src="assets/cronoshop-logo-black.png" alt="Logo Cronoshop" class="logo-image logo-dark">
-                <span class="logo-text">Cronoshop</span>
-            </a>
-            <div class="nav-desktop">
-                <ul class="nav-desktop-list">
-                    <li><a href="index.html" class="nav-desktop-link" data-page="index">Home</a></li>
-                    <li><a href="products.html" class="nav-desktop-link" data-page="products">Prodotti</a></li>
-                    <li><a href="cronoai.html" class="nav-desktop-link" data-page="cronoai">CronoAI</a></li>
-                    <li><a href="blog.html" class="nav-desktop-link" data-page="blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="nav-actions">
-                <button class="glass-btn" id="theme-toggle-btn"><i class="ph-bold ph-moon"></i></button>
-                <a href="cart.html" class="glass-btn"><i class="ph-bold ph-shopping-cart-simple"></i></a>
-                <a href="account.html" class="glass-btn"><i class="ph-bold ph-user-circle"></i></a>
-                <button class="glass-btn mobile-menu-btn"><i class="ph-bold ph-list"></i></button>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <section class="account-section">
-            <div class="section-header">
-                <h2>Il Tuo Account</h2>
-            </div>
-            
-            <div class="card profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <div class="avatar-circle"><i class="ph-fill ph-user"></i></div>
-                        <button class="btn btn-secondary">Cambia</button>
-                    </div>
-                    <div class="profile-info">
-                        <h3 id="userName">Ospite</h3>
-                        <p id="userEmail">Non connesso</p>
-                    </div>
-                    <div class="profile-actions">
-                        <button class="btn btn-primary" id="loginBtn">Accedi</button>
+    <header class="glass-header" id="navigation-container"></header>
+    <main class="container">
+        <section class="account">
+            <h2>Account</h2>
+            <div class="account-details">
+                <div class="card profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <div class="avatar-circle"><i class="ph-fill ph-user"></i></div>
+                            <button class="btn btn-secondary">Cambia</button>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="userName">Ospite</h3>
+                            <p id="userEmail">Non connesso</p>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="loginBtn">Accedi</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="account-options">
-                <div class="option-card">
-                    <div class="option-icon"><i class="ph-fill ph-gear"></i></div>
-                    <div class="option-content"><h4>Impostazioni Generali</h4></div>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon"><i class="ph-fill ph-palette"></i></div>
-                    <div class="option-content"><h4>Tema e Aspetto</h4></div>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon"><i class="ph-fill ph-bell"></i></div>
-                    <div class="option-content"><h4>Notifiche</h4></div>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon"><i class="ph-fill ph-credit-card"></i></div>
-                    <div class="option-content"><h4>Pagamenti</h4></div>
+                <div class="account-options">
+                    <div class="option-card">
+                        <div class="option-icon"><i class="ph-fill ph-gear"></i></div>
+                        <div class="option-content"><h4>Impostazioni Generali</h4></div>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="ph-fill ph-palette"></i></div>
+                        <div class="option-content"><h4>Tema e Aspetto</h4></div>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="ph-fill ph-bell"></i></div>
+                        <div class="option-content"><h4>Notifiche</h4></div>
+                    </div>
+                    <div class="option-card">
+                        <div class="option-icon"><i class="ph-fill ph-credit-card"></i></div>
+                        <div class="option-content"><h4>Pagamenti</h4></div>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
+    </main>
+    <footer class="glass-footer" id="footer-container"></footer>
 
+    <script src="script.js"></script>
+    <script src="src/utils/nav-loader.js"></script>
     <script>
         // Script per la gestione del tema (essenziale per la navbar)
         document.addEventListener('DOMContentLoaded', function() {

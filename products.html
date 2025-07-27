@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodotti in Offerta - Cronoshop</title>
-    
-    <meta name="description" content="Sfoglia tutti i prodotti selezionati da Cronoshop con il nuovo design iOS. Trova le migliori offerte su smartphone, tech, moda, casa e molto altro.">
+    <title>Prodotti - Cronoshop</title>
+    <meta name="description" content="Scopri tutti i prodotti in offerta su Cronoshop.">
     <meta name="keywords" content="prodotti offerta, sconti amazon, cronoshop prodotti, shopping online">
     <meta name="author" content="Cronoshop Team">
     <link rel="canonical" href="https://www.cronoshop.eu/products.html">
@@ -19,274 +18,109 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <!-- iOS Navigation Bar -->
-    <nav class="ios-navbar">
-        <div class="ios-navbar-content">
-            <div class="ios-navbar-left">
-                <a href="index.html" class="ios-logo">
-                    <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="ios-logo-image">
-                    <span class="ios-logo-text">Cronoshop</span>
-                </a>
+    <header class="glass-header" id="navigation-container"></header>
+    
+    <main class="container">
+        <section class="products-page">
+            <div class="products-header">
+                <h1>Tutti i Prodotti</h1>
+                <p>Scopri le migliori offerte Amazon selezionate dal nostro team</p>
             </div>
-            
-            <div class="ios-navbar-center">
-                <div class="ios-search-container active" id="searchContainer">
-                    <div class="ios-search-bar">
-                        <i class="ph ph-magnifying-glass"></i>
-                        <input type="text" placeholder="Cerca prodotti..." id="searchInput">
-                        <button class="ios-search-cancel" id="searchCancel">Annulla</button>
+
+            <!-- Filters and Search -->
+            <div class="products-filters">
+                <div class="filters-row">
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <i class="ph ph-magnifying-glass"></i>
+                            <input type="text" id="searchInput" placeholder="Cerca prodotti..." class="search-input">
+                        </div>
+                    </div>
+                    
+                    <div class="sort-container">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="relevance">Rilevanza</option>
+                            <option value="price-low">Prezzo: dal più basso</option>
+                            <option value="price-high">Prezzo: dal più alto</option>
+                            <option value="discount">Sconto più alto</option>
+                            <option value="name">Nome A-Z</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            
-            <div class="ios-navbar-right">
-                <button class="ios-nav-action" id="searchToggle">
-                    <i class="ph ph-magnifying-glass"></i>
-                </button>
-                <button class="ios-nav-action" id="themeToggle">
-                    <i class="ph ph-moon"></i>
-                </button>
-                <a href="cart.html" class="ios-nav-action">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="ios-badge" id="cartBadge">0</span>
-                </a>
-                <button class="ios-nav-action ios-menu-toggle" id="menuToggle">
-                    <i class="ph ph-list"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- iOS Mobile Menu -->
-    <div class="ios-mobile-menu" id="mobileMenu">
-        <div class="ios-mobile-menu-header">
-            <h3>Menu</h3>
-            <button class="ios-close-btn" id="closeMenu">
-                <i class="ph ph-x"></i>
-            </button>
-        </div>
-        <div class="ios-mobile-menu-content">
-            <a href="index.html" class="ios-menu-item">
-                <i class="ph ph-house"></i>
-                <span>Home</span>
-            </a>
-            <a href="products.html" class="ios-menu-item active">
-                <i class="ph ph-package"></i>
-                <span>Prodotti</span>
-            </a>
-            <a href="categorie.html" class="ios-menu-item">
-                <i class="ph ph-folders"></i>
-                <span>Categorie</span>
-            </a>
-            <a href="cronoai.html" class="ios-menu-item">
-                <i class="ph ph-robot"></i>
-                <span>CronoAI</span>
-            </a>
-            <a href="blog.html" class="ios-menu-item">
-                <i class="ph ph-article"></i>
-                <span>Blog</span>
-            </a>
-            <a href="wishlist.html" class="ios-menu-item">
-                <i class="ph ph-heart"></i>
-                <span>Wishlist</span>
-            </a>
-            <a href="account.html" class="ios-menu-item">
-                <i class="ph ph-user"></i>
-                <span>Account</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- iOS Overlay -->
-    <div class="ios-overlay" id="overlay"></div>
-
-    <!-- Main Content -->
-    <main class="ios-main">
-        <div class="ios-container">
-            <!-- Page Header -->
-            <div class="ios-section-header" style="margin-top: var(--ios-spacing-lg);">
-                <h1>
-                    <i class="ph ph-package" style="color: var(--ios-blue);"></i>
-                    Tutti i Prodotti
-                </h1>
-                <button class="ios-text-btn" onclick="location.href='index.html'">
-                    <i class="ph ph-arrow-left"></i>
-                    Indietro
-                </button>
-            </div>
-            
-            <p style="text-align: center; color: var(--ios-text-secondary); margin-bottom: var(--ios-spacing-xl); font-size: 18px;">
-                Esplora la nostra selezione curata di offerte con il nuovo design iOS. 
-                Usa i filtri per trovare esattamente ciò che cerchi.
-            </p>
-
-            <!-- Filters Section -->
-            <div class="ios-filters-section" style="background: var(--ios-bg-secondary); border-radius: var(--ios-radius-lg); padding: var(--ios-spacing-lg); margin-bottom: var(--ios-spacing-xl); border: 1px solid var(--ios-separator-non-opaque);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--ios-spacing-lg);">
-                    <h2 style="font-size: 20px; font-weight: 600; color: var(--ios-text-primary);">
-                        <i class="ph ph-funnel"></i>
-                        Filtra e Ordina
-                    </h2>
-                    <button class="ios-text-btn" id="clearFilters">
-                        <i class="ph ph-x"></i>
-                        Resetta
-                    </button>
-                </div>
-                
-                <!-- iOS Filter Chips -->
-                <div class="ios-filter-chips" style="margin-bottom: var(--ios-spacing-lg);">
-                    <button class="ios-filter-chip active" data-category="all">
+                <!-- Category Filter Chips -->
+                <div class="filter-chips">
+                    <button class="filter-chip active" data-category="all">
                         <i class="ph ph-star"></i>
                         Tutti
                     </button>
-                    <button class="ios-filter-chip" data-category="smartphone">
+                    <button class="filter-chip" data-category="smartphone">
                         <i class="ph ph-device-mobile"></i>
                         Smartphone
                     </button>
-                    <button class="ios-filter-chip" data-category="tech">
+                    <button class="filter-chip" data-category="tech">
                         <i class="ph ph-laptop"></i>
                         Tech
                     </button>
-                    <button class="ios-filter-chip" data-category="fashion">
+                    <button class="filter-chip" data-category="fashion">
                         <i class="ph ph-shirt"></i>
                         Fashion
                     </button>
-                    <button class="ios-filter-chip" data-category="casa">
+                    <button class="filter-chip" data-category="casa">
                         <i class="ph ph-house"></i>
                         Casa
                     </button>
-                    <button class="ios-filter-chip" data-category="salute">
-                        <i class="ph ph-heart-straight"></i>
+                    <button class="filter-chip" data-category="salute">
+                        <i class="ph ph-heart"></i>
                         Salute
                     </button>
                 </div>
-                
-                <!-- Sort Options -->
-                <div style="display: flex; align-items: center; gap: var(--ios-spacing-md); flex-wrap: wrap;">
-                    <label style="font-size: 14px; font-weight: 500; color: var(--ios-text-secondary);">
-                        Ordina per:
-                    </label>
-                    <select class="ios-select" id="sortSelect" style="flex: 1; min-width: 200px;">
-                        <option value="relevance">Rilevanza</option>
-                        <option value="price-low">Prezzo: Crescente</option>
-                        <option value="price-high">Prezzo: Decrescente</option>
-                        <option value="discount">Sconto Maggiore</option>
-                        <option value="name">Nome A-Z</option>
-                    </select>
-                    
-                    <div style="margin-left: auto; display: flex; align-items: center; gap: var(--ios-spacing-sm);">
-                        <span style="font-size: 14px; color: var(--ios-text-secondary);">
-                            <span id="resultsCount">0</span> prodotti
-                        </span>
-                    </div>
+
+                <!-- Results Info -->
+                <div class="results-info">
+                    <span id="resultsCount">0</span> prodotti trovati
+                    <button id="clearFilters" class="clear-filters-btn">
+                        <i class="ph ph-x"></i>
+                        Cancella filtri
+                    </button>
                 </div>
             </div>
 
             <!-- Products Grid -->
-            <div class="ios-products-grid" id="productsGrid">
+            <div class="products-grid" id="productsGrid">
                 <!-- Products will be loaded here -->
             </div>
 
-            <!-- Load More Section -->
-            <div style="text-align: center; margin-top: var(--ios-spacing-xl);" id="loadMoreSection">
-                <button class="ios-btn ios-btn-primary" id="loadMoreBtn">
+            <!-- Load More -->
+            <div class="load-more-section" id="loadMoreSection">
+                <button id="loadMoreBtn" class="load-more-btn">
                     <i class="ph ph-plus"></i>
-                    Carica Altri Prodotti
+                    Carica altri prodotti
                 </button>
             </div>
 
             <!-- Empty State -->
-            <div class="ios-empty-state" id="emptyState" style="display: none; text-align: center; padding: var(--ios-spacing-xxl);">
-                <div style="font-size: 64px; margin-bottom: var(--ios-spacing-lg); opacity: 0.5;">🔍</div>
-                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: var(--ios-spacing-sm); color: var(--ios-text-primary);">Nessun prodotto trovato</h3>
-                <p style="color: var(--ios-text-secondary); margin-bottom: var(--ios-spacing-lg);">
-                    Prova a modificare i filtri o cerca qualcos'altro.
-                </p>
-                <button class="ios-btn ios-btn-primary" onclick="clearAllFilters()">
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-state-icon">
+                    <i class="ph ph-magnifying-glass"></i>
+                </div>
+                <h3>Nessun prodotto trovato</h3>
+                <p>Prova a modificare i filtri di ricerca o esplora altre categorie</p>
+                <button onclick="clearAllFilters()" class="btn-primary">
                     <i class="ph ph-arrow-clockwise"></i>
-                    Mostra Tutti i Prodotti
+                    Mostra tutti i prodotti
                 </button>
             </div>
-        </div>
+        </section>
     </main>
-
-    <!-- iOS Footer -->
-    <footer class="ios-footer">
-        <div class="ios-container">
-            <div class="ios-footer-content">
-                <div class="ios-footer-section">
-                    <h4>Cronoshop</h4>
-                    <p>Il tuo alleato per le migliori offerte Amazon</p>
-                    <div class="ios-social-links">
-                        <a href="#" class="ios-social-link">
-                            <i class="ph ph-whatsapp-logo"></i>
-                        </a>
-                        <a href="#" class="ios-social-link">
-                            <i class="ph ph-telegram-logo"></i>
-                        </a>
-                        <a href="#" class="ios-social-link">
-                            <i class="ph ph-instagram-logo"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ios-footer-section">
-                    <h4>Esplora</h4>
-                    <ul>
-                        <li><a href="products.html">Tutte le Offerte</a></li>
-                        <li><a href="cronoai.html">CronoAI</a></li>
-                        <li><a href="categorie.html">Categorie</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="ios-footer-section">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="groups.html">WhatsApp</a></li>
-                        <li><a href="groups.html">Telegram</a></li>
-                        <li><a href="wishlist.html">Wishlist</a></li>
-                        <li><a href="account.html">Account</a></li>
-                    </ul>
-                </div>
-                <div class="ios-footer-section">
-                    <h4>Supporto</h4>
-                    <ul>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="chisiamo.html">Chi Siamo</a></li>
-                        <li><a href="privacy.html">Privacy</a></li>
-                        <li><a href="terms.html">Termini</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="ios-footer-bottom">
-                <p>&copy; 2025 Cronoshop. Tutti i diritti riservati.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Add select styles -->
-    <style>
-        .ios-select {
-            background: var(--ios-fill-tertiary);
-            border: 1px solid var(--ios-separator-non-opaque);
-            border-radius: var(--ios-radius-sm);
-            padding: var(--ios-spacing-sm) var(--ios-spacing-md);
-            font-family: inherit;
-            font-size: 14px;
-            color: var(--ios-text-primary);
-            cursor: pointer;
-            transition: all var(--ios-transition-fast);
-        }
-
-        .ios-select:focus {
-            outline: none;
-            border-color: var(--ios-blue);
-            background: var(--ios-bg-secondary);
-        }
-    </style>
+    
+    <footer class="glass-footer" id="footer-container"></footer>
 
     <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Load products from main.js
+        // Products page functionality
         let allProducts = [];
         let filteredProducts = [];
         let currentFilter = 'all';
@@ -294,101 +128,28 @@
         let currentPage = 0;
         let productsPerPage = 12;
         
-        // Products page functionality
         class ProductsPage {
             constructor() {
                 this.loadProducts();
                 this.setupEventListeners();
-                this.applyTheme();
                 this.handleURLParams();
-                this.loadCartBadge();
-            }
-
-            loadProducts() {
-                // Use products from main.js if available
-                if (typeof products !== 'undefined' && Array.isArray(products)) {
-                    allProducts = products;
-                    console.log(`Loaded ${products.length} products`);
-                } else {
-                    // Fallback products if main.js is not loaded
-                    allProducts = [
-                        {
-                            id: "prod1",
-                            nome: "Samsung Galaxy S25 Ultra",
-                            prezzo: 1199.00,
-                            prezzo_originale: 1599.00,
-                            sconto: 25,
-                            descrizione: "Smartphone AI con display 6.9\" QHD+ Dynamic AMOLED 2X",
-                            categoria: "smartphone",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0628fba6c1e331507b4362e9992865ff.jpg-5Lv6yjg3TqsOLGWOUeGml0aFqCyoMT.jpeg",
-                            link: "https://amzn.to/3Z551fa"
-                        },
-                        {
-                            id: "prod2",
-                            nome: "by Amazon Quinoa biologica, 500g",
-                            prezzo: 5.49,
-                            prezzo_originale: 6.99,
-                            sconto: 21,
-                            descrizione: "Quinoa biologica di alta qualità, ricca di proteine e fibre",
-                            categoria: "casa",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/buttons-3XlxdJv81I6jPGq05mBQjqP8OkwUGS.png",
-                            link: "https://amzn.to/4mB7UhK"
-                        },
-                        {
-                            id: "prod3",
-                            nome: "Apple iPhone 15 (128 GB)",
-                            prezzo: 645.00,
-                            prezzo_originale: 879.00,
-                            sconto: 27,
-                            descrizione: "Display Super Retina XDR da 6,1 pollici e chip A16 Bionic",
-                            categoria: "smartphone",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BLOG_230929_IOSAppDesign-wDKtuVyf2lhUMjaN1jY2yEH1UlJrY4.webp",
-                            link: "https://www.amazon.it/dp/B0CHWV5HTM"
-                        },
-                        {
-                            id: "prod4",
-                            nome: "Calvin Klein T-Shirt Uomo in Cotone",
-                            prezzo: 18.00,
-                            prezzo_originale: 35.00,
-                            sconto: 49,
-                            descrizione: "Stile minimalista, 100% cotone per il massimo comfort",
-                            categoria: "fashion",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/search-entries-94NBVrYzKdFkylNS8ysSXXI3gh4vZn.png",
-                            link: "https://amzn.to/4kbOb6E"
-                        },
-                        {
-                            id: "prod5",
-                            nome: "Amazon Fire TV Stick HD",
-                            prezzo: 28.99,
-                            prezzo_originale: 49.99,
-                            sconto: 42,
-                            descrizione: "Streaming HD con TV gratuita e telecomando vocale Alexa",
-                            categoria: "tech",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ios-experience-ui-components-l3cvKVU6Ez2qvqm4BndToghXoGYSrB.png",
-                            link: "https://amzn.to/4jhgwHr"
-                        },
-                        {
-                            id: "prod6",
-                            nome: "Oral-B Testine Di Ricambio Originali",
-                            prezzo: 24.99,
-                            prezzo_originale: 39.99,
-                            sconto: 38,
-                            descrizione: "Confezione da 10 testine Pro Cross Action per spazzolino elettrico",
-                            categoria: "salute",
-                            img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/figma-ios-15-ui-kit-9de9EAJmwgaIiVrkX2GLjwlEvdWivZ.png",
-                            link: "https://amzn.to/3SUojjE"
-                        }
-                    ];
-                }
                 this.renderProducts();
             }
 
-            setupEventListeners() {
-                // iOS App functionality
-                const app = new CronoshopApp();
+            loadProducts() {
+                // Load products from main.js
+                if (typeof products !== 'undefined' && Array.isArray(products)) {
+                    allProducts = [...products];
+                    console.log(`Loaded ${allProducts.length} products from main.js`);
+                } else {
+                    console.error('Products not found in main.js');
+                    allProducts = [];
+                }
+            }
 
+            setupEventListeners() {
                 // Filter chips
-                document.querySelectorAll('.ios-filter-chip').forEach(chip => {
+                document.querySelectorAll('.filter-chip').forEach(chip => {
                     chip.addEventListener('click', () => {
                         this.setFilter(chip.dataset.category);
                     });
@@ -437,7 +198,7 @@
                 currentPage = 0;
                 
                 // Update active chip
-                document.querySelectorAll('.ios-filter-chip').forEach(chip => {
+                document.querySelectorAll('.filter-chip').forEach(chip => {
                     chip.classList.remove('active');
                 });
                 document.querySelector(`[data-category="${category}"]`).classList.add('active');
@@ -446,7 +207,7 @@
             }
 
             searchProducts(query) {
-                // Implement search logic
+                currentPage = 0;
                 this.renderProducts(query);
             }
 
@@ -541,25 +302,29 @@
                     : parseFloat(product.prezzo_originale) || null;
                 
                 return `
-                    <div class="ios-product-card ios-animate-fade-in">
-                        <div class="ios-product-image">
-                            <img src="${product.img}" alt="${product.nome}" loading="lazy">
+                    <div class="product-card" data-product-id="${product.id}">
+                        <div class="product-image">
+                            <img src="${product.img}" alt="${product.nome}" loading="lazy" onerror="this.src='/placeholder.svg?height=200&width=300&text=Prodotto'">
+                            ${product.sconto ? `<div class="discount-badge">-${product.sconto}%</div>` : ''}
                         </div>
-                        <div class="ios-product-info">
-                            <div class="ios-product-category">${this.getCategoryName(product.categoria)}</div>
-                            <h3 class="ios-product-title">${product.nome}</h3>
-                            <div class="ios-product-price">
-                                <span class="ios-price-current">€${price.toFixed(2)}</span>
-                                ${originalPrice ? `<span class="ios-price-original">€${originalPrice.toFixed(2)}</span>` : ''}
-                                ${product.sconto ? `<span class="ios-discount-badge">-${product.sconto}%</span>` : ''}
+                        <div class="product-info">
+                            <div class="product-category">${this.getCategoryName(product.categoria)}</div>
+                            <h3 class="product-title">${product.nome}</h3>
+                            <p class="product-description">${product.descrizione || ''}</p>
+                            <div class="product-price">
+                                <span class="current-price">€${price.toFixed(2)}</span>
+                                ${originalPrice ? `<span class="original-price">€${originalPrice.toFixed(2)}</span>` : ''}
                             </div>
-                            <div class="ios-product-actions">
-                                <a href="${product.link}" target="_blank" rel="noopener noreferrer" class="ios-btn ios-btn-primary ios-btn-small">
+                            <div class="product-actions">
+                                <a href="${product.link}" target="_blank" rel="noopener noreferrer" class="btn-primary">
                                     <i class="ph ph-shopping-cart"></i>
-                                    Acquista
+                                    Acquista su Amazon
                                 </a>
-                                <button class="ios-btn ios-btn-secondary ios-btn-icon" onclick="app.addToWishlist('${product.id}')">
+                                <button class="btn-secondary" onclick="addToWishlist('${product.id}')">
                                     <i class="ph ph-heart"></i>
+                                </button>
+                                <button class="btn-secondary" onclick="addToCart('${product.id}')">
+                                    <i class="ph ph-plus"></i>
                                 </button>
                             </div>
                         </div>
@@ -570,11 +335,11 @@
             getCategoryName(category) {
                 const categoryNames = {
                     smartphone: 'Smartphone',
-                    tech: 'Tech',
-                    fashion: 'Fashion',
-                    casa: 'Casa',
-                    salute: 'Salute',
-                    sport: 'Sport'
+                    tech: 'Tecnologia',
+                    fashion: 'Moda',
+                    casa: 'Casa & Cucina',
+                    salute: 'Salute & Bellezza',
+                    sport: 'Sport & Tempo Libero'
                 };
                 return categoryNames[category] || category.charAt(0).toUpperCase() + category.slice(1);
             }
@@ -590,7 +355,7 @@
                 currentPage = 0;
                 
                 // Update UI
-                document.querySelectorAll('.ios-filter-chip').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
                 document.querySelector('[data-category="all"]').classList.add('active');
                 
                 const sortSelect = document.getElementById('sortSelect');
@@ -600,177 +365,99 @@
                 
                 this.renderProducts();
             }
-
-            applyTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark') {
-                    document.body.classList.add('ios-dark-mode');
-                    document.getElementById('themeToggle').querySelector('i').className = 'ph ph-sun';
-                }
-            }
-
-            loadCartBadge() {
-                try {
-                    const cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
-                    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                    const badge = document.getElementById('cartBadge');
-                    badge.textContent = totalItems;
-                    badge.style.display = totalItems > 0 ? 'block' : 'none';
-                } catch (error) {
-                    console.error('Error loading cart badge:', error);
-                }
-            }
         }
 
-        // iOS App functionality (copied from index.html)
-        class CronoshopApp {
-            constructor() {
-                this.setupEventListeners();
-            }
+        // Global functions
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
 
-            setupEventListeners() {
-                // Menu toggle
-                document.getElementById('menuToggle').addEventListener('click', () => {
-                    this.toggleMenu();
-                });
-
-                document.getElementById('closeMenu').addEventListener('click', () => {
-                    this.closeMenu();
-                });
-
-                document.getElementById('overlay').addEventListener('click', () => {
-                    this.closeMenu();
-                    this.closeSearch();
-                });
-
-                // Search toggle
-                document.getElementById('searchToggle').addEventListener('click', () => {
-                    this.toggleSearch();
-                });
-
-                document.getElementById('searchCancel').addEventListener('click', () => {
-                    this.closeSearch();
-                });
-
-                // Theme toggle
-                document.getElementById('themeToggle').addEventListener('click', () => {
-                    this.toggleTheme();
-                });
-            }
-
-            toggleMenu() {
-                const menu = document.getElementById('mobileMenu');
-                const overlay = document.getElementById('overlay');
+            try {
+                let cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
+                const existingItem = cart.find(item => item.id === productId);
                 
-                menu.classList.toggle('active');
-                overlay.classList.toggle('active');
-                document.body.classList.toggle('ios-menu-open');
-            }
-
-            closeMenu() {
-                const menu = document.getElementById('mobileMenu');
-                const overlay = document.getElementById('overlay');
-                
-                menu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.classList.remove('ios-menu-open');
-            }
-
-            toggleSearch() {
-                const container = document.getElementById('searchContainer');
-                const navbar = document.querySelector('.ios-navbar');
-                
-                container.classList.toggle('active');
-                navbar.classList.toggle('search-active');
-                
-                if (container.classList.contains('active')) {
-                    document.getElementById('searchInput').focus();
-                }
-            }
-
-            closeSearch() {
-                const container = document.getElementById('searchContainer');
-                const navbar = document.querySelector('.ios-navbar');
-                
-                container.classList.remove('active');
-                navbar.classList.remove('search-active');
-                document.getElementById('searchInput').value = '';
-            }
-
-            toggleTheme() {
-                const body = document.body;
-                const themeBtn = document.getElementById('themeToggle');
-                const icon = themeBtn.querySelector('i');
-                
-                body.classList.toggle('ios-dark-mode');
-                
-                if (body.classList.contains('ios-dark-mode')) {
-                    icon.className = 'ph ph-sun';
-                    localStorage.setItem('theme', 'dark');
+                if (existingItem) {
+                    existingItem.quantity = (existingItem.quantity || 1) + 1;
                 } else {
-                    icon.className = 'ph ph-moon';
-                    localStorage.setItem('theme', 'light');
+                    cart.push({...product, quantity: 1});
                 }
-            }
-
-            addToWishlist(productId) {
-                const product = allProducts.find(p => p.id === productId);
-                if (!product) return;
-
-                try {
-                    let wishlist = JSON.parse(localStorage.getItem('cronoshop_wishlist') || '[]');
-                    const existingItem = wishlist.find(item => item.id === productId);
-                    
-                    if (existingItem) {
-                        this.showNotification('Prodotto già nella wishlist', 'info');
-                        return;
-                    }
-                    
-                    wishlist.push(product);
-                    localStorage.setItem('cronoshop_wishlist', JSON.stringify(wishlist));
-                    this.showNotification('Prodotto aggiunto alla wishlist', 'success');
-                } catch (error) {
-                    console.error('Error adding to wishlist:', error);
-                    this.showNotification('Errore nell\'aggiungere alla wishlist', 'error');
-                }
-            }
-
-            showNotification(message, type = 'info') {
-                const notification = document.createElement('div');
-                notification.className = `ios-notification ios-notification-${type}`;
-                notification.innerHTML = `
-                    <div class="ios-notification-content">
-                        <i class="ph ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
-                        <span>${message}</span>
-                    </div>
-                `;
-
-                document.body.appendChild(notification);
-
-                setTimeout(() => notification.classList.add('show'), 100);
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
+                
+                localStorage.setItem('cronoshop_cart', JSON.stringify(cart));
+                showNotification('Prodotto aggiunto al carrello', 'success');
+                updateCartBadge();
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                showNotification('Errore nell\'aggiungere al carrello', 'error');
             }
         }
 
-        // Global function for clear filters button
+        function addToWishlist(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            try {
+                let wishlist = JSON.parse(localStorage.getItem('cronoshop_wishlist') || '[]');
+                const existingItem = wishlist.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    showNotification('Prodotto già nella wishlist', 'info');
+                    return;
+                }
+                
+                wishlist.push(product);
+                localStorage.setItem('cronoshop_wishlist', JSON.stringify(wishlist));
+                showNotification('Prodotto aggiunto alla wishlist', 'success');
+            } catch (error) {
+                console.error('Error adding to wishlist:', error);
+                showNotification('Errore nell\'aggiungere alla wishlist', 'error');
+            }
+        }
+
         function clearAllFilters() {
             if (window.productsPage) {
                 window.productsPage.clearAllFilters();
             }
         }
 
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="ph ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        function updateCartBadge() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                const badge = document.querySelector('.cart-badge');
+                if (badge) {
+                    badge.textContent = totalItems;
+                    badge.style.display = totalItems > 0 ? 'block' : 'none';
+                }
+            } catch (error) {
+                console.error('Error updating cart badge:', error);
+            }
+        }
+
         // Initialize when DOM is loaded
-        let app;
-        let productsPage;
         document.addEventListener('DOMContentLoaded', () => {
-            app = new CronoshopApp();
-            productsPage = new ProductsPage();
-            window.productsPage = productsPage;
-            window.app = app;
+            window.productsPage = new ProductsPage();
+            updateCartBadge();
         });
     </script>
+    <script src="src/utils/nav-loader.js"></script>
 </body>
 </html>

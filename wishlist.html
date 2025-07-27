@@ -6,6 +6,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/cronoshop-logo.png">
 <link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
 <meta name="author" content="Cronoshop Team" />
+<meta name="description" content="Visualizza e gestisci i prodotti nella tua wishlist Cronoshop.">
 <link rel="canonical" href="https://www.cronoshop.eu/wishlist.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,98 +21,52 @@
     <div class="animated-background"></div>
     
   <!-- Header -->
-<header class="glass-header">
-    <nav class="nav-container" role="navigation" aria-label="Menu principale">
-        <div class="logo">
-            <a href="index.html" class="logo-link">
-                <img src="assets/cronoshop-logo.png" alt="Cronoshop Logo" class="logo-image">
-                <span class="logo-text">Cronoshop</span>
-            </a>
-        </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="index.html#offerte" class="nav-link">Offerte</a>
-                <a href="categorie.html" class="nav-link">Categorie</a>
-                <a href="wishlist.html" class="nav-link active">Wishlist</a>
-                <a href="account.html" class="nav-link">Profilo</a>
-            </div>
-            <div class="nav-actions">
-                <a href="cart.html" class="glass-btn cart-btn">🛒 <span class="cart-count">0</span></a>
-                <button class="glass-btn theme-btn">🌙</button>
-                <button class="glass-btn mobile-menu-btn">☰</button>
-            </div>
-        </nav>
-    </header>
+<header class="glass-header" id="navigation-container"></header>
 
-    <!-- Wishlist Section -->
-    <section class="wishlist-section" style="padding-top: 120px;">
-        <div class="section-header">
+    <main class="container">
+        <section class="wishlist" style="padding-top: 120px;">
             <h2>❤️ La Tua Wishlist</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">I tuoi prodotti preferiti</p>
-        </div>
-        
-        <div class="wishlist-stats glass-card" style="margin-bottom: 2rem; padding: 1.5rem; text-align: center;">
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                <div class="stat-item">
-                    <span class="stat-number" id="wishlistCount">0</span>
-                    <span class="stat-label">Prodotti Salvati</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="totalValue">€0</span>
-                    <span class="stat-label">Valore Totale</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="avgPrice">€0</span>
-                    <span class="stat-label">Prezzo Medio</span>
+            <div class="wishlist-items" id="wishlistGrid">
+                <!-- Wishlist items will be loaded here -->
+            </div>
+
+            <div class="empty-wishlist" id="emptyWishlist" style="display: none; text-align: center; padding: 3rem;">
+                <div class="glass-card" style="padding: 3rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">💔</div>
+                    <h3 style="color: white; margin-bottom: 1rem;">La tua wishlist è vuota</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                        Inizia ad aggiungere prodotti che ti interessano!
+                    </p>
+                    <a href="index.html#offerte" class="glass-btn primary-btn">Scopri le Offerte</a>
                 </div>
             </div>
-        </div>
 
-        <div class="wishlist-actions" style="margin-bottom: 2rem; text-align: center;">
-            <button class="glass-btn secondary-btn" id="clearWishlist">🗑️ Svuota Wishlist</button>
-            <button class="glass-btn primary-btn" id="shareWishlist">📤 Condividi</button>
-        </div>
-        
-        <div class="wishlist-grid" id="wishlistGrid">
-            <!-- Wishlist items will be loaded here -->
-        </div>
-
-        <div class="empty-wishlist" id="emptyWishlist" style="display: none; text-align: center; padding: 3rem;">
-            <div class="glass-card" style="padding: 3rem;">
-                <div style="font-size: 4rem; margin-bottom: 1rem;">💔</div>
-                <h3 style="color: white; margin-bottom: 1rem;">La tua wishlist è vuota</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
-                    Inizia ad aggiungere prodotti che ti interessano!
-                </p>
-                <a href="index.html#offerte" class="glass-btn primary-btn">Scopri le Offerte</a>
+            <div class="wishlist-actions" style="margin-bottom: 2rem; text-align: center;">
+                <button class="glass-btn secondary-btn" id="clearWishlist">🗑️ Svuota Wishlist</button>
+                <button class="glass-btn primary-btn" id="shareWishlist">📤 Condividi</button>
             </div>
-        </div>
-    </section>
+
+            <div class="wishlist-stats glass-card" style="margin-bottom: 2rem; padding: 1.5rem; text-align: center;">
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <div class="stat-item">
+                        <span class="stat-number" id="wishlistCount">0</span>
+                        <span class="stat-label">Prodotti Salvati</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalValue">€0</span>
+                        <span class="stat-label">Valore Totale</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="avgPrice">€0</span>
+                        <span class="stat-label">Prezzo Medio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="glass-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Cronoshop</h4>
-                <p>La tua piattaforma per le migliori offerte Amazon</p>
-            </div>
-            <div class="footer-section">
-                <h4>Link Utili</h4>
-                <a href="groups.html">Gruppi WhatsApp</a>
-                <a href="categorie.html">Categorie</a>
-                <a href="account.html">Account</a>
-            </div>
-            <div class="footer-section">
-                <h4>Contatti</h4>
-                <a href="groups.html">WhatsApp</a>
-                <a href="#email">Email</a>
-                <a href="#social">Social</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Cronoshop. Tutti i diritti riservati.</p>
-        </div>
-    </footer>
+    <footer class="glass-footer" id="footer-container"></footer>
 
     <style>
         .wishlist-section {
@@ -205,6 +160,7 @@
         }
     </style>
 
+    <script src="script.js"></script>
     <script>
         let wishlist = [];
 
@@ -366,6 +322,58 @@
                 });
             }, 100);
         });
+
+        // Render wishlist items
+        function renderWishlist() {
+            const wishlistGrid = document.getElementById('wishlistGrid');
+            const emptyWishlist = document.getElementById('emptyWishlist');
+
+            if (wishlist.length === 0) {
+                wishlistGrid.style.display = 'none';
+                emptyWishlist.style.display = 'block';
+            } else {
+                wishlistGrid.style.display = 'block';
+                emptyWishlist.style.display = 'none';
+                wishlistGrid.innerHTML = wishlist.map(item => `
+                    <div class="wishlist-item">
+                        <img src="${item.immagine}" alt="${item.nome}" class="wishlist-item-image">
+                        <div class="wishlist-item-info">
+                            <h3>${item.nome}</h3>
+                            <div class="wishlist-item-price">${item.prezzo}</div>
+                        </div>
+                        <div class="wishlist-item-actions">
+                            <button class="glass-btn" onclick="buyProduct('${item.link}')">Compra</button>
+                            <button class="glass-btn remove-btn" onclick="removeFromWishlist(${wishlist.indexOf(item)})">X</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('wishlistCount').textContent = wishlist.length;
+            document.getElementById('totalValue').textContent = `€${wishlist.reduce((total, item) => total + parseFloat(item.prezzo.replace('€', '')), 0).toFixed(2)}`;
+            document.getElementById('avgPrice').textContent = `€${(wishlist.length > 0) ? (wishlist.reduce((total, item) => total + parseFloat(item.prezzo.replace('€', '')), 0) / wishlist.length : 0}.toFixed(2)}`;
+        }
+
+        // Remove product from wishlist
+        function removeFromWishlist(index) {
+            if (index !== -1) {
+                wishlist.splice(index, 1);
+                saveWishlistData();
+                renderWishlist();
+                showNotification('Prodotto rimosso dalla wishlist');
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const savedData = localStorage.getItem('cronoshop_data');
+            if (savedData) {
+                const userData = JSON.parse(savedData);
+                cartCount.textContent = userData.cart ? userData.cart.length : 0;
+            }
+        }
     </script>
+    <script src="src/utils/nav-loader.js"></script>
 </body>
 </html>
