@@ -1374,4 +1374,149 @@ window.cronoshopNav = {
         window.dispatchEvent(event);
     }
 };
+/* ===== NAVBAR LOGIC START ===== */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Questa funzione viene eseguita solo DOPO che il DOM è pronto.
+    // È sicura perché a questo punto la navbar da nav.html dovrebbe essere già stata iniettata.
+    
+    // --- ELEMENT SELECTION ---
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+    const themeToggleBtn = document.querySelector('.theme-toggle-btn');
+    const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+
+    // --- MOBILE MENU MANAGEMENT ---
+    
+    /**
+     * Toggles the mobile menu visibility.
+     * @param {boolean} isOpen - True to open, false to close.
+     */
+    const toggleMobileMenu = (isOpen) => {
+        if (!mobileMenu || !overlay) return; // Safety check
+        
+        mobileMenu.classList.toggle('active', isOpen);
+        overlay.classList.toggle('active', isOpen);
+        
+        // Prevents scrolling of the body when the menu is open for better UX
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    // Attach events to buttons to open and close the menu
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => toggleMobileMenu(true));
+    }
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', () => toggleMobileMenu(false));
+    }
+    if (overlay) {
+        overlay.addEventListener('click', () => toggleMobileMenu(false));
+    }
+
+    // --- THEME MANAGEMENT (DARK/LIGHT MODE) ---
+
+    /**
+     * Applies the theme (dark or light) and updates the icon.
+     * It relies on the global ThemeCustomizer class defined in script.js.
+     */
+    const applyTheme = () => {
+        // Check if the global theme manager exists and the icon element is found
+        if (!window.themeCustomizer || !themeIcon) return; 
+
+        const isDarkMode = window.themeCustomizer.settings.theme === 'dark';
+        
+        // Update the button icon
+        themeIcon.className = isDarkMode ? 'ph ph-sun' : 'ph ph-moon';
+    };
+    
+    // Event for the theme toggle button click
+    if (themeToggleBtn && window.themeCustomizer) {
+        themeToggleBtn.addEventListener('click', () => {
+            // Determine the current theme and set the opposite one
+            const currentTheme = window.themeCustomizer.settings.theme;
+            const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+            
+            // Call the global function to change the theme
+            window.themeCustomizer.setTheme(newTheme);
+            
+            // Update the icon immediately
+            applyTheme(); 
+        });
+    }
+    
+    // --- ACTIVE PAGE HIGHLIGHT ---
+    
+    /**
+     * Highlights the navigation link corresponding to the current page.
+     */
+    const highlightActiveLink = () => {
+        const currentPagePath = window.location.pathname;
+        // Extracts the filename (e.g., "products.html") or remains empty for the root
+        const currentPageFile = currentPagePath.split('/').pop() || 'index.html';
+        
+        // Removes the extension to get the page name (e.g., "products")
+        const pageName = currentPageFile.split('.')[0];
+        
+        // Iterates over all links (desktop and mobile)
+        document.querySelectorAll('.nav-link[data-page], .mobile-nav-link[data-page]').forEach(link => {
+            if (link.dataset.page === pageName) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    };
+
+    // --- BADGE UPDATE (CART & WISHLIST) ---
+
+    /**
+     * Reads data from localStorage and updates the counters on the cart and wishlist.
+     */
+    const updateBadges = () => {
+        try {
+            // Update cart counter
+            const cart = JSON.parse(localStorage.getItem('cronoshop_cart') || '[]');
+            const cartCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            document.querySelectorAll('.cart-count').forEach(badge => {
+                badge.textContent = cartCount;
+                badge.classList.toggle('show', cartCount > 0);
+            });
+
+            // Update wishlist counter
+            const wishlist = JSON.parse(localStorage.getItem('cronoshop_wishlist') || '[]');
+            const wishlistCount = wishlist.length;
+            document.querySelectorAll('.wishlist-count').forEach(badge => {
+                badge.textContent = wishlistCount;
+                badge.classList.toggle('show', wishlistCount > 0);
+            });
+        } catch (error) {
+            console.error("Error updating badges:", error);
+        }
+    };
+
+    // --- INITIALIZATION ---
+    // Function to run all initial setup operations.
+    const initializeNavbar = () => {
+        applyTheme();
+        highlightActiveLink();
+        updateBadges();
+        
+        // Adds a listener to update badges when data changes in another tab
+        window.addEventListener('storage', updateBadges);
+        
+        // Makes the update function globally accessible
+        // so other parts of the site (e.g., cart.js) can call it.
+        if (!window.cronoshopNav) {
+            window.cronoshopNav = {};
+        }
+        window.cronoshopNav.updateBadges = updateBadges;
+    };
+    
+    // Run everything
+    initializeNavbar();
+});
+
+/* ===== NAVBAR LOGIC END ===== */
 
