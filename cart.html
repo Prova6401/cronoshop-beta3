@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -15,10 +16,10 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         .page-header { text-align: center; margin-bottom: 40px; }
         .page-header h1 { font-size: 2.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .cart-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+        .cart-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: start; }
         .cart-items-section { display: flex; flex-direction: column; gap: 16px; }
         .cart-item { display: flex; background: var(--ios-bg-secondary); border-radius: var(--ios-radius-lg); padding: 16px; gap: 16px; align-items: center; border: 1px solid var(--ios-separator-non-opaque); }
-        .cart-item-img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--ios-radius-md); }
+        .cart-item-img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--ios-radius-md); flex-shrink: 0; }
         .cart-item-details { flex-grow: 1; }
         .cart-item-title { font-weight: 600; }
         .cart-item-price { color: var(--ios-text-secondary); }
@@ -66,7 +67,7 @@
                     <button class="ios-btn ios-btn-primary" id="checkoutBtn" style="width: 100%; margin-top: 24px;">
                         <i class="ph ph-credit-card"></i> Procedi all'Acquisto su Amazon
                     </button>
-                    <p style="font-size: 0.8rem; color: var(--ios-text-secondary); text-align: center; margin-top: 16px;">Verrai reindirizzato ad Amazon per completare l'ordine in sicurezza.</p>
+                    <p style="font-size: 0.8rem; color: var(--ios-text-secondary); text-align: center; margin-top: 16px;">Verrai reindirizzato su Amazon per completare l'ordine in sicurezza.</p>
                 </div>
             </div>
         </div>
@@ -131,7 +132,6 @@
                     });
                 }
                 updateSummary();
-                // Aggiorna il badge nella navbar
                 if (window.cronoshopNav && typeof window.cronoshopNav.updateBadges === 'function') {
                     window.cronoshopNav.updateBadges();
                 }
@@ -172,17 +172,29 @@
                 }
             });
 
+            // --- SEZIONE CORRETTA ---
             checkoutBtn.addEventListener('click', () => {
                 if (cart.length === 0) {
                     app.showNotification('Il carrello è vuoto.', 'error');
                     return;
                 }
-                app.showNotification('Stai per essere reindirizzato su Amazon per completare gli acquisti.', 'info');
-                // Apre ogni link prodotto in una nuova scheda
-                cart.forEach(item => {
-                    window.open(item.link, '_blank');
+                
+                app.showNotification(`Stai per aprire ${cart.length} schede su Amazon...`, 'info');
+
+                // Itera su ogni prodotto nel carrello e apre il suo link specifico.
+                // Il piccolo ritardo tra un'apertura e l'altra aiuta a prevenire
+                // che il browser blocchi le finestre pop-up.
+                cart.forEach((item, index) => {
+                    if (item.link) {
+                        setTimeout(() => {
+                            window.open(item.link, '_blank');
+                        }, index * 200); // Apre una scheda ogni 200 millisecondi
+                    } else {
+                        console.warn(`Prodotto ${item.id} senza link.`);
+                    }
                 });
             });
+            // --- FINE SEZIONE CORRETTA ---
 
             function saveAndRender() {
                 localStorage.setItem('cronoshop_cart', JSON.stringify(cart));
