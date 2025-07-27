@@ -1921,4 +1921,723 @@ body {
         justify-content: center; /* Center logo if nav is hidden */
     }
 }
+/* style.css */
+
+:root {
+    /* ... (tutte le tue variabili CSS esistenti per temi e colori) ... */
+
+    /* Esempio: assicurati che queste variabili esistano o siano compatibili con i colori della navbar */
+    --ios-spacing-xxs: 4px;
+    --ios-spacing-xs: 8px;
+    --ios-spacing-sm: 12px;
+    --ios-spacing-md: 16px;
+    --ios-spacing-lg: 20px;
+    --ios-spacing-xl: 24px;
+    --ios-spacing-xxl: 32px;
+
+    --ios-radius-sm: 4px;
+    --ios-radius-md: 8px;
+    --ios-radius-lg: 12px;
+    --ios-radius-xl: 16px;
+
+    --ios-transition-fast: 0.15s ease-out;
+    --ios-transition-normal: 0.3s ease-in-out;
+    --ios-transition-slow: 0.5s ease-in-out;
+
+    --ios-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --ios-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --ios-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+    --ios-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --ios-font-size-base: 16px;
+    --ios-line-height: 1.5;
+
+    /* Light Theme Colors (Default) */
+    --ios-blue: #007AFF;
+    --ios-green: #34C759;
+    --ios-red: #FF3B30;
+    --ios-orange: #FF9500;
+    --ios-purple: #AF52DE;
+    --ios-pink: #FF2D92;
+    --ios-indigo: #5856D6;
+    --ios-teal: #00C7BE;
+    --ios-yellow: #FFCC00;
+    --ios-gray: #8E8E93;
+
+    --ios-bg-primary: #F2F2F7;
+    --ios-bg-secondary: #FFFFFF;
+    --ios-bg-tertiary: #FFFFFF;
+
+    --ios-fill-primary: rgba(120, 120, 128, 0.2);
+    --ios-fill-secondary: rgba(120, 120, 128, 0.16);
+    --ios-fill-tertiary: rgba(118, 118, 128, 0.12);
+    --ios-fill-quaternary: rgba(116, 116, 128, 0.08);
+
+    --ios-text-primary: #000000;
+    --ios-text-secondary: #6A6A6A;
+    --ios-text-tertiary: #C7C7CC;
+    --ios-text-quaternary: #E5E5EA;
+
+    --ios-separator-non-opaque: rgba(60, 60, 67, 0.29);
+    --ios-separator-opaque: #C6C6C8;
+
+    /* Custom properties controlled by JS */
+    --custom-font-size: var(--ios-font-size-base);
+    --custom-border-radius: var(--ios-radius-lg);
+    --custom-primary-color: var(--ios-blue);
+    --custom-bg-color: var(--ios-bg-primary);
+}
+
+/* Dark Mode Variables */
+.ios-dark-mode {
+    --ios-blue: #0A84FF;
+    --ios-green: #30D158;
+    --ios-red: #FF453A;
+    --ios-orange: #FF9F0A;
+    --ios-purple: #BF5AF2;
+    --ios-pink: #FF375F;
+    --ios-indigo: #5E5CE6;
+    --ios-teal: #40CADD;
+    --ios-yellow: #FFD60A;
+    --ios-gray: #98989D;
+
+    --ios-bg-primary: #000000;
+    --ios-bg-secondary: #1C1C1E;
+    --ios-bg-tertiary: #2C2C2E;
+
+    --ios-fill-primary: rgba(120, 120, 128, 0.36);
+    --ios-fill-secondary: rgba(120, 120, 128, 0.32);
+    --ios-fill-tertiary: rgba(118, 118, 128, 0.24);
+    --ios-fill-quaternary: rgba(116, 116, 128, 0.18);
+
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: #EBEBF599;
+    --ios-text-tertiary: #EBEBF54D;
+    --ios-text-quaternary: #EBEBF52E;
+
+    --ios-separator-non-opaque: rgba(84, 84, 88, 0.65);
+    --ios-separator-opaque: #38383A;
+}
+
+/* Gradient Themes (Keep these, as they change the overall background) */
+.theme-blue {
+    --ios-blue: #007aff;
+    --ios-bg-primary: linear-gradient(135deg, #007aff, #5856d6);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    /* For gradient themes, consider overriding nav colors for readability */
+    --navbar-bg: rgba(255, 255, 255, 0.15); /* Slightly more opaque nav bar */
+    --navbar-border: rgba(255, 255, 255, 0.3);
+    --navbar-text: #FFFFFF;
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+.theme-green {
+    --ios-green: #34c759;
+    --ios-bg-primary: linear-gradient(135deg, #34c759, #00c7be);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --navbar-bg: rgba(255, 255, 255, 0.15);
+    --navbar-border: rgba(255, 255, 255, 0.3);
+    --navbar-text: #FFFFFF;
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+.theme-purple {
+    --ios-purple: #af52de;
+    --ios-bg-primary: linear-gradient(135deg, #af52de, #ff2d92);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --navbar-bg: rgba(255, 255, 255, 0.15);
+    --navbar-border: rgba(255, 255, 255, 0.3);
+    --navbar-text: #FFFFFF;
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+.theme-orange {
+    --ios-orange: #ff9500;
+    --ios-bg-primary: linear-gradient(135deg, #ff9500, #ffcc00);
+    --ios-bg-secondary: rgba(255, 255, 255, 0.1);
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: rgba(255, 255, 255, 0.8);
+    --ios-fill-quaternary: rgba(255, 255, 255, 0.05);
+    --ios-separator-non-opaque: rgba(255, 255, 255, 0.2);
+    --navbar-bg: rgba(255, 255, 255, 0.15);
+    --navbar-border: rgba(255, 255, 255, 0.3);
+    --navbar-text: #FFFFFF;
+    --navbar-link-hover-bg: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Navigation Styles (Start of new additions for navbar) --- */
+.navbar {
+    position: fixed; /* Keep it fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: var(--navbar-bg, rgba(255, 255, 255, 0.95)); /* Use custom var or default */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--navbar-border, rgba(0, 0, 0, 0.1)); /* Use custom var or default */
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--navbar-text, #333); /* Use custom var or default */
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nav-logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--navbar-text, #666); /* Use custom var or default */
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: var(--navbar-link-hover-bg, rgba(0, 123, 255, 0.1)); /* Use custom var or default */
+    color: var(--custom-primary-color, #007bff); /* Use dynamic primary color */
+}
+
+.nav-link.active {
+    background: var(--custom-primary-color, #007bff); /* Use dynamic primary color */
+    color: white;
+}
+
+.nav-link i {
+    font-size: 16px;
+}
+
+/* Dropdown */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit; /* Inherit color from .nav-link */
+    padding: 8px 16px; /* Match nav-link padding */
+    border-radius: 8px; /* Match nav-link border-radius */
+    display: flex; /* Make it a flex container to align items */
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.dropdown-toggle:hover {
+    background: var(--navbar-link-hover-bg, rgba(0, 123, 255, 0.1));
+    color: var(--custom-primary-color, #007bff);
+}
+
+
+.dropdown-arrow {
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px); /* Adjusted to sit just below toggle */
+    right: 0;
+    background: var(--ios-bg-secondary); /* Use theme-aware background */
+    border: 1px solid var(--ios-separator-non-opaque); /* Use theme-aware border */
+    border-radius: var(--ios-radius-lg);
+    box-shadow: var(--ios-shadow-md);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--ios-text-primary); /* Use theme-aware text color */
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: var(--ios-fill-quaternary); /* Use theme-aware hover background */
+    color: var(--custom-primary-color, #007bff);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--ios-separator-non-opaque); /* Use theme-aware separator */
+    margin: 8px 0;
+}
+
+/* Actions */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--ios-fill-tertiary); /* Use theme-aware background */
+    border-radius: var(--ios-radius-md); /* Use theme-aware radius */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--ios-text-primary); /* Use theme-aware text color */
+}
+
+.nav-button:hover {
+    background: var(--ios-fill-secondary); /* Use theme-aware hover background */
+    color: var(--custom-primary-color, #007bff);
+    transform: scale(1.05);
+}
+
+.nav-button i {
+    font-size: 18px;
+}
+
+.nav-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--ios-red); /* Use theme-aware red */
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+    display: none; /* Hide by default, show with .show class */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+
+.nav-badge.show {
+    display: block;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none; /* Hidden on desktop */
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Off-screen by default */
+    width: 320px;
+    max-width: 90%; /* For smaller screens than 320px */
+    height: 100vh;
+    background: var(--ios-bg-secondary); /* Theme-aware background */
+    z-index: 1002;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ios-spacing-lg);
+    border-bottom: 1px solid var(--ios-separator-non-opaque);
+    background: var(--ios-fill-quaternary); /* Slightly different background for header */
+}
+
+.mobile-menu-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+}
+
+.mobile-menu-content {
+    padding: var(--ios-spacing-lg);
+}
+
+.mobile-nav-section {
+    margin-bottom: var(--ios-spacing-xl);
+}
+
+.mobile-nav-section h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ios-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--ios-spacing-md);
+}
+
+.mobile-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav-list li {
+    margin-bottom: var(--ios-spacing-xxs);
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--ios-text-primary);
+    font-size: 16px;
+    border-radius: var(--ios-radius-md);
+    transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+    background: var(--ios-fill-quaternary);
+    color: var(--custom-primary-color, #007bff);
+}
+
+.mobile-nav-link.active {
+    background: var(--custom-primary-color, #007bff);
+    color: white;
+}
+
+.mobile-nav-link i {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Responsive (Keep these as they were) --- */
+@media (max-width: 1024px) {
+    .nav-desktop {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-content {
+        padding: 0 15px;
+    }
+    
+    .nav-logo-text {
+        display: none;
+    }
+    
+    .mobile-menu {
+        width: 280px;
+    }
+}
+
+/* --- End of Navigation Styles --- */
+
+/* General Body and HTML styles (your existing styles) */
+html {
+    scroll-behavior: smooth;
+    font-size: var(--custom-font-size);
+    /* Note: `border-radius` on `html` is unusual; typically applied to elements. */
+    /* If you mean global element rounding, apply to specific elements with `border-radius: var(--custom-border-radius);` */
+}
+
+body {
+    margin: 0;
+    padding-top: 70px; /* Add padding to body to prevent content from being hidden by fixed navbar */
+    font-family: var(--ios-font-family);
+    line-height: var(--ios-line-height);
+    background: var(--custom-bg-color, var(--ios-bg-primary));
+    color: var(--ios-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background var(--ios-transition-normal), color var(--ios-transition-normal);
+}
+
+/* Global classes ... (your existing styles for ios-main, ios-container, etc.) */
+.ios-main {
+    padding: var(--ios-spacing-xl) 0;
+    flex-grow: 1;
+}
+
+.ios-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--ios-spacing-md);
+}
+
+.ios-section {
+    margin-bottom: var(--ios-spacing-xxl);
+}
+
+.ios-section-header {
+    margin-bottom: var(--ios-spacing-xl);
+    text-align: center;
+}
+
+.ios-section-header h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--ios-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ios-spacing-sm);
+    margin-bottom: var(--ios-spacing-xs);
+}
+
+.ios-section-header p {
+    font-size: 1.1em;
+    color: var(--ios-text-secondary);
+}
+
+/* Buttons */
+.ios-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ios-spacing-md) var(--ios-spacing-lg);
+    border-radius: var(--ios-radius-md);
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all var(--ios-transition-fast);
+}
+
+.ios-btn-primary {
+    background: var(--custom-primary-color, var(--ios-blue));
+    color: white;
+}
+
+.ios-btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: var(--ios-shadow-sm);
+}
+
+.ios-btn-secondary {
+    background: var(--ios-fill-tertiary);
+    color: var(--ios-text-primary);
+    border: 1px solid var(--ios-separator-non-opaque);
+}
+
+.ios-btn-secondary:hover {
+    background: var(--ios-fill-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--ios-shadow-sm);
+}
+
+.ios-btn-text {
+    background: transparent;
+    color: var(--custom-primary-color, var(--ios-blue));
+    padding: var(--ios-spacing-xs) var(--ios-spacing-sm);
+}
+
+.ios-btn-text:hover {
+    background: var(--ios-fill-quaternary);
+    border-radius: var(--ios-radius-sm);
+}
+
+/* Toggle specific styling for general consistency */
+.ios-toggle.active {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+/* Slider specific styling for general consistency */
+.ios-slider::-webkit-slider-thumb {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+.ios-slider::-moz-range-thumb {
+    background: var(--custom-primary-color, var(--ios-blue));
+}
+
+/* Glass effect */
+.glass-effect .navbar, /* Apply glass effect to the navbar */
+.glass-effect .glass-header,
+.glass-effect .glass-footer {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ios-dark-mode.glass-effect .navbar, /* Apply glass effect to the navbar in dark mode */
+.ios-dark-mode.glass-effect .glass-header,
+.ios-dark-mode.glass-effect .glass-footer {
+    background: rgba(28, 28, 30, 0.7);
+    border-bottom: 1px solid rgba(56, 56, 58, 0.3);
+}
+
+/* Reduced motion */
+.reduced-motion * {
+    transition: none !important;
+}
+
+/* High contrast */
+.high-contrast {
+    filter: contrast(1.2);
+}
+.high-contrast body {
+    background: var(--ios-bg-primary) !important;
+}
+.high-contrast .ios-toggle.active {
+    filter: brightness(1.5);
+}
+
+/* Header and Footer basic styling (your existing, adjusted for navbar) */
+.glass-header {
+    position: sticky; /* Or fixed, depending on desired behavior */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--ios-shadow-sm);
+    padding: var(--ios-spacing-sm) 0; /* Remove padding if navbar content is inserted directly */
+    transition: all var(--ios-transition-normal);
+    /* For glass-header to contain the navbar, it needs no default background here */
+    background: transparent; 
+    border-bottom: none;
+    box-shadow: none; /* Navbar itself has shadow */
+}
+/* Ensure the glass effect applies to the navbar itself when it's rendered within glass-header */
+.glass-effect .glass-header {
+    background: transparent; /* No background on header wrapper */
+    border-bottom: none;
+}
+
+
+.glass-footer {
+    border-top: 1px solid var(--ios-separator-non-opaque);
+    background: var(--ios-bg-secondary);
+    margin-top: var(--ios-spacing-xl);
+    padding: var(--ios-spacing-md) 0; /* Added padding for footer content */
+    box-shadow: var(--ios-shadow-sm); /* Ensure consistent shadow */
+}
+
+/* Additional styles for themes page - KEEP THESE HERE OR MOVE TO style.css if global */
+/* This part is from your original themes.html <style> block */
+/* (omitted for brevity, assume you keep this in themes.html or move to a separate css for that page) */
+
+/* Responsive adjustments for general layout (your existing) */
+@media (max-width: 768px) {
+    .ios-section-header h1 {
+        font-size: 1.8em;
+    }
+    .ios-section-header p {
+        font-size: 1em;
+    }
+    .customization-grid {
+        grid-template-columns: 1fr;
+    }
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    .color-picker-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .mockup-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-header nav ul { /* This rule might not be needed if nav-desktop handles this */
+        display: none;
+    }
+    .glass-header nav { /* This rule might not be needed if nav-desktop handles this */
+        justify-content: center;
+    }
+}
+
 
