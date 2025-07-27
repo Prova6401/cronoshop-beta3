@@ -553,7 +553,7 @@
     </main>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="main.js"></script>
     <script>
         // Products page functionality
         let allProducts = [];
@@ -582,7 +582,7 @@
             }
 
             loadProducts() {
-                // Load products from script.js
+                // Load products from main.js
                 if (typeof products !== 'undefined' && Array.isArray(products)) {
                     allProducts = [...products];
                     console.log(`Loaded ${allProducts.length} products from script.js`);
