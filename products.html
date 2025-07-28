@@ -553,7 +553,7 @@
     </main>
 
     <!-- Scripts -->
-    <script src="main.js"></script>
+    <script src="script.js"></script>
     <script>
         // Products page functionality
         let allProducts = [];
@@ -582,7 +582,7 @@
             }
 
             loadProducts() {
-                // Load products from main.js
+                // Load products from script.js
                 if (typeof products !== 'undefined' && Array.isArray(products)) {
                     allProducts = [...products];
                     console.log(`Loaded ${allProducts.length} products from script.js`);
@@ -912,10 +912,5 @@
             window.productsPage = new ProductsPage();
         });
     </script>
-    <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-<script src="script.js"></script>
-
 </body>
 </html>

@@ -1,207 +1,228 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/cronoshop-logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/cronoshop-logo.png">
+<link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
+<meta name="author" content="Cronoshop Team" />
+<link rel="canonical" href="https://www.cronoshop.eu/stats.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiche Avanzate - Cronoshop</title>
-    
-    <meta name="description" content="Esplora le statistiche globali e personali di Cronoshop, visualizza le performance della piattaforma e la tua attività recente con grafici interattivi.">
-    <meta name="keywords" content="statistiche cronoshop, dati utente, performance, andamento prezzi, wishlist, carrello, amazon, offerte">
-    <meta name="author" content="Cronoshop Team">
-    <link rel="canonical" href="https://www.cronoshop.eu/stats.html">
-    
-    <link rel="icon" type="image/png" href="assets/cronoshop-logo.png">
-    <link rel="apple-touch-icon" href="assets/cronoshop-logo.png">
-    
+    <title>Statistiche - Cronoshop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* CronoAI Page Styles - Using your existing variables from style.css */
-        /* Re-defining primary/secondary colors for local reference to ensure animation consistency */
-        :root {
-            --stats-primary-color: var(--custom-primary-color, #007aff);
-            --stats-secondary-color: var(--ios-blue-secondary, #5856d6); /* Aggiungi questa variabile in style.css se non c'è */
-            --stats-success-color: var(--ios-green, #34c759);
-            --stats-warning-color: var(--ios-orange, #ff9500);
-            --stats-error-color: var(--ios-red, #ff3b30);
-            --stats-text-primary: var(--ios-text-primary);
-            --stats-text-secondary: var(--ios-text-secondary);
-            --stats-bg-primary: var(--custom-bg-color, var(--ios-bg-primary));
-            --stats-bg-secondary: var(--ios-bg-secondary);
-            --stats-fill-quaternary: var(--ios-fill-quaternary);
-            --stats-separator-non-opaque: var(--ios-separator-non-opaque);
-            --stats-radius-md: var(--ios-radius-md);
-            --stats-radius-lg: var(--ios-radius-lg);
-            --stats-radius-xl: var(--ios-radius-xl);
-            --stats-shadow-md: var(--ios-shadow-md);
-            --stats-shadow-lg: var(--ios-shadow-lg);
-            --stats-transition-fast: var(--ios-transition-fast);
-            --stats-transition-smooth: var(--ios-transition-normal); /* Usiamo la variabile globale */
-        }
+    <link rel="stylesheet" href="style.css?v=2.3">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background"></div>
+    <!-- Header -->
+<header class="glass-header">
+    <nav class="nav-container" role="navigation" aria-label="Menu principale">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="assets/cronoshop-logo.png" alt="Cronoshop Logo" class="logo-image">
+                <span class="logo-text">Cronoshop</span>
+            </a>
+        </div>
+            <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#offerte" class="nav-link">Offerte</a>
+        <a href="products.html" class="nav-link">Prodotti</a>
+        <a href="categorie.html" class="nav-link">Categorie</a>
+        <a href="wishlist.html" class="nav-link">Wishlist</a>
+        <a href="stats.html" class="nav-link">Statistiche</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="account.html" class="nav-link">Profilo</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </div>
+            <div class="nav-actions">
+                <a href="cart.html" class="glass-btn cart-btn">🛒 <span class="cart-count">0</span></a>
+                <button class="glass-btn theme-btn">🌙</button>
+                <button class="glass-btn mobile-menu-btn">☰</button>
+            </div>
+        </nav>
+    </header>
 
-        /* --- Global Layout Adjustments (Potrebbero andare anche in style.css) --- */
-        body {
-            /* Padding top per accomodare la navbar fissa */
-            padding-top: 70px; /* Altezza della navbar */
-            overflow-x: hidden; /* Evita scroll orizzontale */
-        }
-
-        .animated-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Questo background fisso può essere gestito dal tema principale o essere un effetto specifico della pagina */
-            background: linear-gradient(135deg, var(--stats-primary-color), var(--stats-secondary-color));
-            opacity: 0.1; /* Sottile effetto di sfondo */
-            z-index: -1;
-            transition: background 0.5s ease; /* Transizione per cambio tema */
-        }
+    <!-- Stats Section -->
+    <section class="stats-section" style="padding-top: 120px;">
+        <div class="section-header">
+            <h2>📊 Statistiche Cronoshop</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Dati globali e personali della piattaforma</p>
+        </div>
         
-        .ios-main {
-            padding: var(--ios-spacing-xl) 0;
-            max-width: 1200px; /* Aumenta leggermente per un layout più ampio */
-            margin: 0 auto;
-        }
+        <!-- Global Stats -->
+        <div class="stats-grid">
+            <div class="glass-card stats-card">
+                <h3>🌍 Statistiche Globali</h3>
+                <div class="stats-list">
+                    <div class="stat-row">
+                        <span class="stat-label">👥 Utenti Totali</span>
+                        <span class="stat-value" id="globalUsers">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🛍️ Prodotti Disponibili</span>
+                        <span class="stat-value" id="globalProducts">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">👀 Visualizzazioni Totali</span>
+                        <span class="stat-value" id="globalViews">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">💰 Sconto Medio</span>
+                        <span class="stat-value" id="globalDiscount">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🔥 Categoria Top</span>
+                        <span class="stat-value" id="globalTopCategory">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">⚡ Offerte Giornaliere</span>
+                        <span class="stat-value" id="globalDailyDeals">0</span>
+                    </div>
+                </div>
+            </div>
 
-        .ios-section {
-            margin-bottom: var(--ios-spacing-xxl);
-        }
+            <div class="glass-card stats-card">
+                <h3>👤 Le Tue Statistiche</h3>
+                <div class="stats-list">
+                    <div class="stat-row">
+                        <span class="stat-label">❤️ Prodotti in Wishlist</span>
+                        <span class="stat-value" id="userWishlist">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🛒 Prodotti nel Carrello</span>
+                        <span class="stat-value" id="userCart">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">📅 Visite Totali</span>
+                        <span class="stat-value" id="userVisits">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🕒 Ultima Visita</span>
+                        <span class="stat-value" id="userLastVisit">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">⭐ Categoria Preferita</span>
+                        <span class="stat-value" id="userFavoriteCategory">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🏆 Punti Fedeltà</span>
+                        <span class="stat-value" id="userPoints">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        .ios-section-header h2 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--ios-spacing-sm);
-            font-size: 2.5rem;
-            margin-bottom: var(--ios-spacing-md);
-            color: var(--stats-text-primary);
-        }
+        <!-- Activity Chart -->
+        <div class="glass-card stats-card" style="margin-bottom: 2rem;">
+            <h3>📈 Attività Recente</h3>
+            <div class="activity-timeline" id="activityTimeline">
+                <div class="activity-item">
+                    <div class="activity-icon">🛍️</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Prodotto aggiunto al carrello</div>
+                        <div class="activity-time">2 ore fa</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">❤️</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Prodotto aggiunto alla wishlist</div>
+                        <div class="activity-time">1 giorno fa</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">👀</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Visita alla pagina prodotti</div>
+                        <div class="activity-time">2 giorni fa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        .ios-section-header p {
-            font-size: 1.1rem;
-            color: var(--stats-text-secondary);
-            text-align: center;
-        }
+        <!-- Platform Stats -->
+        <div class="glass-card stats-card">
+            <h3>🚀 Performance Piattaforma</h3>
+            <div class="performance-grid">
+                <div class="performance-item">
+                    <div class="performance-icon">⚡</div>
+                    <div class="performance-value">99.9%</div>
+                    <div class="performance-label">Uptime</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-icon">🔄</div>
+                    <div class="performance-value">24h</div>
+                    <div class="performance-label">Aggiornamenti</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-icon">🛡️</div>
+                    <div class="performance-value">100%</div>
+                    <div class="performance-label">Sicurezza</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-icon">📱</div>
+                    <div class="performance-value">5★</div>
+                    <div class="performance-label">Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        /* --- Stats Specific Styles --- */
-        .stats-section {
-            padding-top: var(--ios-spacing-xxl); /* Per allineare meglio con la navbar */
-        }
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Cronoshop</h4>
+                <p>La tua piattaforma per le migliori offerte Amazon</p>
+            </div>
+            <div class="footer-section">
+                <h4>Link Utili</h4>
+                <a href="groups.html">Gruppi WhatsApp</a>
+                <a href="categorie.html">Categorie</a>
+                <a href="account.html">Account</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <a href="groups.html">WhatsApp</a>
+                <a href="#email">Email</a>
+                <a href="#social">Social</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cronoshop. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--ios-spacing-xl);
-            margin-bottom: var(--ios-spacing-xxl);
-        }
-
-        .glass-card { /* Usato anche per feature/tool cards */
-            background: var(--stats-bg-secondary); /* Sfondo primario dei temi */
-            border-radius: var(--stats-radius-xl);
-            padding: var(--ios-spacing-xl);
-            border: 1px solid var(--stats-separator-non-opaque);
-            box-shadow: var(--stats-shadow-md);
-            transition: all var(--stats-transition-smooth);
-            opacity: 0; /* Inizia invisibile per l'animazione */
-            transform: translateY(20px); /* Inizia leggermente sotto per l'animazione */
-        }
-        .glass-card.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px); /* Effetto sollevamento più pronunciato */
-            box-shadow: var(--stats-shadow-lg);
-        }
-
-        .stats-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--stats-text-primary);
-            margin-bottom: var(--ios-spacing-lg);
-            display: flex;
-            align-items: center;
-            gap: var(--ios-spacing-sm);
-        }
-
-        .stats-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--ios-spacing-md);
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: var(--ios-spacing-sm) 0;
-            border-bottom: 1px dashed var(--stats-fill-quaternary);
-            cursor: pointer; /* Per indicare che sono cliccabili */
-            transition: background-color var(--stats-transition-fast);
-        }
-        .stat-row:hover {
-            background-color: var(--stats-fill-quaternary);
-            border-radius: var(--stats-radius-sm);
-        }
-
-        .stat-row:last-child {
-            border-bottom: none;
-        }
-
-        .stat-label {
-            color: var(--stats-text-secondary);
-            font-size: 1rem;
-            flex: 1; /* Permette alla label di espandersi */
-        }
-
-        .stat-value {
-            color: var(--stats-text-primary);
-            font-weight: 600;
-            font-size: 1.05rem;
-            text-align: right;
-        }
-
-        /* Activity Timeline */
+    <style>
         .activity-timeline {
             display: flex;
             flex-direction: column;
-            gap: var(--ios-spacing-lg);
+            gap: 1rem;
         }
 
         .activity-item {
             display: flex;
             align-items: center;
-            gap: var(--ios-spacing-md);
-            padding: var(--ios-spacing-md);
-            background: var(--stats-fill-quaternary);
-            border-radius: var(--stats-radius-md);
-            border: 1px solid var(--stats-separator-non-opaque);
-            box-shadow: var(--stats-shadow-sm);
-            transition: all var(--stats-transition-fast);
-        }
-        .activity-item:hover {
-            transform: translateX(5px); /* Leggero scorrimento laterale */
-            background: var(--ios-fill-secondary);
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--glass-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
         }
 
         .activity-icon {
-            width: 45px; /* Icona leggermente più grande */
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: var(--stats-primary-color); /* Colore primario del tema */
+            background: var(--glass-white-strong);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem; /* Icona più grande */
-            color: white; /* Testo bianco sull'icona colorata */
-            flex-shrink: 0;
-            box-shadow: var(--stats-shadow-sm);
+            font-size: 1.2rem;
         }
 
         .activity-content {
@@ -209,495 +230,215 @@
         }
 
         .activity-title {
-            color: var(--stats-text-primary);
+            color: var(--text-primary);
             font-weight: 600;
-            margin-bottom: var(--ios-spacing-xxs);
+            margin-bottom: 0.25rem;
         }
 
         .activity-time {
-            color: var(--stats-text-secondary);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        /* Performance Grid */
         .performance-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Minore larghezza minima */
-            gap: var(--ios-spacing-lg);
-            margin-top: var(--ios-spacing-md);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
         }
 
         .performance-item {
             text-align: center;
-            padding: var(--ios-spacing-lg); /* Più padding */
-            background: var(--stats-fill-quaternary);
-            border-radius: var(--stats-radius-md);
-            border: 1px solid var(--stats-separator-non-opaque);
-            box-shadow: var(--stats-shadow-sm);
-            transition: all var(--stats-transition-fast);
-        }
-        .performance-item:hover {
-            background: var(--ios-fill-secondary);
-            transform: scale(1.02); /* Leggero ingrandimento */
+            padding: 1.5rem;
+            background: var(--glass-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
         }
 
         .performance-icon {
-            font-size: 2.5rem; /* Icone più grandi */
-            margin-bottom: var(--ios-spacing-xs);
-            color: var(--stats-primary-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .performance-value {
-            font-size: 1.8rem; /* Valori più grandi */
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--stats-text-primary);
-            margin-bottom: var(--ios-spacing-xxs);
+            color: var(--text-blue);
+            margin-bottom: 0.25rem;
         }
 
         .performance-label {
-            color: var(--stats-text-secondary);
-            font-size: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        /* --- Popup / Modal Styles --- */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-container {
-            background: var(--stats-bg-secondary);
-            border-radius: var(--stats-radius-xl);
-            padding: var(--ios-spacing-xl);
-            box-shadow: var(--stats-shadow-lg);
-            max-width: 500px;
-            width: 90%;
-            transform: translateY(-50px);
-            opacity: 0;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            position: relative;
-            border: 1px solid var(--stats-separator-non-opaque);
-        }
-        .popup-overlay.active .popup-container {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .popup-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--ios-spacing-lg);
-            padding-bottom: var(--ios-spacing-sm);
-            border-bottom: 1px solid var(--stats-separator-non-opaque);
-        }
-
-        .popup-header h3 {
-            font-size: 1.5rem;
-            color: var(--stats-text-primary);
-        }
-
-        .popup-close-btn {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--stats-text-secondary);
-            transition: color var(--stats-transition-fast);
-        }
-        .popup-close-btn:hover {
-            color: var(--stats-error-color);
-        }
-
-        .popup-content p {
-            font-size: 1rem;
-            color: var(--stats-text-secondary);
-            line-height: 1.6;
-            margin-bottom: var(--ios-spacing-md);
-        }
-
-        .popup-chart {
-            background: var(--stats-fill-quaternary);
-            border-radius: var(--stats-radius-md);
-            height: 150px; /* Placeholder per il grafico */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--stats-text-secondary);
-            font-style: italic;
-            margin-top: var(--ios-spacing-md);
-        }
-
-        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            .ios-section-header h2 {
-                font-size: 2rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
             .performance-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
-            .ios-section-header h2 {
-                font-size: 1.8rem;
-            }
-            .stats-card {
-                padding: var(--ios-spacing-lg);
-            }
-            .stats-card h3 {
-                font-size: 1.4rem;
-            }
-            .activity-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .activity-icon {
-                margin-bottom: var(--ios-spacing-xs);
-            }
             .performance-grid {
                 grid-template-columns: 1fr;
             }
-            .popup-container {
-                padding: var(--ios-spacing-lg);
-            }
         }
     </style>
-</head>
-<body>
-    <div class="animated-background"></div>
-    
-    <div id="navbar-placeholder"></div>
 
-    <main class="ios-main">
-        <div class="ios-container">
-            <section class="ios-section stats-section">
-                <div class="ios-section-header">
-                    <h2>📊 Statistiche Cronoshop</h2>
-                    <p>Dati globali e personali della piattaforma, aggiornati in tempo reale.</p>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="glass-card stats-card" onclick="showStatDetail('global-users')">
-                        <h3>🌍 Statistiche Globali</h3>
-                        <div class="stats-list">
-                            <div class="stat-row">
-                                <span class="stat-label">👥 Utenti Totali</span>
-                                <span class="stat-value" id="globalUsers">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🛍️ Prodotti Disponibili</span>
-                                <span class="stat-value" id="globalProducts">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">👀 Visualizzazioni Totali</span>
-                                <span class="stat-value" id="globalViews">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">💰 Sconto Medio</span>
-                                <span class="stat-value" id="globalDiscount">0%</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🔥 Categoria Top</span>
-                                <span class="stat-value" id="globalTopCategory">-</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">⚡ Offerte Giornaliere</span>
-                                <span class="stat-value" id="globalDailyDeals">0</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass-card stats-card" onclick="showStatDetail('user-data')">
-                        <h3>👤 Le Tue Statistiche</h3>
-                        <div class="stats-list">
-                            <div class="stat-row">
-                                <span class="stat-label">❤️ Prodotti in Wishlist</span>
-                                <span class="stat-value" id="userWishlist">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🛒 Prodotti nel Carrello</span>
-                                <span class="stat-value" id="userCart">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">📅 Visite Totali</span>
-                                <span class="stat-value" id="userVisits">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🕒 Ultima Visita</span>
-                                <span class="stat-value" id="userLastVisit">-</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">⭐ Categoria Preferita</span>
-                                <span class="stat-value" id="userFavoriteCategory">-</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">🏆 Punti Fedeltà</span>
-                                <span class="stat-value" id="userPoints">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-card stats-card">
-                    <h3>📈 Attività Recente</h3>
-                    <div class="activity-timeline" id="activityTimeline">
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="ph ph-shopping-bag"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-title">Prodotto aggiunto al carrello: Smartphone X</div>
-                                <div class="activity-time">2 ore fa</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="ph ph-heart"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-title">Aggiunto alla Wishlist: Cuffie Wireless Y</div>
-                                <div class="activity-time">1 giorno fa</div>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon"><i class="ph ph-eye"></i></div>
-                            <div class="activity-content">
-                                <div class="activity-title">Visita alla pagina Prodotti (Categoria: Elettronica)</div>
-                                <div class="activity-time">2 giorni fa</div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="ios-btn ios-btn-secondary" style="margin-top: var(--ios-spacing-xl); width: 100%;" onclick="showStatDetail('activity-log')">
-                        <i class="ph ph-arrows-clockwise"></i>
-                        Vedi Registro Completo
-                    </button>
-                </div>
-
-                <div class="glass-card stats-card">
-                    <h3>🚀 Performance Piattaforma</h3>
-                    <div class="performance-grid">
-                        <div class="performance-item">
-                            <div class="performance-icon"><i class="ph ph-lightning"></i></div>
-                            <div class="performance-value">99.9%</div>
-                            <div class="performance-label">Uptime</div>
-                        </div>
-                        <div class="performance-item">
-                            <div class="performance-icon"><i class="ph ph-arrow-counter-clockwise"></i></div>
-                            <div class="performance-value">24h</div>
-                            <div class="performance-label">Aggiornamenti Prezzi</div>
-                        </div>
-                        <div class="performance-item">
-                            <div class="performance-icon"><i class="ph ph-shield-check"></i></div>
-                            <div class="performance-value">100%</div>
-                            <div class="performance-label">Sicurezza Dati</div>
-                        </div>
-                        <div class="performance-item">
-                            <div class="performance-icon"><i class="ph ph-sparkle"></i></div>
-                            <div class="performance-value">5★</div>
-                            <div class="performance-label">Rating Utenti</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <div id="footer-placeholder"></div>
-
-    <div class="popup-overlay" id="statDetailPopup">
-        <div class="popup-container">
-            <div class="popup-header">
-                <h3 id="popupTitle">Dettagli Statistica</h3>
-                <button class="popup-close-btn" onclick="closeStatDetailPopup()">
-                    <i class="ph ph-x"></i>
-                </button>
-            </div>
-            <div class="popup-content" id="popupContent">
-                <p>Informazioni aggiuntive per la statistica selezionata. Qui potremmo mostrare grafici più dettagliati o spiegazioni.</p>
-                <div class="popup-chart">
-                    Grafico Placeholder (es. Chart.js o d3.js)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-
+    <script src="main.js?v=2.3"></script>
     <script>
-        // Funzione per caricare e mostrare le statistiche
-        function loadStatsPageData() {
-            // Dati globali (mockup o da un'API reale)
-            const globalStats = {
-                totalUsers: '3,215',
-                totalProducts: '850',
-                totalViews: 89734,
-                avgDiscount: 28, // In percentuale
-                topCategory: 'Elettronica',
-                dailyDeals: '42'
-            };
+        // Load and display stats
+        function loadStats() {
+            // Load global stats
+            const globalStats = JSON.parse(localStorage.getItem('globalStats') || '{}');
+            document.getElementById('globalUsers').textContent = globalStats.totalUsers || '2,847';
+            document.getElementById('globalProducts').textContent = globalStats.totalProducts || '61';
+            document.getElementById('globalViews').textContent = (globalStats.totalViews || 75000).toLocaleString();
+            document.getElementById('globalDiscount').textContent = (globalStats.avgDiscount || 25) + '%';
+            document.getElementById('globalTopCategory').textContent = globalStats.topCategory || 'smartphone';
+            document.getElementById('globalDailyDeals').textContent = globalStats.dailyDeals || '35';
 
-            // Dati utente (mockup o da localStorage/API)
-            const userStats = {
-                wishlistItems: '5',
-                cartItems: '2',
-                visitCount: '15',
-                lastVisit: new Date(new Date().setDate(new Date().getDate() - 3)).toISOString(), // 3 giorni fa come esempio
-                favoriteCategory: 'Gaming',
-                userPoints: '150'
-            };
+            // Load user stats
+            const userStats = JSON.parse(localStorage.getItem('userStats') || '{}');
+            document.getElementById('userWishlist').textContent = userStats.wishlistItems || '0';
+            document.getElementById('userCart').textContent = userStats.cartItems || '0';
+            document.getElementById('userVisits').textContent = userStats.visitCount || '1';
+            
+            if (userStats.lastVisit) {
+                const lastVisit = new Date(userStats.lastVisit);
+                document.getElementById('userLastVisit').textContent = lastVisit.toLocaleDateString('it-IT');
+            } else {
+                document.getElementById('userLastVisit').textContent = 'Oggi';
+            }
+            
+            document.getElementById('userFavoriteCategory').textContent = userStats.favoriteCategory || 'smartphone';
 
-            // Inizializza gli elementi con i dati
-            document.getElementById('globalUsers').textContent = globalStats.totalUsers;
-            document.getElementById('globalProducts').textContent = globalStats.totalProducts;
-            document.getElementById('globalViews').textContent = globalStats.totalViews.toLocaleString('it-IT');
-            document.getElementById('globalDiscount').textContent = globalStats.avgDiscount + '%';
-            document.getElementById('globalTopCategory').textContent = globalStats.topCategory;
-            document.getElementById('globalDailyDeals').textContent = globalStats.dailyDeals;
+            // Load user points
+            try {
+                const savedData = localStorage.getItem('cronoshop_data');
+                if (savedData) {
+                    const userData = JSON.parse(savedData);
+                    const currentUser = userData.currentUser;
+                    document.getElementById('userPoints').textContent = currentUser?.points || '0';
+                }
+            } catch (error) {
+                console.error('Error loading user points:', error);
+            }
+        }
 
-            document.getElementById('userWishlist').textContent = userStats.wishlistItems;
-            document.getElementById('userCart').textContent = userStats.cartItems;
-            document.getElementById('userVisits').textContent = userStats.visitCount;
-            document.getElementById('userLastVisit').textContent = new Date(userStats.lastVisit).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
-            document.getElementById('userFavoriteCategory').textContent = userStats.favoriteCategory;
-            document.getElementById('userPoints').textContent = userStats.userPoints;
+        // Update cart count
+        function updateCartCount() {
+            try {
+                const savedData = localStorage.getItem('cronoshop_data');
+                if (savedData) {
+                    const userData = JSON.parse(savedData);
+                    const cart = userData.cart || [];
+                    const cartCount = document.querySelector('.cart-count');
+                    if (cartCount) {
+                        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                        cartCount.textContent = totalItems;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading cart data:', error);
+            }
+        }
 
-            // Animazione di apparizione per le card
+        // Theme toggle
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', !isDark);
+            applyTheme();
+            showNotification(`Tema ${!isDark ? 'scuro' : 'chiaro'} attivato`);
+        }
+
+        // Apply theme
+        function applyTheme() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const themeMode = localStorage.getItem('themeMode') || 'default';
+            const glassMode = localStorage.getItem('glassMode') === 'true';
+
+            // Remove all theme classes
+            document.body.classList.remove('dark-mode', 'theme-green', 'theme-red', 'theme-blue', 'theme-purple', 'theme-orange', 'glass-mode');
+
+            // Apply dark mode
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+            }
+
+            // Apply theme mode
+            if (themeMode !== 'default') {
+                document.body.classList.add(`theme-${themeMode}`);
+            }
+
+            // Apply glass mode
+            if (glassMode) {
+                document.body.classList.add('glass-mode');
+            }
+
+            // Update theme button
+            const themeBtn = document.querySelector('.theme-btn');
+            if (themeBtn) {
+                themeBtn.textContent = darkMode ? '☀️' : '🌙';
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.toggle('active');
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            let notification = document.getElementById('notification');
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.id = 'notification';
+                notification.className = 'notification';
+                notification.innerHTML = '<span id="notificationText"></span>';
+                document.body.appendChild(notification);
+            }
+
+            const notificationText = document.getElementById('notificationText');
+            if (notificationText) {
+                notificationText.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTheme();
+            loadStats();
+            updateCartCount();
+
+            // Setup event listeners
+            const themeBtn = document.querySelector('.theme-btn');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', toggleTheme);
+            }
+
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Add fade-in animation
             setTimeout(() => {
-                const statsCards = document.querySelectorAll('.stats-card');
-                statsCards.forEach((card, index) => {
+                const elements = document.querySelectorAll('.glass-card');
+                elements.forEach((el, index) => {
                     setTimeout(() => {
-                        card.classList.add('fade-in');
-                    }, index * 100); // Staggered animation
+                        el.classList.add('fade-in');
+                    }, index * 100);
                 });
-            }, 300); // Ritardo iniziale
-        }
-
-        // Funzioni per il Popup Dettagli Statistica
-        function showStatDetail(statId) {
-            const popupOverlay = document.getElementById('statDetailPopup');
-            const popupTitle = document.getElementById('popupTitle');
-            const popupContent = document.getElementById('popupContent');
-            const popupChart = popupContent.querySelector('.popup-chart');
-
-            let title = '';
-            let description = '';
-
-            // Esempio di dati dettagliati per il popup
-            switch (statId) {
-                case 'global-users':
-                    title = 'Dettagli Utenti Globali';
-                    description = 'Statistiche demografiche e di attività degli utenti sulla piattaforma. Qui potremmo mostrare un grafico della crescita utenti nel tempo.';
-                    popupChart.textContent = 'Grafico Crescita Utenti (Placeholder)';
-                    break;
-                case 'user-data':
-                    title = 'Dettagli Tue Statistiche';
-                    description = 'Analisi approfondita del tuo comportamento di acquisto, prodotti più visualizzati e categorie preferite. Perfetto per ottimizzare la tua esperienza.';
-                    popupChart.textContent = 'Grafico Attività Personale (Placeholder)';
-                    break;
-                case 'activity-log':
-                    title = 'Registro Attività Completo';
-                    description = 'Un log dettagliato di tutte le tue interazioni recenti con Cronoshop, incluse ricerche, visualizzazioni e aggiunte al carrello.';
-                    popupChart.textContent = 'Grafico Interazioni Recenti (Placeholder)';
-                    break;
-                default:
-                    title = 'Dettagli Statistica';
-                    description = 'Nessun dettaglio specifico disponibile per questa statistica.';
-                    popupChart.textContent = 'Nessun grafico disponibile';
-                    break;
-            }
-
-            popupTitle.textContent = title;
-            popupContent.querySelector('p').textContent = description;
-
-            popupOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Impedisce lo scroll della pagina sottostante
-        }
-
-        function closeStatDetailPopup() {
-            const popupOverlay = document.getElementById('statDetailPopup');
-            popupOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Ripristina lo scroll
-        }
-
-        // Event listener per chiudere il popup con ESC
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && document.getElementById('statDetailPopup').classList.contains('active')) {
-                closeStatDetailPopup();
-            }
-        });
-
-        // Inizializza le statistiche al caricamento della pagina
-        document.addEventListener('DOMContentLoaded', () => {
-            loadStatsPageData(); 
-            // ThemeCustomizer e loadNavbar sono già chiamati da script.js globale
+            }, 100);
         });
     </script>
-    <script>
-    // Funzione per caricare componenti HTML esterni
-    function loadComponent(url, placeholderId) {
-        fetch(url)
-            .then(response => response.ok ? response.text() : Promise.reject('Errore nel caricamento'))
-            .then(data => {
-                const placeholder = document.getElementById(placeholderId);
-                if (!placeholder) return;
-                
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = data;
-                
-                // Estrai e aggiungi al DOM gli stili e gli script dalla navbar caricata
-                // Questi gestiscono i tag <style> e <script> che erano dentro nav.html/footer.html
-                tempDiv.querySelectorAll('style').forEach(styleTag => {
-                    const newStyle = document.createElement('style');
-                    newStyle.textContent = styleTag.textContent;
-                    document.head.appendChild(newStyle);
-                });
-
-                tempDiv.querySelectorAll('script').forEach(scriptTag => {
-                    const newScript = document.createElement('script');
-                    if (scriptTag.src) {
-                        newScript.src = scriptTag.src;
-                    } else {
-                        newScript.textContent = scriptTag.textContent;
-                    }
-                    document.body.appendChild(newScript);
-                });
-
-                // Inserisci il contenuto HTML (senza gli script/stili già spostati)
-                // Usiamo un clone per evitare di reinserire gli script/stili
-                const contentToInsert = tempDiv.cloneNode(true); 
-                contentToInsert.querySelectorAll('style, script').forEach(el => el.remove()); // Rimuovi gli script/stili dal clone
-                placeholder.innerHTML = contentToInsert.innerHTML;
-            })
-            .catch(error => console.error(`Impossibile caricare ${url}: ${error}`));
-    }
-
-    // Inizializza al caricamento del DOM
-    document.addEventListener('DOMContentLoaded', () => {
-        loadComponent('nav.html', 'navbar-placeholder');
-        loadComponent('footer.html', 'footer-placeholder');
-        // Se hai altri script specifici della pagina che devono inizializzare qualcosa
-        // dopo che tutti i componenti sono caricati (es. la classe CronoAI per cronoai.html),
-        // assicurati di chiamarli qui.
-        // ESEMPIO: if (window.CronoAI) { window.cronoAI = new CronoAI(); }
-        // Oppure, se CronoAI è già un'istanza globale e si inizializza da sola, non serve altro.
-    });
-</script>
-
 </body>
 </html>

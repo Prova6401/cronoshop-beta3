@@ -752,7 +752,7 @@
     </style>
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+    <div id="navigation-container"></div>
     
     <main class="container">
         <!-- Hero Section -->
@@ -1037,7 +1037,7 @@
             }
 
             loadProducts() {
-                // Load products from main.js
+                // Load products from script.js
                 if (typeof products !== 'undefined' && Array.isArray(products)) {
                     allProducts = [...products];
                     console.log(`Loaded ${allProducts.length} products from script.js`);
@@ -1069,7 +1069,7 @@
             }
 
             loadRandomProducts() {
-                // Load 5 random products from main.js
+                // Load 5 random products from script.js
                 const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
                 displayedProducts = shuffled.slice(0, 5);
                 this.renderProducts();
@@ -1267,61 +1267,5 @@
             new HomePage();
         });
     </script>
-    <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-<script src="script.js"></script>
-    <script>
-    // Funzione per caricare componenti HTML esterni
-    function loadComponent(url, placeholderId) {
-        fetch(url)
-            .then(response => response.ok ? response.text() : Promise.reject('Errore nel caricamento'))
-            .then(data => {
-                const placeholder = document.getElementById(placeholderId);
-                if (!placeholder) return;
-                
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = data;
-                
-                // Estrai e aggiungi al DOM gli stili e gli script dalla navbar caricata
-                // Questi gestiscono i tag <style> e <script> che erano dentro nav.html/footer.html
-                tempDiv.querySelectorAll('style').forEach(styleTag => {
-                    const newStyle = document.createElement('style');
-                    newStyle.textContent = styleTag.textContent;
-                    document.head.appendChild(newStyle);
-                });
-
-                tempDiv.querySelectorAll('script').forEach(scriptTag => {
-                    const newScript = document.createElement('script');
-                    if (scriptTag.src) {
-                        newScript.src = scriptTag.src;
-                    } else {
-                        newScript.textContent = scriptTag.textContent;
-                    }
-                    document.body.appendChild(newScript);
-                });
-
-                // Inserisci il contenuto HTML (senza gli script/stili già spostati)
-                // Usiamo un clone per evitare di reinserire gli script/stili
-                const contentToInsert = tempDiv.cloneNode(true); 
-                contentToInsert.querySelectorAll('style, script').forEach(el => el.remove()); // Rimuovi gli script/stili dal clone
-                placeholder.innerHTML = contentToInsert.innerHTML;
-            })
-            .catch(error => console.error(`Impossibile caricare ${url}: ${error}`));
-    }
-
-    // Inizializza al caricamento del DOM
-    document.addEventListener('DOMContentLoaded', () => {
-        loadComponent('nav.html', 'navbar-placeholder');
-        loadComponent('footer.html', 'footer-placeholder');
-        // Se hai altri script specifici della pagina che devono inizializzare qualcosa
-        // dopo che tutti i componenti sono caricati (es. la classe CronoAI per cronoai.html),
-        // assicurati di chiamarli qui.
-        // ESEMPIO: if (window.CronoAI) { window.cronoAI = new CronoAI(); }
-        // Oppure, se CronoAI è già un'istanza globale e si inizializza da sola, non serve altro.
-    });
-</script>
-
-
 </body>
 </html>

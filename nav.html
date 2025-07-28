@@ -1,219 +1,173 @@
-<nav class="cronoshop-navbar">
-    <div class="navbar-container">
-        <!-- Logo -->
-        <div class="navbar-brand">
-            <a href="index.html" class="brand-link">
-                <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="brand-logo">
-                <span class="brand-text">Cronoshop</span>
-            </a>
-        </div>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronoshop Navigation</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- iOS Navigation Bar -->
+    <nav class="ios-navbar">
+        <div class="ios-navbar-content">
+            <!-- Left Section -->
+            <div class="ios-navbar-left">
+                <a href="index.html" class="ios-logo">
+                    <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="ios-logo-image">
+                    <span class="ios-logo-text">Cronoshop</span>
+                </a>
+            </div>
 
-        <!-- Desktop Navigation -->
-        <div class="navbar-desktop">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link" data-page="index">
+            <!-- Center Section (Search) -->
+            <div class="ios-navbar-center">
+                <div class="ios-search-container" id="searchContainer">
+                    <div class="ios-search-bar">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" id="searchInput" placeholder="Cerca prodotti...">
+                    </div>
+                    <button class="ios-search-cancel" id="searchCancel">Annulla</button>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="ios-navbar-right">
+                <!-- Desktop Navigation Links -->
+                <div class="ios-nav-desktop">
+                    <a href="index.html" class="ios-nav-link" data-page="index">
                         <i class="ph ph-house"></i>
                         <span>Home</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="products.html" class="nav-link" data-page="products">
+                    <a href="products.html" class="ios-nav-link" data-page="products">
                         <i class="ph ph-shopping-bag"></i>
                         <span>Offerte</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="categorie.html" class="nav-link" data-page="categorie">
+                    <a href="categorie.html" class="ios-nav-link" data-page="categorie">
                         <i class="ph ph-squares-four"></i>
                         <span>Categorie</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="cronoai.html" class="nav-link" data-page="cronoai">
+                    <a href="cronoai.html" class="ios-nav-link" data-page="cronoai">
                         <i class="ph ph-robot"></i>
                         <span>CronoAI</span>
                     </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" type="button">
-                        <i class="ph ph-dots-three"></i>
-                        <span>Altro</span>
-                        <i class="ph ph-caret-down dropdown-arrow"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="chisiamo.html" class="dropdown-item" data-page="chisiamo">
-                            <i class="ph ph-info"></i>
-                            <span>Chi Siamo</span>
-                        </a>
-                        <a href="stats.html" class="dropdown-item" data-page="stats">
-                            <i class="ph ph-chart-bar"></i>
-                            <span>Statistiche</span>
-                        </a>
-                        <a href="themes.html" class="dropdown-item" data-page="themes">
-                            <i class="ph ph-palette"></i>
-                            <span>Temi</span>
-                        </a>
-                        <a href="faq.html" class="dropdown-item" data-page="faq">
-                            <i class="ph ph-question"></i>
-                            <span>FAQ</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="privacy.html" class="dropdown-item" data-page="privacy">
-                            <i class="ph ph-shield-check"></i>
-                            <span>Privacy</span>
-                        </a>
-                        <a href="terms.html" class="dropdown-item" data-page="terms">
-                            <i class="ph ph-file-text"></i>
-                            <span>Termini</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                    <a href="blog.html" class="ios-nav-link" data-page="blog">
+                        <i class="ph ph-article"></i>
+                        <span>Blog</span>
+                    </a>
+                    <a href="groups.html" class="ios-nav-link" data-page="groups">
+                        <i class="ph ph-users"></i>
+                        <span>Community</span>
+                    </a>
+                </div>
 
-        <!-- Action Buttons -->
-        <div class="navbar-actions">
-            <a href="wishlist.html" class="action-btn" title="Wishlist">
-                <i class="ph ph-heart"></i>
-                <span class="action-badge wishlist-badge">0</span>
-            </a>
-            <a href="cart.html" class="action-btn" title="Carrello">
-                <i class="ph ph-shopping-cart"></i>
-                <span class="action-badge cart-badge">0</span>
-            </a>
-            <a href="account.html" class="action-btn" title="Account">
-                <i class="ph ph-user"></i>
-            </a>
-            <button class="action-btn theme-toggle-btn" title="Cambia tema">
-                <i class="ph ph-moon theme-icon"></i>
-            </button>
-            <button class="action-btn mobile-menu-btn" title="Menu">
-                <i class="ph ph-list"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="mobile-brand">
-                <img src="assets/cronoshop-logo.png" alt="Cronoshop" class="mobile-logo">
-                <span class="mobile-brand-text">Cronoshop</span>
-            </div>
-            <button class="mobile-close-btn" title="Chiudi menu">
-                <i class="ph ph-x"></i>
-            </button>
-        </div>
-        
-        <div class="mobile-menu-content">
-            <div class="mobile-nav-section">
-                <h4 class="mobile-section-title">Navigazione</h4>
-                <ul class="mobile-nav-list">
-                    <li>
-                        <a href="index.html" class="mobile-nav-link" data-page="index">
-                            <i class="ph ph-house"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="products.html" class="mobile-nav-link" data-page="products">
-                            <i class="ph ph-shopping-bag"></i>
-                            <span>Offerte</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="categorie.html" class="mobile-nav-link" data-page="categorie">
-                            <i class="ph ph-squares-four"></i>
-                            <span>Categorie</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="cronoai.html" class="mobile-nav-link" data-page="cronoai">
-                            <i class="ph ph-robot"></i>
-                            <span>CronoAI</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mobile-nav-section">
-                <h4 class="mobile-section-title">Account & Strumenti</h4>
-                <ul class="mobile-nav-list">
-                    <li>
-                        <a href="account.html" class="mobile-nav-link" data-page="account">
-                            <i class="ph ph-user"></i>
-                            <span>Account</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishlist.html" class="mobile-nav-link" data-page="wishlist">
-                            <i class="ph ph-heart"></i>
-                            <span>Wishlist</span>
-                            <span class="mobile-badge wishlist-badge">0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="cart.html" class="mobile-nav-link" data-page="cart">
-                            <i class="ph ph-shopping-cart"></i>
-                            <span>Carrello</span>
-                            <span class="mobile-badge cart-badge">0</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="themes.html" class="mobile-nav-link" data-page="themes">
-                            <i class="ph ph-palette"></i>
-                            <span>Temi</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mobile-nav-section">
-                <h4 class="mobile-section-title">Informazioni</h4>
-                <ul class="mobile-nav-list">
-                    <li>
-                        <a href="chisiamo.html" class="mobile-nav-link" data-page="chisiamo">
-                            <i class="ph ph-info"></i>
-                            <span>Chi Siamo</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="stats.html" class="mobile-nav-link" data-page="stats">
-                            <i class="ph ph-chart-bar"></i>
-                            <span>Statistiche</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="faq.html" class="mobile-nav-link" data-page="faq">
-                            <i class="ph ph-question"></i>
-                            <span>FAQ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="privacy.html" class="mobile-nav-link" data-page="privacy">
-                            <i class="ph ph-shield-check"></i>
-                            <span>Privacy</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="terms.html" class="mobile-nav-link" data-page="terms">
-                            <i class="ph ph-file-text"></i>
-                            <span>Termini</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mobile-theme-section">
-                <button class="mobile-theme-btn theme-toggle-btn">
-                    <i class="ph ph-moon theme-icon"></i>
-                    <span class="theme-text">Tema Scuro</span>
+                <!-- Action Buttons -->
+                <button class="ios-nav-action" id="searchToggle" title="Cerca">
+                    <i class="ph ph-magnifying-glass"></i>
+                </button>
+                <a href="wishlist.html" class="ios-nav-action" title="Wishlist">
+                    <i class="ph ph-heart"></i>
+                    <span class="ios-badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="ios-nav-action" title="Carrello">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="ios-badge" id="cartBadge">0</span>
+                </a>
+                <a href="account.html" class="ios-nav-action" title="Account">
+                    <i class="ph ph-user"></i>
+                </a>
+                <button class="ios-nav-action" id="themeToggle" title="Cambia tema">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="ios-nav-action" id="menuToggle" title="Menu">
+                    <i class="ph ph-list"></i>
                 </button>
             </div>
         </div>
+    </nav>
+
+    <!-- iOS Mobile Menu -->
+    <div class="ios-mobile-menu" id="mobileMenu">
+        <div class="ios-mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="ios-close-btn" id="closeMenu">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <div class="ios-mobile-menu-content">
+            <div class="ios-menu-section">
+                <h4>Navigazione Principale</h4>
+                <a href="index.html" class="ios-menu-item" data-page="index">
+                    <i class="ph ph-house"></i>
+                    Home
+                </a>
+                <a href="products.html" class="ios-menu-item" data-page="products">
+                    <i class="ph ph-shopping-bag"></i>
+                    Offerte
+                </a>
+                <a href="categorie.html" class="ios-menu-item" data-page="categorie">
+                    <i class="ph ph-squares-four"></i>
+                    Categorie
+                </a>
+                <a href="cronoai.html" class="ios-menu-item" data-page="cronoai">
+                    <i class="ph ph-robot"></i>
+                    CronoAI
+                </a>
+                <a href="blog.html" class="ios-menu-item" data-page="blog">
+                    <i class="ph ph-article"></i>
+                    Blog
+                </a>
+                <a href="groups.html" class="ios-menu-item" data-page="groups">
+                    <i class="ph ph-users"></i>
+                    Community
+                </a>
+            </div>
+            
+            <div class="ios-menu-section">
+                <h4>Account & Strumenti</h4>
+                <a href="account.html" class="ios-menu-item" data-page="account">
+                    <i class="ph ph-user"></i>
+                    Account
+                </a>
+                <a href="wishlist.html" class="ios-menu-item" data-page="wishlist">
+                    <i class="ph ph-heart"></i>
+                    Wishlist
+                </a>
+                <a href="cart.html" class="ios-menu-item" data-page="cart">
+                    <i class="ph ph-shopping-cart"></i>
+                    Carrello
+                </a>
+                <a href="stats.html" class="ios-menu-item" data-page="stats">
+                    <i class="ph ph-chart-bar"></i>
+                    Statistiche
+                </a>
+                <a href="themes.html" class="ios-menu-item" data-page="themes">
+                    <i class="ph ph-palette"></i>
+                    Temi
+                </a>
+            </div>
+            
+            <div class="ios-menu-section">
+                <h4>Informazioni</h4>
+                <a href="chisiamo.html" class="ios-menu-item" data-page="chisiamo">
+                    <i class="ph ph-info"></i>
+                    Chi Siamo
+                </a>
+                <a href="faq.html" class="ios-menu-item" data-page="faq">
+                    <i class="ph ph-question"></i>
+                    FAQ
+                </a>
+                <a href="privacy.html" class="ios-menu-item" data-page="privacy">
+                    <i class="ph ph-shield-check"></i>
+                    Privacy
+                </a>
+                <a href="terms.html" class="ios-menu-item" data-page="terms">
+                    <i class="ph ph-file-text"></i>
+                    Termini
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-</nav>
+    <!-- iOS Overlay -->
+    <div class="ios-overlay" id="overlay"></div>
+</body>
+</html>
