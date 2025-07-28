@@ -175,11 +175,17 @@ class CronoshopApp {
     const overlay = document.getElementById("overlay")
 
     if (menuToggle) {
-      menuToggle.addEventListener("click", () => this.toggleMenu())
+      menuToggle.addEventListener("click", (e) => {
+        e.preventDefault()
+        this.toggleMenu()
+      })
     }
 
     if (closeMenu) {
-      closeMenu.addEventListener("click", () => this.closeMenu())
+      closeMenu.addEventListener("click", (e) => {
+        e.preventDefault()
+        this.closeMenu()
+      })
     }
 
     if (overlay) {
@@ -194,17 +200,26 @@ class CronoshopApp {
     const searchCancel = document.getElementById("searchCancel")
 
     if (searchToggle) {
-      searchToggle.addEventListener("click", () => this.toggleSearch())
+      searchToggle.addEventListener("click", (e) => {
+        e.preventDefault()
+        this.toggleSearch()
+      })
     }
 
     if (searchCancel) {
-      searchCancel.addEventListener("click", () => this.closeSearch())
+      searchCancel.addEventListener("click", (e) => {
+        e.preventDefault()
+        this.closeSearch()
+      })
     }
 
     // Theme toggle
     const themeToggle = document.getElementById("themeToggle")
     if (themeToggle) {
-      themeToggle.addEventListener("click", () => this.toggleTheme())
+      themeToggle.addEventListener("click", (e) => {
+        e.preventDefault()
+        this.toggleTheme()
+      })
     }
 
     // Search functionality
@@ -230,6 +245,11 @@ class CronoshopApp {
 
     // Highlight active navigation links
     this.highlightActiveNavigation()
+
+    // Update badges on page load
+    setTimeout(() => {
+      this.updateCartBadge()
+    }, 100)
   }
 
   // Add new method for highlighting active navigation
@@ -581,7 +601,7 @@ class CronoshopApp {
       const cart = userData.cart || []
       const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0)
 
-      const cartBadges = document.querySelectorAll("#cartBadge, .cart-count")
+      const cartBadges = document.querySelectorAll("#cartBadge")
       cartBadges.forEach((badge) => {
         if (badge) {
           badge.textContent = totalItems
@@ -591,7 +611,7 @@ class CronoshopApp {
 
       // Update wishlist badge
       const wishlist = userData.wishlist || []
-      const wishlistBadges = document.querySelectorAll("#wishlistBadge, .wishlist-count")
+      const wishlistBadges = document.querySelectorAll("#wishlistBadge")
       wishlistBadges.forEach((badge) => {
         if (badge) {
           badge.textContent = wishlist.length
@@ -750,155 +770,3 @@ function createFallbackNavigation() {
 // Export for global use
 window.CronoshopApp = CronoshopApp
 window.products = products
-/*
- * ===================================================================
- * CRONOSHOP - REFINED JAVASCRIPT
- * ===================================================================
- */
-
-class CronoshopApp {
-    constructor() {
-        this.userData = { cart: [], wishlist: [] };
-        this.init();
-    }
-
-    init() {
-        document.addEventListener('DOMContentLoaded', () => {
-            this.loadNavigation().then(() => {
-                this.setupEventListeners();
-                this.loadUserData();
-                this.applyTheme();
-                this.updateBadges();
-                this.highlightActiveNavigation();
-                
-                // Initialize page-specific components if they exist
-                if (typeof this.initializeHomePage === 'function') this.initializeHomePage();
-                if (typeof this.initializeFAQ === 'function') this.initializeFAQ();
-
-            });
-        });
-    }
-
-    async loadNavigation() {
-        const navContainer = document.getElementById('navigation-container');
-        if (navContainer) {
-            try {
-                const response = await fetch('nav.html');
-                if (!response.ok) throw new Error('Navigation not found');
-                const html = await response.text();
-                navContainer.innerHTML = html;
-            } catch (error) {
-                console.error("Failed to load navigation:", error);
-            }
-        }
-    }
-
-    setupEventListeners() {
-        // Use event delegation for dynamically loaded elements
-        document.body.addEventListener('click', (e) => {
-            const menuToggle = e.target.closest('#menuToggle');
-            const closeMenu = e.target.closest('#closeMenu');
-            const overlay = e.target.closest('#overlay');
-            const searchToggle = e.target.closest('#searchToggle');
-            const searchCancel = e.target.closest('#searchCancel');
-            const themeToggle = e.target.closest('#themeToggle');
-
-            if (menuToggle) this.toggleMenu(true);
-            if (closeMenu || overlay) this.toggleMenu(false);
-            if (searchToggle) this.toggleSearch(true);
-            if (searchCancel) this.toggleSearch(false);
-            if (themeToggle) this.toggleTheme();
-        });
-
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
-        }
-    }
-
-    toggleMenu(forceOpen) {
-        const menu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        const shouldOpen = forceOpen !== undefined ? forceOpen : !menu.classList.contains('active');
-
-        menu?.classList.toggle('active', shouldOpen);
-        overlay?.classList.toggle('active', shouldOpen);
-        document.body.style.overflow = shouldOpen ? 'hidden' : '';
-    }
-
-    toggleSearch(forceOpen) {
-        const navbar = document.getElementById('main-navbar');
-        const searchInput = document.getElementById('searchInput');
-        const shouldOpen = forceOpen !== undefined ? forceOpen : !navbar.classList.contains('search-active');
-
-        navbar?.classList.toggle('search-active', shouldOpen);
-        if (shouldOpen) {
-            searchInput?.focus();
-        } else {
-            searchInput.value = '';
-        }
-    }
-    
-    toggleTheme() {
-        const isDark = document.body.classList.toggle('ios-dark-mode');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        this.updateThemeIcon(isDark);
-    }
-
-    applyTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = savedTheme === 'dark' || (savedTheme === null && prefersDark);
-        
-        document.body.classList.toggle('ios-dark-mode', isDark);
-        this.updateThemeIcon(isDark);
-    }
-    
-    updateThemeIcon(isDark) {
-        const themeIcon = document.querySelector('#themeToggle i');
-        if (themeIcon) {
-            themeIcon.className = isDark ? 'ph ph-sun' : 'ph ph-moon';
-        }
-    }
-
-    highlightActiveNavigation() {
-        const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-        document.querySelectorAll('.ios-nav-link, .ios-menu-item').forEach(link => {
-            link.classList.remove('active');
-            if (link.dataset.page === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    }
-    
-    loadUserData() {
-        try {
-            const data = localStorage.getItem('cronoshop_data');
-            this.userData = data ? JSON.parse(data) : { cart: [], wishlist: [] };
-        } catch (e) {
-            console.error("Error loading user data:", e);
-            this.userData = { cart: [], wishlist: [] };
-        }
-    }
-    
-    updateBadges() {
-        const cartItems = this.userData.cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        const wishlistItems = this.userData.wishlist.length;
-
-        const update = (badgeId, count) => {
-            const badge = document.getElementById(badgeId);
-            if (badge) {
-                badge.textContent = count;
-                badge.style.display = count > 0 ? 'block' : 'none';
-            }
-        };
-        
-        update('cartBadge', cartItems);
-        update('wishlistBadge', wishlistItems);
-    }
-
-    // Other app methods (addToCart, searchProducts, etc.) would go here...
-}
-
-// Initialize the application
-window.cronoshopApp = new CronoshopApp();
